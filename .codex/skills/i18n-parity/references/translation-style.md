@@ -20,8 +20,9 @@ most common review comment on localization PRs. This file is the tie-breaker.
 `Agent` (alongside `Bash`, `Read`, `Edit`) is an identifier and stays literal in
 **every** locale, everywhere it appears — hook-event tables, tool lists, event
 names. The **UI noun** for an agent (`common:agent` / `common:subagent`) is
-product vocabulary with a per-locale contract, and only that noun has the
-Spanish exception below. Never carry the exception into the tool name.
+product vocabulary with a per-locale contract (literal or localized, per the
+table below), and only that noun follows it. Never carry a localized form into
+the tool name.
 
 **As product vocabulary, `Agent` and `Subagent` are not ordinary English
 words** — but the repo does not treat them identically in every locale, and
@@ -35,10 +36,13 @@ words** — but the repo does not treat them identically in every locale, and
 | `de` | `Agent` (literal) | `Subagent` (literal) |
 | `pt` / `it` | `agente` | `subagente` |
 
-Spanish localizing the pair is deliberate and asserted, not drift — Spanish has
-no comfortable way to carry the bare English noun through inflected prose. So
-keep `Agent` literal in `zh`, `vi`, and `ko` (`运行 Agent`, `Chạy Agent`,
-`Agent 실행`) and follow the Spanish convention in `es` (`Ejecutar agente`).
+Each row is deliberate and asserted, not drift. The **literal** locales (`zh`,
+`vi`, `ko`, `de`) keep the English noun — German capitalizes nouns anyway, so
+`Agent` reads as native (`运行 Agent`, `Chạy Agent`, `Agent 실행`). The
+**localized** locales (`es`, `fr`, `pt`, `it`) use their own noun, because
+these languages have no comfortable way to carry the bare English noun through
+inflected prose (`Ejecutar agente` in `es`). Follow the row of the locale you
+are editing.
 **If you add a locale, decide this explicitly and add its row to the test** —
 do not leave it to whichever phrasing the first translated string happens to use.
 

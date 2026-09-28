@@ -124,7 +124,8 @@ for the mechanism and the length/markup constraints.
       Translate mermaid **labels**, not node IDs.
 - [ ] Update the localized-docs cross-link line (around line 73–74) in **all**
       of `README.md`, `README-CN.md`, `README-VN.md`, `README-KO.md`,
-      `README-ES.md`, and the new file, so every README links to every other.
+      `README-ES.md`, `README-FR.md`, `README-DE.md`, `README-PT.md`,
+      `README-IT.md`, and the new file, so every README links to every other.
 - [ ] `server/__tests__/plugins-marketplace.test.js` — add a `COUNTED_DOCS`
       entry for `README-<XX>.md` with regexes matching how the plugin / skill
       counts are phrased in the new language.
