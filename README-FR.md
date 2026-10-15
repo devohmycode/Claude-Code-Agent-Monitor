@@ -18,6 +18,7 @@ Un tableau de bord professionnel pour suivre et visualiser en temps réel les se
 ![multer](https://img.shields.io/badge/multer-multipart_upload-FF6B6B?style=flat-square&logo=express&logoColor=white)
 ![adm-zip](https://img.shields.io/badge/adm--zip-archive_extract-FBBF24?style=flat-square&logo=files&logoColor=white)
 ![tar](https://img.shields.io/badge/tar-tgz_extract-A78BFA?style=flat-square&logo=gnu&logoColor=white)
+![Commander CLI](https://img.shields.io/badge/Commander_CLI-14-F05032?style=flat-square&logo=gnubash&logoColor=white)
 ![React](https://img.shields.io/badge/React-19.2-61DAFB?style=flat-square&logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?style=flat-square&logo=typescript&logoColor=white)
 ![Javascript](https://img.shields.io/badge/JavaScript-ES6-F7DF1E?style=flat-square&logo=javascript&logoColor=white)
@@ -72,7 +73,7 @@ Un tableau de bord professionnel pour suivre et visualiser en temps réel les se
 ![MIT License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
 
 > [!TIP]
-> Voir aussi : [README.md](./README.md) (English), [README-CN.md](./README-CN.md) (中文版本), [README-VN.md](./README-VN.md) (Phiên bản tiếng Việt), [README-KO.md](./README-KO.md) (한국어 버전), [README-ES.md](./README-ES.md) (versión en español), [README-DE.md](./README-DE.md) (deutsche Version), [README-PT.md](./README-PT.md) (versão em português) et [README-IT.md](./README-IT.md) (versione italiana) pour une documentation localisée avec des conseils et bonnes pratiques propres à chaque région.
+> Voir aussi : [README-EN.md](./README-EN.md) (English), [README-CN.md](./README-CN.md) (中文版本), [README-VN.md](./README-VN.md) (Phiên bản tiếng Việt), [README-KO.md](./README-KO.md) (한국어 버전), [README-ES.md](./README-ES.md) (versión en español), [README-DE.md](./README-DE.md) (deutsche Version), [README-PT.md](./README-PT.md) (versão em português) et [README-IT.md](./README-IT.md) (versione italiana) pour une documentation localisée avec des conseils et bonnes pratiques propres à chaque région.
 
 > [!NOTE]
 > Besoin d'une aide orientée tâches ? Le [Wiki GitHub](https://github.com/hoangsonww/Claude-Code-Agent-Monitor/wiki) est le manuel pratique pour l'usage quotidien, l'exploitation en équipe, le dépannage, l'automatisation CLI/MCP et les recettes de déploiement. Le [Wiki statique localisé](https://hoangsonww.github.io/Claude-Code-Agent-Monitor/wiki/) reste la visite du produit et de l'architecture en anglais, vietnamien, chinois, coréen, espagnol, français, allemand, portugais et italien ; les contrats techniques exacts restent dans [`docs/`](./docs/README.md).
@@ -129,12 +130,6 @@ graph LR
     style D fill:#10b981,stroke:#34d399,color:#fff
 ```
 
-### Prise en charge de Cursor
-
-Cursor ne demande aucun choix de configuration séparé : sélectionner **Claude Code** sur l'écran d'accueil active aussi la surveillance de Cursor. Un observateur du système de fichiers découvre `~/.cursor/chats/*/<session>/meta.json` dès que `agent` démarre, avant même que Cursor ne crée une transcription ; les modifications de `prompt_history.json` mettent à jour la carte de session, l'état en cours et la conversation dès qu'un prompt est soumis. Quand `~/.cursor/projects/*/agent-transcripts` arrive, le tableau de bord le fusionne dans la conversation en attente sans dupliquer le tour de l'utilisateur, enrichit les titres, projets, tours et sous-agents natifs, et conserve un instantané des JSONL principaux et des sous-agents pour que la conversation reste disponible après que Cursor a nettoyé son propre historique.
-
-Les cartes Cursor reçoivent des titres natifs `Cursor · <title>` et des sous-titres de projet, de tours et de sous-agents. Les coûts utilisent une table **Tarifs Cursor** dédiée et modifiable dans les paramètres (couvrant Cursor Grok 4.6/4.5, Composer 2.5 et le catalogue publié des modèles tiers) au lieu d'emprunter les tarifs de Claude ou de Codex. Surchargez la racine source avec `DASHBOARD_CURSOR_HOME` ; ajustez le sondage de secours avec `DASHBOARD_CURSOR_SYNC_MS` (`0` ne désactive que l'analyse périodique ; l'observation en direct du système de fichiers reste active).
-
 En plus du tableau de bord de surveillance en temps réel, le projet inclut une implémentation de serveur MCP local dans `mcp/` qui expose un catalogue d'outils pour inspecter et gérer le tableau de bord lui-même, ce qui facilite l'intégration de ses opérations directement dans vos workflows Claude Code et Codex. Il comprend aussi une couche d'extensions d'agent, qui fournit des plugins, skills et sous-agents Claude Code et Codex pour interagir avec le tableau de bord, l'analytique et l'intelligence des workflows.
 
 ### Internationalisation (i18n)
@@ -154,215 +149,214 @@ Pour l'architecture complète et les consignes d'exploitation, voir [docs/I18N.m
 
 ### Interface utilisateur
 
-Livré avec un thème sombre soigné, un design adaptatif et une navigation intuitive pour explorer l'activité de vos agents :
+L'interface sombre et adaptative couvre l'ensemble du workflow. Chaque aperçu utilise une miniature adaptée au mobile et renvoie vers l'original en haute définition.
 
 <p align="center">
-  <img src="images/dashboard.png" alt="Vue d'ensemble du tableau de bord" width="100%">
+  <a href="images/dashboard.png"><img src="images/readme/dashboard.png" alt="Vue d'ensemble du tableau de bord" width="100%"></a>
   <br>
-  <em>📡 <strong>Tableau de bord · Surveillance</strong> — statistiques de synthèse, cartes des agents actifs et flux d'activité récente</em>
+  <em>📡 <strong>Tableau de bord</strong> · totaux de la flotte, agents actifs, activité récente et signaux de santé en direct</em>
 </p>
 
 <p align="center">
-  <img src="images/tasks-overview.png" alt="Aperçu de l'avancement des tâches sur les cartes d'agents du tableau de bord" width="100%">
+  <a href="images/tasks-overview.png"><img src="images/readme/tasks-overview.png" alt="Aperçu de l'avancement des tâches" width="100%"></a>
   <br>
-  <em>📋 <strong>Avancement des tâches · Aperçu</strong> — les cartes d'agents du tableau de bord et les lignes de Sessions réutilisent le même petit anneau d'achèvement à côté du statut ; le survol ou le focus ouvre un aperçu, par responsable, du travail en cours et de l'état des tâches</em>
+  <em>📋 <strong>Avancement des tâches</strong> · achèvement compact et aperçus du travail par responsable</em>
 </p>
 
 <p align="center">
-  <img src="images/dashboard-health.png" alt="Tableau de bord — onglet Santé du système" width="100%">
+  <a href="images/dashboard-health.png"><img src="images/readme/dashboard-health.png" alt="Vue Santé du tableau de bord" width="100%"></a>
   <br>
-  <em>🩺 <strong>Tableau de bord · Santé</strong> — anneau du score de santé global, anneau du moteur de stockage, jauges de succès du cache, d'erreurs et de réussite, barres d'invocation des outils, efficacité des sous-agents, répartition des tokens par modèle et statistiques de compaction, le tout rafraîchi automatiquement toutes les 5 s</em>
+  <em>🩺 <strong>Santé du système</strong> · stockage, cache, erreurs, outils, modèles, sous-agents et compactions</em>
 </p>
 
 <p align="center">
-  <img src="images/board.png" alt="Tableau Kanban — vue Agents" width="100%">
+  <a href="images/board.png"><img src="images/readme/board.png" alt="Tableau Kanban, vue des agents" width="100%"></a>
   <br>
-  <em>📋 <strong>Tableau Kanban (agents)</strong> — agents regroupés par statut sur 4 colonnes : En cours / En attente / Terminé / Erreur. La colonne jaune En attente fait ressortir les sessions bloquées sur une saisie de l'utilisateur (demandes de permission, fin de tour ou attente sur un prompt vierge) ; survolez un badge En attente pour savoir <em>pourquoi</em> (Saisie requise / Tour terminé / Au prompt / Interrompu). Chaque carte affiche d'un coup d'œil le modèle, le coût et l'outil en cours.</em>
+  <em>📋 <strong>Tableau Kanban · Agents</strong> · agents en cours, en attente, terminés et en échec, avec des raisons d'attente claires</em>
 </p>
 
 <p align="center">
-  <img src="images/board-sessions.png" alt="Tableau Kanban — vue Sessions" width="100%">
+  <a href="images/board-sessions.png"><img src="images/readme/board-sessions.png" alt="Tableau Kanban, vue des sessions" width="100%"></a>
   <br>
-  <em>🗂️ <strong>Tableau Kanban (sessions)</strong> — sessions regroupées par statut sur 5 colonnes : Actives / En attente / Terminées / Erreur / Abandonnées, à basculer depuis la même page. Survolez un en-tête de colonne pour une infobulle expliquant la transition de cycle de vie.</em>
+  <em>🗂️ <strong>Tableau Kanban · Sessions</strong> · sessions actives, en attente, terminées, en erreur et abandonnées</em>
 </p>
 
 <p align="center">
-  <img src="images/sessions.png" alt="Vue d'ensemble des sessions" width="100%">
+  <a href="images/sessions.png"><img src="images/readme/sessions.png" alt="Vue d'ensemble des sessions" width="100%"></a>
   <br>
-  <em>📂 <strong>Sessions</strong> — tableau paginé côté serveur, avec recherche et filtres, de chaque session enregistrée avec coût, modèle, nombre d'agents et durée ; le sélecteur de projets prend en charge la sélection multiple avec recherche et le tri utilise un menu personnalisé</em>
+  <em>📂 <strong>Sessions</strong> · historique paginé côté serveur, avec recherche et filtres, coûts et activité</em>
 </p>
 
 <p align="center">
-  <img src="images/session-agents.png" alt="Détail de la session — onglet Agents" width="100%">
+  <a href="images/session-agents.png"><img src="images/readme/session-agents.png" alt="Vue d'ensemble des agents de la session" width="100%"></a>
   <br>
-  <em>🤖 <strong>Détail de la session · Agents</strong> — tuiles de synthèse en temps réel (événements, appels d'outils, sous-agents, compactions, erreurs, durée), barres des outils les plus utilisés, répartition par type de sous-agent, flux de tokens et arbre hiérarchique des agents</em>
+  <em>🤖 <strong>Agents de la session</strong> · totaux en direct, utilisation des outils, flux de tokens et hiérarchie des agents</em>
 </p>
 
 <p align="center">
-  <img src="images/tasks-details.png" alt="Panneau Avancement des tâches dans le détail de la session" width="100%">
+  <a href="images/tasks-details.png"><img src="images/readme/tasks-details.png" alt="Détail de l'avancement des tâches de la session" width="100%"></a>
   <br>
-  <em>✅ <strong>Avancement des tâches · Détail de la session</strong> — le suivi complet par responsable réunit un anneau d'achèvement segmenté, la tâche active, une barre d'achèvement, la répartition par responsable et une liste de tâches paginée à 10 lignes par page</em>
+  <em>✅ <strong>Détail des tâches</strong> · segments d'achèvement, travail en cours, responsables et tâches paginées</em>
 </p>
 
 <p align="center">
-  <img src="images/session-conversation.png" alt="Détail de la session — onglet Conversation" width="100%">
+  <a href="images/session-conversation.png"><img src="images/readme/session-conversation.png" alt="Vue Conversation de la session" width="100%"></a>
   <br>
-  <em>💬 <strong>Détail de la session · Conversation</strong> — visionneuse de transcription en direct avec rendu Markdown, blocs de code colorés (numéros de ligne + copie), appels d'outils stylés par outil, pastilles de commandes slash avec leur sortie TUI capturée et marqueurs de renommage de session sur place</em>
+  <em>💬 <strong>Conversation</strong> · transcriptions mises en forme, code, appels d'outils, sorties de commandes et marqueurs de session</em>
 </p>
 
 <p align="center">
-  <img src="images/session-timeline.png" alt="Détail de la session — onglet Chronologie" width="100%">
+  <a href="images/session-timeline.png"><img src="images/readme/session-timeline.png" alt="Chronologie des événements de la session" width="100%"></a>
   <br>
-  <em>🔬 <strong>Détail de la session · Chronologie</strong> — chronologie des événements avec filtres multidimensionnels, regroupement Pre/Post par `tool_use_id` et rendus de payload adaptés à chaque outil</em>
+  <em>🔬 <strong>Chronologie</strong> · événements dans l'ordre chronologique, filtres multidimensionnels et activité des outils appariée</em>
 </p>
 
 <p align="center">
-  <img src="images/feed.png" alt="Vue d'ensemble du flux d'activité" width="100%">
+  <a href="images/feed.png"><img src="images/readme/feed.png" alt="Vue d'ensemble du flux d'activité" width="100%"></a>
   <br>
-  <em>📰 <strong>Flux d'activité</strong> — journal d'événements en temps réel avec pause / reprise, regroupement, filtres multidimensionnels et un bouton « Session → » sur chaque ligne</em>
+  <em>📰 <strong>Flux d'activité</strong> · événements en direct avec pause, regroupement, filtres et accès direct aux sessions</em>
 </p>
 
 <p align="center">
-  <img src="images/analytics.png" alt="Vue d'ensemble de l'analytique" width="100%">
+  <a href="images/analytics.png"><img src="images/readme/analytics.png" alt="Vue d'ensemble de l'analytique" width="100%"></a>
   <br>
-  <em>📊 <strong>Analytique</strong> — consommation de tokens par modèle, fréquence des outils, carte thermique d'activité et tendances des sessions avec indicateur en ligne / hors ligne ; les légendes longues se paginent tandis que les courtes restent inchangées</em>
+  <em>📊 <strong>Analytique</strong> · tokens par modèle, fréquence des outils, cartes thermiques d'activité et tendances des sessions</em>
 </p>
 
 <p align="center">
-  <img src="images/workflows.png" alt="Vue d'ensemble des workflows" width="100%">
+  <a href="images/workflows.png"><img src="images/readme/workflows.png" alt="Vue d'ensemble de l'analytique des workflows" width="100%"></a>
   <br>
-  <em>🔀 <strong>Workflows</strong> — DAG d'orchestration des agents, diagrammes de Sankey de l'exécution des outils, réseaux de collaboration, légendes générées à partir des données et bornées, et 11 sections interactives d'intelligence des workflows</em>
+  <em>🔀 <strong>Workflows</strong> · graphes d'orchestration, flux des outils, collaboration, délégation et motifs</em>
 </p>
 
 <p align="center">
-  <img src="images/dynamicworkflows-workflows.png" alt="Exécutions de workflows dynamiques sur la page Workflows" width="100%">
+  <a href="images/dynamicworkflows-workflows.png"><img src="images/readme/dynamicworkflows-workflows.png" alt="Exécutions de workflows dynamiques" width="100%"></a>
   <br>
-  <em>🧬 <strong>Exécutions de workflows (page Workflows)</strong> — les « workflows dynamiques » lancés par l'outil <code>Workflow</code>, reconstitués à partir des journaux d'exécution sur disque : statut, nombre d'agents, tokens et appels d'outils, dépliables en un détail par agent (phase, état, tokens, outils, durée) avec des aperçus de résultats lisibles</em>
+  <em>🧬 <strong>Exécutions de workflows</strong> · statut, agents, tokens, outils et durée tirés des journaux d'exécution</em>
 </p>
 
 <p align="center">
-  <img src="images/dynamicworkflows-workflows2.png" alt="Exécution de workflow dynamique dépliée avec filtres de phase et résultats par agent" width="100%">
+  <a href="images/dynamicworkflows-workflows2.png"><img src="images/readme/dynamicworkflows-workflows2.png" alt="Exécution de workflow dynamique dépliée" width="100%"></a>
   <br>
-  <em>🧬 <strong>Exécutions de workflows · dépliées</strong> — une exécution ouverte : filtres de phase cliquables et colorés, tableau des métriques par agent et liste complète d'éléments de résultat cliquables qui dévoilent le prompt et le résultat complets de chaque agent</em>
+  <em>🧬 <strong>Exécution dépliée</strong> · filtres de phase, métriques par agent, prompts et résultats complets</em>
 </p>
 
 <p align="center">
-  <img src="images/dynamicworkflows-session.png" alt="Exécutions de workflows dynamiques sur la page de détail d'une session" width="100%">
+  <a href="images/dynamicworkflows-session.png"><img src="images/readme/dynamicworkflows-session.png" alt="Exécutions de workflows dans le détail de la session" width="100%"></a>
   <br>
-  <em>🧬 <strong>Exécutions de workflows (détail de session)</strong> — les mêmes flottes rattachées à la session qui les a lancées, pour voir directement les sous-agents de workflow dynamique d'une session et le coût en tokens qui y est intégré</em>
+  <em>🧬 <strong>Workflows de la session</strong> · exécutions dynamiques rattachées et coûts en tokens intégrés</em>
 </p>
 
 <p align="center">
-  <img src="images/config.png" alt="Configuration des agents — explorateurs Claude Code et Codex" width="100%">
+  <a href="images/config.png"><img src="images/readme/config.png" alt="Explorateurs de configuration Claude Code et Codex" width="100%"></a>
   <br>
-  <em>🧰 <strong>Configuration des agents</strong> — basculez entre l'explorateur complet de Claude Code et un espace Codex en direct pour les valeurs par défaut, modèles, profils, MCP, projets, skills, règles, hooks, plugins et instructions. Les aperçus Codex masquent les secrets ; sa configuration, ses hooks, règles, skills et instructions gérés par l'utilisateur se modifient en toute sécurité, avec sauvegardes.</em>
+  <em>🧰 <strong>Configuration des agents</strong> · inspectez et modifiez en toute sécurité la configuration Claude Code et Codex prise en charge</em>
 </p>
 
 <p align="center">
-  <img src="images/config-codex.png" alt="Explorateur de configuration Codex — vue d'ensemble, source de configuration et onglets de l'espace" width="100%">
+  <a href="images/config-codex.png"><img src="images/readme/config-codex.png" alt="Explorateur de configuration Codex" width="100%"></a>
   <br>
-  <em>🧰 <strong>Explorateur de configuration Codex</strong> — l'espace Codex réunit <code>config.toml</code>, les modèles du compte, les profils, serveurs MCP, projets, skills, hooks, règles, plugins et instructions. Modifiez les fichiers utilisateur pris en charge avec des sauvegardes horodatées ; <code>config.toml</code> est en modification seule.</em>
+  <em>🧰 <strong>Configuration Codex</strong> · modèles, profils, MCP, projets, skills, hooks, règles, plugins et instructions</em>
 </p>
 
 <p align="center">
-  <img src="images/config-skills.png" alt="Explorateur de configuration Claude — onglet Skills" width="100%">
+  <a href="images/config-skills.png"><img src="images/readme/config-skills.png" alt="Explorateur des skills Claude Code" width="100%"></a>
   <br>
-  <em>🧩 <strong>Explorateur de configuration Claude · Skills</strong> — l'onglet Skills liste chaque skill découverte (utilisateur, projet et plugin) avec sa description et sa source, permet la recherche sur l'ensemble et ouvre n'importe quel fichier de skill pour une modification sûre, sauvegardée avec horodatage</em>
+  <em>🧩 <strong>Skills</strong> · skills utilisateur, projet et plugin, avec recherche et modification sauvegardée</em>
 </p>
 
 <p align="center">
-  <img src="images/run.png" alt="Lancer un agent — choix entre Claude Code et Codex" width="100%">
+  <a href="images/run.png"><img src="images/readme/run.png" alt="Lancer un agent — choix du fournisseur" width="100%"></a>
   <br>
-  <em>▶️ <strong>Lancer un agent</strong> — choisissez Claude Code ou Codex à chaque ouverture du lanceur. Claude conserve les contrôles Conversation / Ponctuel ; Codex démarre un fil natif interactif de l'app-server avec ses propres contrôles d'approbation et de sandbox. Les modèles Codex proviennent du catalogue de la CLI connectée, tandis que Claude liste les modèles observés et ses alias pris en charge.</em>
+  <em>▶️ <strong>Lancer un agent</strong> · lancez Claude Code ou Codex avec les contrôles natifs de chaque fournisseur</em>
 </p>
 
 <p align="center">
-  <img src="images/run-results.png" alt="Lancer un agent — sortie diffusée en direct" width="100%">
+  <a href="images/run-results.png"><img src="images/readme/run-results.png" alt="Lancer un agent — sortie en direct" width="100%"></a>
   <br>
-  <em>💬 <strong>Lancer un agent · flux en direct</strong> — les événements stream-json de Claude et ceux de l'app-server Codex s'affichent tous deux comme une conversation, raisonnement, commandes, modifications de fichiers et activité des outils compris. Les exécutions du tableau de bord permettent de laisser un agent travailler en arrière-plan et de s'y rattacher plus tard.</em>
+  <em>💬 <strong>Exécution en direct</strong> · conversation en streaming, raisonnement, commandes, modifications de fichiers, outils et rattachement</em>
 </p>
 
 <p align="center">
-  <img src="images/settings.png" alt="Vue d'ensemble des paramètres" width="100%">
+  <a href="images/settings.png"><img src="images/readme/settings.png" alt="Vue d'ensemble des paramètres" width="100%"></a>
   <br>
-  <em>⚙️ <strong>Paramètres</strong> — règles de tarification des modèles, état d'installation des hooks, gestion des données, préférences de notification et informations système</em>
+  <em>⚙️ <strong>Paramètres</strong> · tarification, hooks, notifications, données, sources distantes et état du système</em>
 </p>
 
 <p align="center">
-  <img src="images/alerts.png" alt="Paramètres — Alertes et webhooks" width="100%">
+  <a href="images/alerts.png"><img src="images/readme/alerts.png" alt="Paramètres des alertes et des webhooks" width="100%"></a>
   <br>
-  <em>🔔 <strong>Paramètres · Alertes</strong> — moteur d'alertes à base de règles et webhooks sortants au même endroit : règles d'alerte (motif d'événement / inactivité / agent bloqué / seuil de tokens) avec délai de réarmement par règle, flux en direct des alertes déclenchées et 14 fournisseurs de webhooks intégrés (Slack, Discord, Teams, Google Chat, Mattermost, Rocket.Chat, Telegram, PagerDuty, Opsgenie, Splunk On-Call, Zapier, Make, n8n, Pipedream), plus un point de terminaison JSON générique avec signature HMAC facultative</em>
+  <em>🔔 <strong>Alertes</strong> · règles, délais de réarmement, activité et webhooks intégrés ou génériques signés</em>
 </p>
 
 <p align="center">
-  <img src="images/remote.png" alt="Paramètres — Sources de données distantes" width="100%">
+  <a href="images/remote.png"><img src="images/readme/remote.png" alt="Paramètres des sources de données distantes" width="100%"></a>
   <br>
-  <em>🛰️ <strong>Paramètres · Sources de données distantes</strong> — récupérez l'activité de Claude Code et de Codex d'autres machines via SSH : définissez au besoin des chemins distincts pour le home Claude distant et le home Codex distant, testez chaque fournisseur, synchronisez à la main ou par un poller en arrière-plan, et basculez la portée globale des données entre local, toutes les sources ou une machine précise, avec des badges de source par session</em>
+  <em>🛰️ <strong>Sources de données distantes</strong> · synchronisation SSH par fournisseur et surveillance filtrée par source</em>
 </p>
 
 <p align="center">
-  <img src="images/palette.png" alt="Palette de commandes" width="100%">
+  <a href="images/palette.png"><img src="images/readme/palette.png" alt="Palette de commandes" width="100%"></a>
   <br>
-  <em>⌘ <strong>Palette de commandes</strong> — <kbd>Cmd/Ctrl+K</kbd>, depuis n'importe où, ouvre l'unique lanceur du tableau de bord. Une seule requête couvre neuf groupes : commandes récentes, les neuf pages, recherche de sessions en direct côté serveur, actions propres à la page courante, chaque répertoire de projet connu, sous-vues de pages et filtres de listes, les 13 sections des Paramètres, les 12 onglets de Configuration des agents, et des actions pour les préférences, la portée des données et la langue. La correspondance repose sur les sous-séquences, avec surlignage des caractères trouvés : <code>mcp</code> trouve ainsi « MCP servers »</em>
+  <em>⌘ <strong>Palette de commandes</strong> · un seul lanceur au clavier pour les pages, sessions, projets, filtres et actions</em>
 </p>
 
-La barre latérale donne un accès rapide aux neuf pages — Tableau de bord, Tableau Kanban, liste des Sessions, Flux d'activité, Analyses, Workflows, Configuration des agents, Lancer un agent et Paramètres. Chaque page est conçue pour vous offrir une vision approfondie de l'activité de vos agents Claude Code, avec des mises à jour en temps réel et des visualisations riches.
+La barre latérale donne accès au Tableau de bord, au Tableau Kanban, aux Sessions, au Flux d'activité, à l'Analytique, aux Workflows, à la Configuration des agents, à Lancer un agent et aux Paramètres. Les sections ci-dessous décrivent le fonctionnement complet de ces vues.
 
 ---
 
 ## Fonctionnalités
 
-Le tableau de bord offre un ensemble complet de fonctionnalités pour surveiller et analyser vos sessions et agents Claude Code :
+Le tableau de bord couvre l'intégralité du cycle de vie local des agents. Le détail des contrats de fonctionnement se trouve dans les sections liées et dans les références de `docs/`.
 
-> **Cursor est intégré :** CCAM découvre l'historique natif de Cursor dans `~/.cursor/projects/*/agent-transcripts`, l'enrichit avec les métadonnées de `~/.cursor/chats`, le stocke sous le fournisseur distinct `cursor` et capture les conversations avant que Cursor ne nettoie ses fichiers. Cursor est inclus dès que la portée Claude Code du tableau de bord est sélectionnée. Les sources SSH distantes ne reflètent pour l'instant que les homes Claude Code et Codex ; montez ou exposez localement un home Cursor distant pour l'ingérer avec `DASHBOARD_CURSOR_HOME`.
-
-| Fonctionnalité | Description |
-|---|---|
-| **Progression des tâches** | Suivi des tâches attribué par responsable, dérivé de l'état observable du fournisseur : événements Claude actuels `TaskCreate` / `TaskGet` / `TaskUpdate` / `TaskList` et de cycle de vie, ancien `TodoWrite`, et `update_plan` de Codex, direct ou enveloppé par unified-exec. Les sessions ayant un état de tâches affichent le même anneau compact et le même aperçu au survol/focus, rendu en portail, à côté du statut dans le tableau des Sessions et sur chaque carte d'agent du Tableau de bord ; le Détail de session affiche le panneau de progression complet avec segments de statut, travail en cours, répartition par responsable et lignes de tâches paginées par 10. La progression se limite au dernier travail de premier niveau : un nouveau tour humain Claude ou une nouvelle tâche Codex sans suivi émis efface l'état précédent, et l'état inachevé est abandonné quand ce tour/cette tâche se termine sans mise à jour finale. L'historique entièrement terminé reste visible. |
-| **Tableau de bord** | Deux onglets conservés dans `localStorage` : **Surveillance** — statistiques générales (6 cartes), cartes des agents actifs avec hiérarchie repliable des sous-agents, et flux d'activité récente dont le nombre d'éléments s'adapte à la hauteur disponible via `ResizeObserver`. **Santé** — anneau du score composite de santé du système (pondéré : 0,4 × taux de succès + 0,25 × taux de succès du cache + 0,25 × (100 − taux d'erreur) + 0,1 × (100 − % du tas)), graphique en anneau du moteur de stockage avec la répartition des enregistrements, jauges de performance du cache / taux d'erreur / taux de succès, histogramme horizontal des invocations d'outils (top 8), barres d'efficacité des sous-agents, répartition des tokens par modèle et statistiques d'impact de la compaction. Toutes les métriques de santé se rafraîchissent toutes les 5 s depuis `/api/settings/info` et `/api/workflows`. Infobulles qui suivent le curseur, avec détection des bords de la fenêtre, sur chaque graphique |
-| **Tableau Kanban** | Deux vues avec une bascule dans l'en-tête (conservée dans `localStorage`) : **Agents** — 4 colonnes (En cours / En attente / Terminé / Erreur) — et **Sessions** — 5 colonnes (Actives / En attente / Terminées / Erreur / Abandonnées). La colonne **En attente** correspond directement au statut persistant `waiting` des agents — positionné quand Claude Code attend à un prompt (session neuve, entre deux tours, ou bloqué sur une Notification d'autorisation) et qui passe à `working` dès que l'utilisateur reprend (UserPromptSubmit / PreToolUse). Chaque en-tête de colonne affiche une infobulle `?` expliquant les transitions du cycle de vie. Les cartes sont récupérées par statut persistant depuis le serveur (en pratique sans limite par statut), puis paginées côté client à 10 cartes par colonne avec un bouton « Afficher plus ». L'abonnement WS se limite à la vue active (trames `agent_*` ou `session_*`) pour que les mises à jour hors vue ne déclenchent pas de rechargement. Les badges En attente exposent l'`awaiting_reason` de la ligne dans une infobulle — **Saisie requise** (`notification`), **Tour terminé** (`stop`), **Au prompt** (`session_start`), **Interrompu** (`interrupted`) — uniquement en infobulle sur les cartes compactes pour laisser la place aux titres ; les surfaces plus larges (tableau des Sessions, en-tête du détail de session) affichent aussi la raison en ligne sous forme de puce imbriquée, les raisons urgentes (demandes d'autorisation, interruptions) dans un ambre plus vif |
-| **Sessions** | Tableau recherchable, filtrable et **paginé côté serveur** de chaque session enregistrée. Chaque clic de page appelle `/api/sessions?status=&q=&limit=10&offset=…`, si bien que le calcul des coûts ne porte que sur la page visible — indépendamment du nombre de sessions en base. La première page intègre aussi la même ligne de démarrage Codex locale, en mémoire, affichée sur le Tableau de bord et le Kanban ; elle est visible immédiatement mais non navigable tant qu'un identifiant de session durable ne la remplace pas, et elle ne modifie ni les totaux durables ni la pagination. La zone de recherche (`q=`) fait une correspondance insensible à la casse sur `id` / `name` / `cwd` côté serveur avec un anti-rebond de 300 ms, et la réponse contient un compteur `total` pour le paginateur. Filtre de statut, recherche et pagination se combinent. Le **nom** lisible de chaque session est lu dans la transcription et synchronisé en temps réel — un titre explicite issu de `/rename`, `claude -n` ou du `Ctrl+R` du sélecteur (la ligne JSONL `custom-title`) l'emporte toujours ; sinon l'`ai-title` généré automatiquement prend le relais ; sinon le **premier prompt utilisateur** de la session (tronqué, en ignorant le bruit des résultats d'outils et des commandes slash) remplit le nom provisoire ainsi que le nom et la tâche provisoires de l'agent principal — les sessions qui n'obtiennent jamais de titre (y compris importées) indiquent donc quand même ce qu'elles font ; le tableau de bord affiche ce nom (ou, à défaut, l'identifiant court) sur les cartes, le Tableau de bord, le Flux d'activité et le sélecteur de reprise de Lancer un agent. |
-| **Détail de session** | Panneau de synthèse en temps réel par session avec bannière de l'agent actif (outil + tâche en cours), six compteurs (événements avec leur débit par minute, appels d'outils, sous-agents, compactions, erreurs, durée qui défile), barres des outils les plus utilisés, répartition par type de sous-agent, bande empilée du flux de tokens et nuage de pastilles des types d'événements — le tout rafraîchi en direct à chaque événement de hook. En dessous : arbre hiérarchique des agents, chronologie complète des événements avec filtres multidimensionnels (statut, type d'événement, outil, agent, recherche textuelle, période), regroupement Pre/Post par `tool_use_id`, bloc de résumé lisible, rendus d'entrée/réponse adaptés à l'outil (terminal pour Bash, diff unifié pour Edit, code numéroté pour Read/Write, liste de correspondances pour Grep, carte clé/valeur pour les outils MCP), et un onglet Conversation qui affiche les transcriptions — y compris les messages tapés en plein tour (mis en file pendant que Claude travaillait encore), placés là où Claude les a réellement reçus, avec les notifications du harness attribuées à System — avec du Markdown (titres, listes, citations, tableaux, listes de tâches), des blocs de code avec coloration syntaxique (js/ts, python, json, bash, html, css, sql, yaml, diff), numéros de ligne et copie dans le presse-papiers, et des appels d'outils stylés par outil (Bash → terminal, Edit → ancien/nouveau côte à côte, Write → étiquette de fichier, Read → puce de chemin, Grep → carte de motif). Quand la session attend l'humain, une **bannière jaune d'attente de saisie** sous l'en-tête indique l'`awaiting_reason`, son explication et depuis combien de temps la session attend (point pulsant + temps relatif) ; le badge En attente de l'en-tête porte la même raison sous forme de puce imbriquée |
-| **Flux d'activité** | Journal d'événements diffusé en temps réel avec pause/reprise, filtres multidimensionnels (même barre d'outils que le Détail de session, plus un filtre Session), pagination « Charger plus » pilotée par le serveur, rafraîchissement en direct avec anti-rebond qui respecte les filtres et conserve la taille de page chargée, bascule de regroupement, préfixe d'origine projet › session › sous-agent, un bouton « Session → » par ligne, et un badge de statut par ligne issu de l'unique table de correspondance partagée avec le Tableau de bord et le Détail de session (types d'événements Claude comme Codex) |
-| **Analyses** | Utilisation des tokens, fréquence des outils, carte de chaleur d'activité (centrée, alignée sur les jours de la semaine à partir du dimanche, infobulles avec le nom du jour), tendances des sessions, indicateur de connexion en ligne/hors ligne. Pendant le chargement des données d'analyse, la zone des graphiques (et pas seulement les tuiles de statistiques) affiche des **squelettes pulsants** qui reproduisent la mise en page des graphiques, pour que la page n'affiche jamais de graphiques vides ou à zéro. Les longues légendes des pages Analyses et Workflows sont paginées ; celles qui tiennent sur une page restent inchangées |
-| **Palette de commandes** | Lanceur global `Cmd/Ctrl+K` sur **l'ensemble** du tableau de bord. Une seule requête couvre neuf groupes : commandes exécutées récemment, les neuf routes de la barre latérale (comparées sur leurs libellés **traduits**, donc valables dans chaque langue), recherche de sessions en direct côté serveur via `/api/sessions?q=` (avec anti-rebond et respect de la portée, pour ne jamais garder côté client un index périmé de milliers de sessions), les actions propres à la page courante, chaque répertoire de projet connu, chaque sous-vue de page et filtre de liste, les 13 sections des Paramètres, les 12 onglets de Configuration des agents, et des actions pour les préférences, la portée des données, la langue, l'historique et les opérations de page. Le classement repose sur la correspondance par sous-séquence avec surlignage des caractères trouvés : `mcp` trouve « MCP servers » et `kbrd` trouve « Kanban Board » ; un `>` / `@` / `#` en tête restreint aux actions / pages / sessions. Entièrement pilotable au clavier — flèches, `Home`/`End`, `PageUp`/`PageDown`, `Tab` entre les groupes, `Enter`, `Escape` — et se dégrade sans bruit si la requête de sessions échoue. Faute de bouton permanent, la découverte passe par des indices qui se retirent d'eux-mêmes : l'écran d'accueil nomme le raccourci au premier lancement et une puce `⌘K` figure dans les champs de recherche des Sessions et de Configuration des agents, les deux disparaissant définitivement dès la première ouverture de la palette. Une commande affichée est une commande qui fonctionne : les actions de page sont lues dans le registre de gestionnaires actif, jamais listées là où elles ne feraient rien, et tout ce qui change un état sans vous déplacer se confirme par un toast. Les opérations destructives sont volontairement absentes : la palette y mène, sans jamais les exécuter |
-| **Un seul raccourci** | `Cmd/Ctrl+K` est le seul raccourci que réserve le tableau de bord, et il l'est même quand un champ a le focus. Une version antérieure proposait toute une couche de raccourcis — séquences de navigation préfixées par `g`, touches de page, aide-mémoire `?`, surimpression d'indices au maintien d'un modificateur — retirée à dessein : une séquence est un mode caché avec minuterie, appuyer sur `g` donnait l'impression que rien ne se passait, et deux mécanismes de navigation dispersaient la mémoire musculaire sans rien apporter, puisque la palette atteint déjà chaque page par recherche floue. Tabby conserve son `Cmd/Ctrl+B` historique |
-| **Mises à jour en direct** | Push WebSocket — pas de polling, mise à jour instantanée de l'interface |
-| **Découverte automatique** | Les sessions et agents sont créés automatiquement à partir des signaux des fournisseurs. Claude Code crée immédiatement une carte **En attente** au `SessionStart`. Codex expose d'abord une carte **En attente** locale, en mémoire, dès que son processus TUI interactif démarre, y compris avant qu'il n'attribue un identifiant de session stable. Un hook, une ligne de fil en direct ou un rollout crée ensuite la session durable et remplace cette carte temporaire. Si l'utilisateur ouvre le sélecteur Resume de Codex et choisit un fil existant, CCAM détecte le rollout ou le verrou d'écriture déjà ouvert par ce PID Codex précis et bascule vers la session reprise durable avant le premier nouveau message. Ce relais n'adopte qu'un fil dont l'enregistrement durable est déjà terminé et ne s'exécute qu'une fois par processus : un tour que Codex pilote encore garde l'état de travail et la raison d'attente rapportés par son propre rollout. La carte antérieure à l'identité n'est jamais écrite dans SQLite, l'historique, les analyses, la tarification, les workflows, les alertes ni les notifications de fin, et elle disparaît quand le processus se termine. |
-| **Import de l'historique** | L'import d'historique, conscient du fournisseur, récupère les transcriptions Claude Code de `~/.claude/` et les JSONL de rollout Codex de `~/.codex/sessions`. Chaque onglet a son propre chemin par défaut, ses instructions, son analyse de dossier et son flux de téléversement ; tous deux réutilisent leur logique d'ingestion en direct, préservent le décompte des tokens, coûts et outils, et sont idempotents. Les rollouts Codex externes sont copiés dans le stockage du tableau de bord pour que leur conversation reste disponible après la suppression de l'archive ou du dossier source. |
-| **Hiérarchie des sous-agents** | Arbre parent-enfant repliable sur le Tableau de bord et le Détail de session. Les agents ayant des sous-agents affichent des chevrons de dépliage ; les agents feuilles affichent un point. Se déplie automatiquement quand des sous-agents sont actifs |
-| **Agents en arrière-plan** | Suit correctement les sous-agents passés en arrière-plan, sans les marquer terminés trop tôt |
-| **Attribution des outils des sous-agents** | Les appels d'outils internes aux sous-agents (Read, Bash, Edit, Grep, …) n'existent que dans les fichiers JSONL propres à chaque sous-agent — Claude Code n'émet aucun hook pour eux. À chaque `SubagentStop`, le tableau de bord lance sans attendre une passe `scanAndImportSubagents` qui analyse chaque `subagents/agent-*.jsonl`, associe les blocs `tool_use` à leur `tool_result` via `tool_use_id`, et émet des événements `PreToolUse` + `PostToolUse` sous l'`agent_id` du sous-agent. Idempotent (dédoublonnage `data LIKE '%"tool_use_id":"X"%'`), il fusionne avec une ligne de sous-agent créée en direct par un hook quand elle correspond par type + heure de début à 30 s près, si bien qu'aucune ligne parallèle `<sid>-jsonl-*` n'est créée. Le même chemin s'exécute lors de l'import au démarrage de `npm run setup` pour un rattrapage historique complet — les sessions antérieures au tableau de bord obtiennent des chronologies d'outils complètes par sous-agent. Le Flux d'activité et le Détail de session affichent la chaîne parente sous la forme `main › coder › explorer` pour les sous-agents imbriqués. Cette chaîne est reconstituée de façon fiable par `reconcileSubagentParents` : une ligne de sous-agent est d'abord insérée à plat sous l'agent principal (un événement de hook ou un fichier JSONL isolé ne porte pas l'identité du lanceur), puis le lanceur est retrouvé dans le résultat de l'outil Task de chaque transcription de sous-agent (`toolUseResult.agentId`, capturé comme `spawnedChildren`), de sorte qu'un sous-agent qui lance ses propres sous-agents s'imbrique sous son **vrai** lanceur au lieu d'être aplati d'un niveau sous l'agent principal. Idempotent et additif — il ne fait que repointer `parent_agent_id`, sans jamais insérer ni supprimer de lignes — il s'exécute pendant la même analyse `SubagentStop`, qui renvoie un compteur `reparented` pour que le tableau de bord recharge même quand seul le rattachement a changé la forme de l'arbre |
-| **Suivi des coûts** | Estimation des coûts par modèle avec règles de tarification configurables et détail par session. Prend en charge des **tarifs de lancement limités dans le temps** (`intro_*` + `intro_until` sur une règle de tarification) : l'usage jusqu'à la date limite incluse est facturé au tarif de lancement, et l'usage postérieur au tarif standard, pour que les offres temporaires restent justes pour l'usage passé **et** futur — le point de terminaison des coûts valorise l'usage de chaque jour au tarif en vigueur ce jour-là. Claude Sonnet 5 reste à 2 $/10 $ par million de tokens d'entrée/sortie en tarif standard. **Les tarifs de lancement se modifient entièrement dans les Paramètres** — l'éditeur de tarification des modèles expose une date de fin de promotion et des prix de lancement par catégorie (entrée / sortie / lecture de cache / écriture de cache 5 min et 1 h), si bien qu'une future promotion de lancement ne demande aucune modification de code, juste une saisie. **Les cartes de sous-agents affichent le coût PROPRE de chaque sous-agent** (dérivé de l'usage de tokens de sa transcription et valorisé aux tarifs actuels), et non le total de la session — une carte d'agent principal représente toute la session et en affiche le total, tandis qu'une carte de sous-agent n'affiche que ce qu'il a dépensé, pour qu'elle ne donne plus l'impression trompeuse d'avoir coûté toute la session. Un décompte des tokens conscient de la compaction préserve les totaux au fil des compressions de contexte. Les lectures de transcriptions sont mises en cache avec des mises à jour incrémentales par décalage d'octets pour une extraction efficace des tokens |
-| **Cache des transcriptions** | Extraction en temps réel depuis les transcriptions JSONL : tokens, compactions, erreurs d'API (entrées `isApiErrorMessage` stockées comme événements `APIError`), durées des tours (stockées comme événements `TurnDuration`), nombre de blocs de réflexion et compléments d'usage (service_tier, speed, inference_geo). Les durées des tours portent des identités de transcription stables ; les analyses complètes réparent les anciennes lignes dupliquées et les totaux de métadonnées gonflés, tandis que les analyses de fin plafonnées restent en ajout seul. Les tableaux extensibles de chaque entrée sont plafonnés par la fin à `TRANSCRIPT_CACHE_MAX_ARRAY_LEN` (par défaut `1000`, configurable) — pendant l'analyse comme à la finalisation — pour que même une session qui tourne des jours ne fasse pas grossir sans limite une entrée du cache. Chaque entrée ne stocke que `{mtimeMs, size, bytesRead, result}`, sans copie fantôme des mêmes données au niveau supérieur et dans `result`. Les métadonnées de session sont enrichies de ces champs en temps réel |
-| **Notifications** | Chaîne Web Push (VAPID) complète pour une livraison fiable. Elles arrivent même quand l'onglet est en arrière-plan ou que le navigateur est fermé. Configurées explicitement pour le son sous macOS. Interrupteurs configurables par événement, avec gestion des abonnements |
-| **Alertes** | Moteur d'alertes à base de règles — entièrement configuré dans **Paramètres → Alertes et notifications**, un centre de contrôle à onglets **Règles / Canaux / Activité** (pas de page séparée). Définissez des règles d'alerte avec quatre types de conditions — **motif d'événement** (correspondance sur le type d'événement / le nom d'outil / le texte du résumé, avec éventuellement N événements correspondants dans une fenêtre de temps, p. ex. « plus de 5 erreurs en 2 minutes »), **inactivité** (session active sans événement depuis N minutes), **agent bloqué** (agent resté en `working`/`waiting` sans activité depuis N minutes) et **seuil de tokens** (total de tokens de la session au-delà d'une limite). Les règles pilotées par événement sont évaluées côté serveur à chaque ingestion de hook (après la transaction d'ingestion — les alertes ne peuvent jamais ralentir ni faire échouer la livraison des hooks) ; les règles temporelles s'exécutent lors d'un balayage toutes les 60 s. Les alertes déclenchées sont persistées dans `alert_events` avec **dédoublonnage par délai de réarmement** par règle + par session (300 s par défaut), diffusées en messages WebSocket `alert_triggered` et affichées dans le flux en direct de l'onglet **Activité**, avec acquittement / acquittement global, un filtre « non acquittées seulement » et des liens « Voir la session » par alerte. Les règles s'activent/désactivent et suppriment leur historique en cascade. Les alertes déclenchées sont aussi diffusées vers des **cibles de webhook universelles** configurées dans l'onglet **Canaux** — **14 fournisseurs intégrés** plus un point de terminaison générique : **Slack**, **Discord**, **Microsoft Teams**, **Google Chat**, **Mattermost**, **Rocket.Chat** (charges utiles de chat natives) ; **Telegram** (Bot API), **PagerDuty** (Events API v2), **Opsgenie** (Alert API + authentification GenieKey), **Splunk On-Call** (REST VictorOps) ; et **Zapier**, **Make**, **n8n**, **Pipedream** ou tout point de terminaison **générique** (enveloppe JSON propre avec signature **HMAC-SHA256** facultative et en-têtes personnalisés). Chaque fournisseur est décrit par un registre côté serveur qui déclare son formateur de charge utile, la façon dont son URL est résolue (certains la dérivent des identifiants — p. ex. Telegram à partir du jeton du bot, Opsgenie à partir de la région —, d'autres ont une valeur par défaut) et les champs d'identifiants que l'interface affiche. Les cibles acceptent une restriction facultative par règle, une sonde synchrone « Envoyer un test » et un journal des livraisons. La livraison s'exécute détachée du chemin d'alerte, avec délai d'expiration et nouvelles tentatives à recul borné, et ne peut donc jamais ralentir ni bloquer la surveillance ; les URL cibles, secrets et champs d'identifiants sont stockés côté serveur et jamais renvoyés par l'API (masqués/caviardés dans chaque réponse) |
-| **Notification de mise à jour** | Le serveur exécute périodiquement un `git fetch` non bloquant et compare le checkout local à `origin/master`/`origin/main`/`origin/HEAD`. Quand l'amont est en avance, l'interface affiche une fenêtre avec la commande exacte `git pull && npm run setup` et un bouton **Copier** en un clic ; la barre latérale reçoit un bouton permanent « Rechercher des mises à jour » avec badge en direct. Le tableau de bord ne tire ni ne redémarre jamais de lui-même — l'utilisateur lance la commande dans un terminal —, si bien que le mécanisme ne peut ni casser les sessions de dev, ni perturber la supervision pm2/systemd/Docker, ni laisser de processus orphelins |
-| **Paramètres** | Informations système, état des hooks, gestion de la tarification des modèles, préférences de notification, export **et restauration** des données (le mode **Restaurer une sauvegarde** du panneau Import de l'historique accepte un export `.json` jusqu'à 25 Mio et le réimporte de façon idempotente sans écraser les lignes existantes, pour regrouper l'historique de plusieurs machines dans un même tableau de bord), nettoyage des sessions. La section Tarification des modèles sépare **Tarification des modèles Anthropic Claude** et **Tarification des modèles OpenAI GPT**, avec des en-têtes identiques, des boutons **Réinitialiser les valeurs par défaut** et **Ajouter un modèle** propres à chaque fournisseur, et des bulles d'aide qui expliquent la recherche de règle par première correspondance, la syntaxe de joker `%` à la SQL, la mise à jour manuelle des prix et les réserves sur les tarifs d'API. La bulle GPT explique aussi les unités en USD par million de tokens, la frontière Short/Long de 272K pour les tarifs Standard et Fast, et pourquoi les paliers non publiés restent sans prix plutôt qu'estimés. Le contrôle **Données du tableau de bord** recharge immédiatement sessions, agents, événements, tokens, workflows, analyses et coûts pour Claude Code, Codex ou les deux. Les champs distincts du home Claude Code et du home Codex sont entièrement pilotés par l'i18n et s'enregistrent à chaud ; enregistrer celui de Codex réarme la surveillance des rollouts en direct et analyse sa nouvelle arborescence. |
-| **Lancer un agent + Configuration des agents** | `/run` commence par un choix Claude Code / Codex et garde la bascule de fournisseur à côté de son statut En direct. Les exécutions Claude conservent leurs modes sans interface et conversation stream-json ; les exécutions Codex utilisent le protocole local `app-server` de la CLI pour un vrai fil interactif, la politique native d'approbation/sandbox, la reprise, l'arrêt, la sortie en direct et le rattachement. Les choix de modèles Codex viennent directement de la CLI connectée, si bien que les nouveaux modèles ne demandent aucune mise à jour du tableau de bord ; Claude affiche ses alias durables et les modèles observés localement, car sa CLI n'a pas de commande pour lister les modèles. `/cc-config` associe l'explorateur Claude Code modifiable déjà établi à un espace Codex pour les valeurs de configuration par défaut, le cache des modèles, les profils, MCP, projets, skills, règles, hooks, plugins installés et fichiers d'instructions. Ses aperçus normaux masquent les secrets ; l'éditeur local explicite prend en charge `config.toml`, `hooks.json`, les règles utilisateur, skills et instructions avec enregistrements atomiques et sauvegardes horodatées obligatoires, tout en avertissant qu'il ne peut pas valider la syntaxe. Les commandes de profil Codex et les chemins d'artefacts gérés se copient en un clic, et les cartes de plugins s'appuient sur le registre des plugins installés de Codex plutôt que d'afficher des dossiers de cache. Les deux explorateurs se rafraîchissent via leur surveillance du système de fichiers propre à chaque fournisseur. |
-| **Configuration des agents Codex** | La partie Codex de Configuration des agents lit le catalogue complet des modèles du compte local, sans la limite d'aperçu générique qui pouvait afficher à tort zéro modèle, et inclut toujours les surcharges de base et de profil. Créez directement dans l'application des surcouches Codex standard `<name>.config.toml` ; chaque carte copie en un clic sa commande exacte `codex --profile <name>` et ouvre un éditeur protégé. Les chemins d'aperçu sont canonicalisés avant les contrôles de confinement. L'éditeur refuse les composants de chemin en lien symbolique sous la racine de confiance, vérifie le confinement canonique du parent et refuse le contenu d'aperçu `[redacted]`. Profils, hooks, règles, skills et instructions partagent les actions à la Claude **Voir la source / Copier le chemin / Modifier / Supprimer**. Chaque suppression autorisée est confirmée et sauvegardée au préalable (une skill conserve tout son répertoire) ; `config.toml` est définitivement en modification seule. |
-| **Serveur MCP (local)** | Serveur MCP local complet dans `mcp/` avec trois modes de transport (stdio, HTTP+SSE, REPL interactif) et 97 outils typés répartis en 16 modules de domaine. Il couvre l'observabilité, sessions/agents/événements par portée, transcriptions et images, tarification Claude/Cursor/GPT, workflows, alertes, webhooks, imports et restauration de sauvegarde, configuration Claude/Codex, Lancer un agent, sources distantes, hooks/homes/mises à jour, push et maintenance. Les modes protocole et REPL partagent un même catalogue validé, avec des cibles limitées à localhost et des garde-fous à paliers pour les mutations et actions destructives. Le HTTP direct en loopback peut porter un jeton bearer ; les alias d'hôte de conteneur avec jeton exigent HTTPS. Les redirections sont refusées, les téléversements plafonnés à 50 Mio par fichier et 100 Mio par appel, les réponses binaires à 10 Mio et la restauration de sauvegarde à 25 Mio |
-| **Workflows** | Page de visualisation propulsée par D3.js avec 11 sections interactives : DAG d'orchestration des agents, diagramme de Sankey de l'exécution des outils, réseau de collaboration, efficacité des sous-agents (sparklines par jour de la semaine avec infobulles rendues en portail qui échappent à l'`overflow:hidden` de la carte et se limitent à la fenêtre pour ne jamais être coupées), motifs de workflow détectés, flux de délégation entre modèles, carte de propagation des erreurs (barres horizontales avec badges de taux, répartition par type d'agent, cartes d'erreurs API/session), chronologie de la concurrence, nuage de points de la complexité des sessions, analyse de l'impact de la compaction (refondue en un histogramme clair des « sessions par nombre de compactions » avec titres d'axes, tuiles de statistiques — total / sessions concernées / moyenne / pic —, une ligne d'aide explicative et des infobulles par barre) et exploration par session. Le sous-titre aligné à droite de chaque section tient sur une seule ligne (points de suspension + titre au survol) pour qu'une longue traduction ne fasse jamais passer l'en-tête à la ligne. **Des infobulles riches et localisées partout :** le titre de chaque graphique porte une icône `i` qui ouvre une bulle structurée « Ce que cela montre / Comment le lire / Pourquoi c'est important » ; le survol des nœuds, arêtes, barres et bulles affiche des infobulles en plusieurs sections avec des interprétations déterministes qui dépendent des valeurs (p. ex. pourcentages de part de la source / de la cible, paliers de santé du taux de succès, descriptions des familles Opus / Sonnet / Haiku, profils temporels comme en début / en milieu / en fin de session). Chacune des six cartes de statistiques principales a une bulle d'information en bas à droite qui explique comment la métrique est calculée et ce que signifie sa valeur actuelle en langage courant. Les infobulles sont modifiées dans le DOM via une seule ref par graphique avec des replis `mouseleave` au niveau du conteneur, pour ne jamais traîner derrière le curseur ni rester collées après un nouveau rendu. Cliquer sur une ligne de **Motifs de workflow détectés** déplie sur place un panneau de détail avec la séquence complète des étapes, une grille de statistiques, un récit déterministe (détection de boucles, palier de fréquence) et une suggestion pratique. Les onglets de filtre de statut (Actifs seulement / Terminés / Tous) filtrent les 11 sections. Filtrage croisé, export JSON et rafraîchissement automatique en temps réel par WebSocket avec anti-rebond de 3 secondes. Un panneau **Exécutions de workflows** met en avant les « workflows dynamiques » — les flottes de sous-agents lancées par l'outil `Workflow` (et le `/loop` à rythme autonome) — qui n'émettent aucun hook et sont donc reconstituées à partir des journaux d'exécution sur disque (`workflows/wf_<runId>.json`) : chaque exécution montre ses phases et un détail par agent des tokens / appels d'outils / durée, avec détection en direct de l'état `running` avant l'écriture du journal et une sous-section liée sur chaque page de Détail de session |
-| **Suivi des compactions** | Détecte les événements `/compact` dans les transcriptions JSONL et crée des agents et événements de compaction. Rattrape les anciennes compactions au démarrage. Un scanner périodique (cadence dérivée de `DASHBOARD_STALE_MINUTES`) repère les compactions même quand aucun hook ne se déclenche. Il lit le chemin de transcription de chaque session active directement dans `sessions.transcript_path` (renseigné par le gestionnaire de hooks au premier événement qui le porte, plus un rattrapage unique depuis `events`) au lieu d'un `SELECT DISTINCT json_extract(events.data, '$.transcript_path')` sur toute la table des événements — le balayage est donc en O(sessions actives) et reste peu coûteux sur une base mature. Il partage le cache des transcriptions, sans lecture de fichier en double. Les lignes de compaction synthétiques reçoivent l'horodatage de la transcription à la fois dans `started_at` et `ended_at`, pour une durée d'exactement 0 (la compaction est instantanée) ; une migration de réparation au démarrage corrige aussi les lignes existantes où `ended_at < started_at` (issue #156) |
-| **Sous-sessions / sessions reprises** | Réactive automatiquement les sessions quand de nouveaux événements arrivent, gère correctement `/resume` et les sessions orphelines. Un balayage périodique (tous les ¼ de `DASHBOARD_STALE_MINUTES`, borné entre 60 s et 5 min) marque les sessions abandonnées qui échappent à la détection par événement |
-| **Détection des sessions préexistantes** | Les sessions déjà en cours au démarrage du serveur sont importées comme « actives » (d'après la modification récente du fichier JSONL). Les événements Stop réactivent aussi les sessions importées terminées/abandonnées, si bien que le premier hook d'une session en cours la fait toujours apparaître sur le tableau de bord |
-| **Synchronisation continue des projets** | L'import automatique de `~/.claude/projects` au démarrage n'a lieu qu'une fois (protégé par un marqueur) : un dossier de projet créé **après** le premier lancement — dont les sessions ne passent jamais par les hooks (p. ex. hooks désactivés côté hôte) — resterait invisible jusqu'à une nouvelle analyse manuelle. Une synchronisation en arrière-plan (`startSessionSync`) comble ce manque via trois déclencheurs partageant un même cache de mtime + un balayage unique fusionné : un balayage **immédiat** au démarrage, un **`fs.watch`** avec anti-rebond qui se déclenche dès qu'un nouveau fichier de session ou dossier de projet apparaît (récursif sous macOS/Windows ; racine + enfants directs sous Linux pour éviter les écueils de la surveillance récursive en espace utilisateur), et un **polling périodique** (`DASHBOARD_SESSION_SYNC_MS`, 30 s par défaut). Chaque balayage ne réanalyse que les fichiers dont le mtime a avancé et diffuse `session_created`/`session_updated` (plus l'agent principal) pour que l'interface se rafraîchisse en direct ; une session inchangée déjà en base est ignorée sans réanalyse, si bien que le coût d'un redémarrage reste en O(fichiers nouveaux/modifiés) |
-| **Sources de données distantes** | Collecte en direct de Claude Code et Codex sur des machines distantes / multiples via SSH. Une source réplique indépendamment `~/.claude/projects` et `~/.codex/sessions` (plus le léger `session_index.jsonl` de Codex pour les titres renommés natifs) via **scp**, ou `wsl.exe` + `tar` pour des CLI hébergées dans WSL sur un hôte SSH Windows. Chaque étape isolée passe par l'importeur normal de son fournisseur et marque les lignes avec `sessions.source` ; une source est saine dès qu'un des fournisseurs est disponible, si bien que les machines Claude seul, Codex seul ou mixtes fonctionnent toutes. Le poller `DASHBOARD_REMOTE_SYNC_MS` de 15 s et les récupérations immédiates à l'ajout/réactivation diffusent `remote_source.status`, `remote_data.updated` et des mises à jour par session conscients du fournisseur. Le cycle de vie distant est réconcilié à partir de chaque transcription répliquée. Si un fournisseur est indisponible, en erreur ou bloqué en synchronisation au-delà de `DASHBOARD_STALE_MINUTES`, seules ses anciennes sessions distantes retombent dans le balayage d'inactivité ordinaire ; un fournisseur voisin sain reste géré par la réplication. Configurez des chemins facultatifs et indépendants **Home Claude distant** et **Home Codex distant** dans **Paramètres → Sources de données distantes**, ou utilisez `ccam remote-sources` ; l'authentification SSH reste entièrement côté hôte (aucun mot de passe ni secret stocké). |
-| **Ingestion par push distant** | Le troisième chemin d'ingestion des données de session, pour la machine que SSH ne peut pas atteindre : un portable nomade derrière un NAT ou une connexion domestique en CGNAT **pousse** ses propres données de session vers le tableau de bord au lieu que celui-ci ne les tire. `POST /api/hooks/ingest-batch` accepte un lot par push — compteurs de tokens (chaque entrée est le total courant complet de ce compteur, comme lors d'une réanalyse de transcription), événements d'outils et durées de tours — et c'est la seule route du serveur destinée à être joignable depuis Internet. Elle est donc **désactivée tant que `REMOTE_PUSH_TOKEN` n'est pas défini** (`503 REMOTE_PUSH_NOT_CONFIGURED` sinon), protégée par son propre jeton plutôt que par `DASHBOARD_HOOK_TOKEN` pour que le durcissement des routes de hooks en loopback n'ouvre jamais celle-ci par effet de bord, et elle refuse `?token=` pour que l'identifiant ne puisse pas finir dans un journal d'accès de proxy. Les éléments sont dédoublonnés par `(session_id, event_type, uuid)`, contre les lignes déjà validées comme au sein du même lot, si bien qu'un renvoi est sans danger ; un lot est plafonné à 1000 éléments (`413 BATCH_TOO_LARGE`) ; et un `session_id` déjà détenu par une session locale ou tirée par SSH est refusé élément par élément (`SESSION_LOCALLY_OWNED`) au lieu de pouvoir la détourner — une session poussée ne peut que créer une nouvelle session ou compléter une session qu'elle a elle-même créée. Les échecs partiels renvoient `200` avec des `errors[]` par élément, et la diffusion a lieu après la validation de la transaction. |
-| **Design adaptatif** | Mises en page adaptées au mobile avec grilles empilées, tableaux défilants et barre latérale repliable |
-| **Localisation de l'interface** | Changement de langue intégré par liste déroulante personnalisée, avec textes d'interface et libellés d'accessibilité traduits en anglais (`en`), chinois (`zh`), vietnamien (`vi`), coréen (`ko`), espagnol (`es`), français (`fr`), allemand (`de`), portugais (`pt`) et italien (`it`). La couverture s'étend de bout en bout jusqu'aux infobulles des Workflows : calculs des cartes de statistiques et interprétations par palier de valeur, bulles « Quoi / Comment lire / Pourquoi » de chaque graphique, infobulle de survol de chaque graphe (orchestration, flux d'outils, pipeline, délégation entre modèles, concurrence), récits et suggestions du panneau de détail des motifs de workflow, bulle d'information Paramètres → Tarification des modèles, panneau CLAUDE_HOME et tout le flux d'import de l'historique. |
-| **Données d'exemple** | Script de données d'exemple intégré pour les démos et le développement |
-| **Ligne de statut** | Ligne de statut CLI colorée affichant le modèle, l'utilisation du contexte, la branche git, les tokens par direction et le coût de la session (USD) |
-| **Formatage des noms de modèles** | Noms de modèles lisibles dans toute l'interface : des identifiants bruts comme `claude-opus-4-7-20260101` ou `claude-opus-4-7[1m]` s'affichent « Claude Opus 4.7 » ou « Claude Opus 4.7 (1M) ». Gère les familles Claude, GPT et Gemini avec jonction automatique des versions par un point, suppression des suffixes de date/latest, retrait du préfixe du fournisseur et mise en forme de l'étiquette de fenêtre de contexte. La page Paramètres conserve les noms bruts pour la configuration des règles de tarification |
-| **Marketplace de plugins Claude + Codex** | Une seule arborescence source de 14 plugins fournit les manifestes Claude canoniques, les manifestes Codex `.codex-plugin/plugin.json`, les deux catalogues de marketplace, 66 skills de plugins intégrées, 18 sous-agents Claude, 34 commandes Claude, 3 utilitaires CLI et les métadonnées de skills OpenAI. La CLI skills.sh découvre 77 skills au total dans le dépôt avec `npx skills add hoangsonww/Claude-Code-Agent-Monitor --list`. Installez avec `claude plugin marketplace add`, `codex plugin marketplace add` ou `npx skills add` |
-| **Lancer Claude** | Lancez des sous-processus `claude` directement depuis le tableau de bord, avec une interface de streaming façon chat. Deux modes : **Conversation** (multi-tours — stdin reste ouvert, les tours suivants sont transmis sous forme d'enveloppes stream-json) et **Ponctuel** (sans interface, un prompt → une réponse). Le mode Conversation permet aussi de **reprendre n'importe quelle session existante** via `claude --resume <id>` — choisissez dans tout votre historique de sessions grâce à un sélecteur recherchable. La fenêtre unifiée exécutions actives / historique propose aussi deux boutons d'accès direct sans configuration : **Reprendre**, sur n'importe quelle ancienne conversation, lance aussitôt `claude --resume <id>` et pré-remplit le chat avec la transcription précédente pour arriver dans la vue en direct avec tout le contexte (inutile de retaper un prompt — le processus attend sur stdin jusqu'à votre relance) ; **Voir**, sur n'importe quelle ancienne exécution ponctuelle, charge la transcription capturée en lecture seule dans la visionneuse (aucun lancement — même panneau, sans contrôles Arrêter/relance). Le sélecteur d'exécutions actives dans l'en-tête permet de laisser une exécution en arrière-plan, d'en lancer une autre et de s'y rattacher plus tard. Le rattachement est durable : le client réconcilie le journal d'enveloppes en mémoire du lanceur (`?envelopes=1`) avec la transcription JSONL sur disque de la session et privilégie celui qui contient le plus de messages utilisateur/assistant, si bien qu'en quittant puis en revenant sur une exécution reprise, tout l'historique antérieur reste visible (le lanceur ne voit que les tours postérieurs au lancement ; le fichier de transcription contient les précédents et les actuels). Liste déroulante des modèles (Opus 4.7 / 1M / Sonnet 4.6 / Haiku 4.5 / personnalisé), sélecteur de mode d'autorisation avec avertissement explicite pour `bypassPermissions`, champ **d'effort de réflexion** (low / medium / high — relié à `--effort`), autocomplétion du cwd pré-remplie avec le **répertoire personnel** de l'utilisateur — un emplacement neutre qui n'hérite pas du contexte de projet `.claude` du dépôt du tableau de bord (agents, skills, règles, `CLAUDE.md`, `.mcp.json`) ; repli sur le cwd du tableau de bord si aucune suggestion de home n'est disponible, le home étant listé en premier dans les groupes de suggestions (home → tableau de bord → récents). Vrai streaming caractère par caractère via `--include-partial-messages`, plus une **couche de lissage façon machine à écrire** côté client qui distille chaque `text_delta` / `thinking_delta` via `requestAnimationFrame`, pour que même les réponses courtes (où claude regroupe toute la réponse en un ou deux morceaux) semblent se taper. Le code de fusion préserve le drapeau `_streaming` et le tableau `content` accumulé par deltas quand l'enveloppe `assistant` canonique de claude arrive en plein flux, pour que les blocs de réflexion ne soient pas perdus à la fin. La distribution WebSocket enveloppe chaque enveloppe dans `flushSync` pour que le regroupement automatique de React ne fusionne pas des rafales de deltas en un seul rendu. **Parité TUI (niveau 1)** : une **bannière des limites** repliable qui se réduit en une fine pastille (sans jamais disparaître) et explique ce que le mode stream-json peut et ne peut pas faire par rapport au TUI du terminal ; un **éditeur de prompt avec autocomplétion des commandes slash** au score hiérarchisé (nom exact → commence par → début de mot → contient → sous-séquence → description contenant) qui liste les commandes utilisateur / projet / plugin (exécutées côté client par expansion de modèle avant l'envoi) et affiche les commandes CLI intégrées comme `/clear`, `/model`, `/config` avec un badge « CLI uniquement — ne s'exécute pas ici » ; des **références de fichiers `@`** avec recherche floue et anti-rebond dans le cwd de l'exécution (en ignorant `node_modules`, `.git`, `dist`, `build`, etc.) ; un **compteur en direct de fenêtre de contexte / tokens** affichant les tokens d'entrée + sortie + lecture de cache et le coût courant, calculé à partir des enveloppes `stream_event` et `result.usage` pendant le streaming en direct, et à partir des blocs `usage` finalisés de l'assistant (entrée / sortie / lecture de cache / création de cache) quand il est initialisé depuis une transcription lors d'une reprise / consultation / d'un rattachement, pour que le compteur se remplisse immédiatement au lieu de rester à 0/200k. La barre de progression passe de l'indigo à l'ambre puis au rouge à 80 % / 95 % de la limite de contexte du modèle ; un **en-tête de statut** avec le modèle actif, l'effort, le mode d'autorisation, le cwd, l'identifiant de session, le nombre d'enveloppes et le temps écoulé. Les listes d'autocomplétion s'ouvrent vers le haut pour ne pas chevaucher le sélecteur de cwd en dessous. Indicateur En ligne / Hors ligne à côté du titre. Une protection same-origin sur la route empêche les lancements déclenchés à l'insu depuis le navigateur. La concurrence est en pratique illimitée par défaut (plafond de sécurité à 10000 pour éviter qu'un client bogué ne provoque une fork bomb ; le TUI du terminal n'a pas de plafond, nous non plus). Définissez `RUN_MAX_CONCURRENT` pour un vrai plafond. Les sessions lancées déclenchent les mêmes hooks que n'importe quel processus `claude`, et apparaissent donc automatiquement dans Sessions / Analyses / Kanban / Workflows — et Sessions / SessionDetail affichent un badge / une bannière verte **▶ Run** qui renvoie à la page Lancer pour toute session actuellement pilotée depuis celle-ci |
-| **Explorateur de configuration Claude** | Un inspecteur à 12 onglets sur `/cc-config` pour tout ce que connaît Claude Code : skills, sous-agents, commandes slash, styles de sortie, plugins (avec le nombre de contributions par plugin + auteur/licence/page d'accueil tirés de `plugin.json`), marketplaces (avec le nombre de plugins lu dans chaque `marketplace.json`), serveurs MCP, hooks (avec la liste des scripts de `~/.claude/hooks/`), paramètres (un résumé **Configuration actuelle** d'un coup d'œil des options que contrôle `/config` — modèle, verbose, thème, style de sortie, effort, auto-compaction, notifications, … — résolues à travers les portées utilisateur/projet/projet local, les options non définies étant affichées avec leur valeur par défaut, plus la vue structurée clé-valeur par fichier + bascule JSON brut, avec masquage des clés secrètes), mémoire (les fichiers `CLAUDE.md` utilisateur + projet **ainsi que** la mémoire par projet à base de fichiers — chaque `*.md` sous `~/.claude/projects/<slug>/memory/`, c.-à-d. un index `MEMORY.md` plus un fichier par fait mémorisé, souvent plus de 100 ; regroupés par projet dans des sections repliables qui séparent les fichiers d'index des fichiers de faits, avec une zone de recherche et des liens cliquables de l'index `MEMORY.md` qui mènent au fichier de fait correspondant — défilement + surlignage), raccourcis clavier (regroupés par contexte avec des puces `<kbd>`) et ligne de statut (configuration + contenu du script). Les chemins lus et leurs racines autorisées sont canonicalisés avec `realpath`, pour que les liens symboliques ne puissent pas sortir des racines Claude de confiance. Pour les surfaces de fichiers texte à faible risque (skills / agents / commandes / styles de sortie / mémoire — y compris les fichiers d'auto-mémoire par projet), la page permet de **créer / modifier / supprimer avec sauvegardes horodatées obligatoires**, écrites de façon atomique hors des répertoires que Claude Code analyse, plus une fenêtre Sauvegardes avec des commandes de restauration `mv` générées automatiquement. Les plugins, MCP, hooks dans les paramètres et fichiers `settings.json` restent en lecture seule, avec des bannières explicatives + des commandes CLI copiables pour que l'utilisateur sache exactement quelle commande lancer lui-même. **Mises à jour en direct** : un `cc-watcher` côté serveur utilise `fs.watch` sur `~/.claude/` (récursif quand la plateforme le permet) plus `~/.claude.json`, avec un anti-rebond de 500 ms, pour diffuser un message WebSocket `cc_config_changed` à chaque changement de la configuration de Claude Code — que ce soit par des modifications du tableau de bord ou par des outils externes (CLI qui installe un plugin, édition manuelle de `settings.json`, ajout d'une nouvelle skill). La page s'y abonne et recharge automatiquement ; une pastille En ligne / Hors ligne à côté du titre indique l'état du WebSocket |
-| **Tabby** | Un chat compagnon flottant épinglé dans le coin inférieur droit de chaque page. Construit entièrement sur l'`eventBus` WebSocket existant — **aucun nouveau backend, aucune clé d'API, aucune nouvelle dépendance**. Une mascotte SVG réactive aux yeux qui suivent le curseur et à **huit humeurs** dérivées du flux de sessions en direct (`idle`, `watching`, `happy`, `worried`, `stuck`, `thinking`, `sleeping`, `disconnected`), chacune avec sa propre animation (coup de queue, oreilles dressées, hochement de tête, tremblement, étincelles, zzz, alerte « ! »). Des **bulles de dialogue automatiques** publient de courtes répliques, limitées et regroupées, lors des événements notables (session démarrée/terminée, erreurs, exécution achevée) et peuvent être coupées. Cliquez sur le chat ou appuyez sur **⌘B / Ctrl+B** (Échap ferme) pour ouvrir un **panneau** avec une ligne de statut en direct (`N live · M errored · connection state`), des actions rapides (aller à Lancer Claude / Activité / Sessions / sessions en erreur, couper les bulles, effacer les alertes) et une zone **Demander** : les questions simples de statut (« qu'est-ce qui tourne », « des erreurs ? », « statut ») reçoivent une réponse locale à partir des données en cache, tandis que toute autre question est transmise à la page **Lancer Claude** (lien profond vers `/run?prompt=…`) pour lancer une vraie session Claude Code. Accessible (utilisable au clavier, bulles `aria-live`, respecte `prefers-reduced-motion`), se replie en toute sécurité sur un état calme `disconnected` si le socket est coupé, activable dans les **Paramètres** (localisé en en/zh/vi/ko/es/fr/de/pt/it). L'implémentation se trouve dans `client/src/components/Tabby/` |
-| **Signaux sonores** | Retour audio discret sur l'activité en direct, **activé par défaut** et entièrement désactivable. Chaque signal est **synthétisé dans le navigateur avec la Web Audio API** — oscillateurs et enveloppes de gain, donc **aucun fichier audio à télécharger ni nouvelle dépendance**. Sept signaux couvrent le cycle de vie des sessions : une quinte ascendante au démarrage d'une session, un arpège majeur conclusif quand une session a fini de répondre, une douce tierce mineure descendante en cas d'erreur, un court pincement pour le lancement d'un sous-agent, une cloche désaccordée pour les notifications de Claude Code, une montée/descente de deux notes quand la connexion en direct revient ou tombe, et un tic à peine audible sur les boutons et liens. Les signaux sont **limités en fréquence** (délai par signal plus budget global de rafale), passent par un filtre passe-bas pour rester en retrait de votre travail, et restent muets jusqu'à votre première interaction avec la page (politique de lecture automatique des navigateurs). **Paramètres → Son** propose un interrupteur général, un curseur de volume et un interrupteur par signal avec écoute instantanée ; les préférences sont conservées dans `localStorage` sous `agent-monitor-sound` (localisé en en/zh/vi/ko/es/fr/de/pt/it). L'implémentation se trouve dans `client/src/lib/sound.ts` et `client/src/hooks/useSoundCues.ts` |
-| **Progressive Web App (PWA)** | Trois PWA indépendantes — tableau de bord, page d'accueil et wiki —, chacune avec son propre manifeste Web App et son Service Worker. Installez n'importe laquelle sur votre écran d'accueil / dock pour une expérience autonome, sans barre de navigateur. Le SW du tableau de bord sert les bundles Vite à hash de contenu sous `/assets/` en cache d'abord (les URL sont immuables par build, les succès de cache sont donc toujours corrects) et traite tout le reste — navigations, le SW lui-même, `manifest.json`, icônes, racine `/` — en réseau d'abord avec repli sur le cache. Combiné à des en-têtes `Cache-Control` explicites sur le middleware statique Express de production (`immutable` pour `/assets/*`, `no-cache, must-revalidate` pour `index.html`, `sw.js`, `manifest.json`), un nouveau build remplace toujours le bundle du navigateur sans rechargement forcé ; un écouteur `controllerchange` côté client recharge exactement une fois quand un nouveau SW prend le contrôle d'une page déjà contrôlée. La chaîne de notifications push VAPID est préservée. Les SW de la page d'accueil et du wiki pré-cachent leur coquille respective et mettent en cache les images à la première visite, ce qui permet l'accès hors ligne après un seul chargement. Tous les manifestes utilisent des icônes SVG (`favicon.svg`) avec `sizes="any"` pour les navigateurs modernes, et incluent les balises meta `apple-mobile-web-app-capable` + `apple-touch-icon` pour le mode autonome sur iOS |
-| **Application de bureau (macOS et Windows)** | Application de bureau native facultative construite avec Electron 35, dans l'espace de travail `desktop/` aux côtés de `client/`, `server/`, `mcp/` et `vscode-extension/`. Livrée en `.app` macOS (`.dmg`) **et** en `.exe` Windows (installeur NSIS + version portable sans installation). Elle embarque le serveur Express existant **dans le même processus** (elle fait un `require()` de `server/index.js` — ni processus enfant ni IPC) et affiche le client React compilé dans une `BrowserWindow`. Elle ajoute une barre de titre native, une icône dans la barre de menus / zone de notification (tray) dont le menu, en un clic, affiche un **instantané du statut en direct** (sessions, agents, événements du jour) lu dans SQLite au moment du clic, un menu d'application natif, le démarrage automatique à l'ouverture de session (éléments d'ouverture macOS via `SMAppService` ; `HKCU\…\Run` par utilisateur sous Windows), une **boîte de confirmation ⌘Q / Ctrl+Q** (un second appui passe outre), la fermeture de fenêtre qui masque sans arrêter le serveur, un verrou d'instance unique, et des actions de tray **Ouvrir dans le navigateur**, **Redémarrer le serveur** et **Afficher les journaux**. Elle privilégie le port 4820 (repli sur 4821–4829, puis un port élevé aléatoire), adopte un tableau de bord sain déjà actif sur 4820 au lieu de s'y lier en double, et **coexiste avec le tableau de bord web** — `npm run dev` et l'application de bureau peuvent tourner ensemble, les hooks alimentant les deux. Les notifications s'affichent comme des toasts natifs du système (Web Push ne fonctionne pas de façon fiable dans Electron). Au premier démarrage avec son propre serveur, elle installe automatiquement les hooks de Claude Code et démarre les services d'arrière-plan : un utilisateur qui se contente d'installer voit donc les événements arriver sans aucune configuration manuelle. Voir [`DESKTOP.md`](./DESKTOP.md) et [`desktop/README.md`](./desktop/README.md) |
-| **Ressources auto-hébergées (sans CDN)** | Chaque police et chaque script sont servis localement : le tableau de bord et la documentation n'envoient **aucune requête à un CDN tiers** — ils s'affichent entièrement hors ligne et ne divulguent rien à des hôtes externes. L'application React embarque Inter + JetBrains Mono via [`@fontsource`](https://fontsource.org/) (sous-ensemble latin ; Vite produit des WOFF2 à hash de contenu dans `dist/assets/` au build, sans `<link>` vers Google Fonts). La page d'accueil et le wiki chargent une feuille `@font-face` auto-hébergée `fonts/fonts.css` depuis le répertoire `fonts/` à la racine du dépôt. Le Mermaid du wiki est embarqué localement sous `wiki/mermaid.min.js` (le véritable `mermaid@10.9.6` minifié) au lieu de jsDelivr, et la page d'erreur de l'extension VS Code se replie sur une pile de polices système. Il ne reste nulle part d'appel à `fonts.googleapis.com`, `fonts.gstatic.com` ou `cdn.jsdelivr.net` |
-| **Écran d'accueil de session** | Un bref écran d'accueil au chargement de l'application (une fois par session de navigateur) : une **salutation selon l'heure** (Bonjour / Bon après-midi / Bonsoir / Vous travaillez tard), une accroche en gras, deux sous-textes et un logo animé en graphe de nœuds sur un fond sombre et atmosphérique (halo radial + constellation qui dérive + grain). Entièrement localisé (en/zh/vi/ko/es/fr/de/pt/it). La surimpression est **opaque dès le premier rendu** pour que l'application n'apparaisse jamais au travers, reste environ 2,5 s puis s'estompe ; un clic n'importe où la passe, et elle respecte `prefers-reduced-motion`. Animations en CSS pur, sans dépendance ajoutée |
+| Fonctionnalité | Résumé |
+| --- | --- |
+| **Progression des tâches** | Progression par responsable issue des outils de tâches de Claude, de l'ancien `TodoWrite` et du `update_plan` de Codex. Des aperçus compacts apparaissent sur les cartes et les lignes ; le Détail de session ajoute les segments de statut, le travail en cours, les responsables et une pagination par 10 lignes. Un nouveau travail de premier niveau efface l'état inachevé périmé, tandis que l'historique terminé reste visible. |
+| **Tableau de bord** | Les onglets persistants **Surveillance** et **Santé** réunissent les totaux de la flotte, les hiérarchies actives, l'activité récente, une santé pondérée (succès, cache, erreurs, tas), le stockage, les outils, les modèles, l'efficacité des sous-agents et les métriques de compaction. La Santé se rafraîchit toutes les 5 secondes à partir de `/api/settings/info` et `/api/workflows`. |
+| **Tableau Kanban** | Les colonnes des agents couvrent En cours, En attente, Terminé et Erreur ; celles des sessions ajoutent Actives et Abandonnées. Les cartes se paginent par 10, ne s'abonnent qu'à la vue WebSocket active, conservent leurs titres complets et expliquent les raisons d'attente : demande de permission, fin de tour, inactivité au prompt ou interruption. |
+| **Sessions** | Historique recherchable, filtrable et paginé côté serveur, avec un calcul des coûts limité à la page visible et une ligne temporaire en mémoire pour le démarrage de Codex. La recherche porte sur `id`, `name` et `cwd` avec un anti-rebond de 300 ms. Les noms proviennent du titre explicite, puis du titre généré par l'IA, puis du premier prompt utilisateur significatif. |
+| **Détail de session** | Statistiques en direct, travail en cours, utilisation des outils, sous-agents, tokens, hiérarchie, chronologie d'événements filtrable, regroupement par `tool_use_id` et rendus propres à chaque outil. La vue Conversation affiche les tours mis en file d'attente, les avis système, le Markdown, le code coloré et les outils stylés ; les bannières d'attente indiquent la raison et le temps écoulé. |
+| **Flux d'activité** | Événements en temps réel avec pause, filtres partagés, pagination côté serveur, regroupement, origine projet/session/sous-agent, liens vers les sessions et badges de statut cohérents pour Claude et Codex. |
+| **Analytique** | Tokens par modèle, fréquence des outils, cartes thermiques d'activité alignées sur le dimanche, tendances des sessions, état de la connexion, squelettes de chargement calqués sur la mise en page et légendes longues paginées. |
+| **Palette de commandes** | `Cmd/Ctrl+K` recherche les commandes récentes, toutes les routes, les sessions en direct côté serveur, les actions de page, les répertoires de projet, les sous-vues, les filtres, les Paramètres, la Configuration des agents, les préférences, la portée et la langue. Elle prend en charge le classement par sous-séquence, les portées `>`/`@`/`#`, le contrôle complet au clavier, les libellés traduits, l'échec silencieux de la recherche et se limite à la navigation pour les actions destructrices. |
+| **Un seul raccourci** | `Cmd/Ctrl+K` est le seul raccourci global du tableau de bord, y compris dans les champs de saisie. La suppression de la navigation à plusieurs touches évite les modes cachés ; Tabby conserve `Cmd/Ctrl+B`. |
+| **Mises à jour en direct** | Le push WebSocket met à jour l'interface sans polling. |
+| **Découverte automatique** | Les signaux des fournisseurs créent automatiquement sessions et agents. Claude apparaît au `SessionStart` ; Codex affiche une carte En attente locale et temporaire avant qu'un ID durable n'existe, adopte en toute sécurité les fils repris déjà terminés et n'écrit jamais les cartes sans identité dans les totaux durables, l'analytique, les alertes ou les notifications. |
+| **Import de l'historique** | Les transcriptions Claude de `~/.claude/` et les rollouts Codex de `~/.codex/sessions` passent par des flux d'analyse de dossier et de téléversement propres à chaque fournisseur, la même comptabilité que l'ingestion en direct et des écritures idempotentes. Les rollouts Codex externes sont capturés pour que les conversations survivent à la suppression de la source. |
+| **Hiérarchie des sous-agents** | Arbres parent-enfant repliables sur le Tableau de bord et le Détail de session, dépliés automatiquement tant que des enfants sont actifs. |
+| **Agents en arrière-plan** | Les sous-agents en arrière-plan restent suivis, sans être marqués terminés trop tôt. |
+| **Attribution des outils des sous-agents** | `SubagentStop` et les analyses au démarrage importent les outils des JSONL propres à chaque sous-agent, apparient les résultats par `tool_use_id`, dédupliquent, fusionnent avec les lignes en direct correspondantes à 30 secondes près et reconstituent les vrais parents imbriqués à partir des ID des enfants lancés. Le rattachement est additif et déclenche un rafraîchissement de l'interface même quand aucune ligne n'est insérée. |
+| **Suivi des coûts** | Une tarification configurable par modèle et par session prend en charge les tarifs de lancement datés, des catégories promotionnelles modifiables, le coût propre de chaque sous-agent et des totaux qui résistent aux compactions. Les lectures de transcriptions s'appuient sur des offsets d'octets incrémentaux mis en cache. |
+| **Cache des transcriptions** | L'analyse incrémentale des JSONL extrait tokens, compactions, erreurs d'API, durées des tours, blocs de réflexion et métadonnées d'usage ; les analyses complètes réparent les anciens doublons tandis que les analyses de fin de fichier restent en ajout seul. Les tableaux sont plafonnés à `TRANSCRIPT_CACHE_MAX_ARRAY_LEN`, `1000` par défaut, et les entrées ne stockent que les métadonnées du fichier et le résultat analysé. |
+| **Conservation des instantanés de transcriptions** | Des instantanés durables Claude, Codex et Cursor conservent la conversation la plus complète. Les copies Claude et Cursor dont la source a disparu sont compressées en gzip après vérification d'un aller-retour ; la purge supprime les instantanés ; des plafonds facultatifs d'âge et de taille peuvent élaguer la seule copie ancienne après une simulation prévisualisée dans les Paramètres. |
+| **Notifications** | Le Web Push VAPID délivre les événements configurés même quand l'onglet est en arrière-plan ou le navigateur fermé, avec prise en charge du son sous macOS et gestion des abonnements. |
+| **Alertes** | Les Paramètres proposent Règles, Canaux et Activité pour les alertes de motif d'événement, d'inactivité, d'agent bloqué et de tokens. Les règles d'événement s'exécutent après l'ingestion ; les règles temporelles balaient toutes les 60 secondes. Les alertes persistées utilisent un délai de réarmement par règle et par session, 300 secondes par défaut, la diffusion WebSocket, l'acquittement et une diffusion par webhook, filtrable par règle, vers 14 fournisseurs nommés ou un JSON générique signé, avec secrets masqués, délais d'expiration et nouvelles tentatives bornées. |
+| **Notification de mise à jour** | Un `git fetch` planifié et non bloquant compare le checkout au dépôt distant canonique, puis affiche la commande de mise à jour exacte dans la fenêtre modale, la barre latérale et le terminal. CCAM ne fait jamais de pull et ne redémarre jamais de lui-même. |
+| **Paramètres** | État du système et des hooks, tarification par fournisseur, notifications, nettoyage, homes des fournisseurs, rafraîchissement instantané des données et restauration idempotente d'un export JSON jusqu'à 25 Mio. La tarification prend en charge des valeurs par défaut par fournisseur, des règles à jokers, des indications sur les tarifs publiés, la limite GPT de 272K et des catalogues distincts pour les modèles natifs de Cursor et les modèles tiers. |
+| **Lancer un agent + Configuration des agents** | `/run` lance Claude Code ou des fils natifs de l'app-server Codex, avec modèles, approbations, sandbox, reprise, arrêt, flux et rattachement propres à chaque fournisseur. `/cc-config` associe des explorateurs Claude et Codex modifiables ; les fichiers utilisateur pris en charge bénéficient d'enregistrements atomiques protégés et de sauvegardes horodatées, d'aperçus aux secrets masqués, des commandes de profil exactes et d'observateurs propres à chaque fournisseur. |
+| **Configuration des agents Codex** | Affiche le catalogue complet des modèles du compte ainsi que les surcharges de base et de profil, crée des surcouches standard `<name>.config.toml` et protège la modification par des contrôles de confinement canonique et de liens symboliques. Profils, hooks, règles, skills et instructions proposent les actions source/chemin/modifier/supprimer, avec sauvegarde avant toute suppression ; `config.toml` est en modification seule. |
+| **Serveur MCP (local)** | Trois transports, stdio, HTTP+SSE et REPL, exposent 103 outils typés répartis en 16 modules. Un catalogue validé unique impose des cibles localhost ou HTTPS, des règles de jeton bearer, le rejet des redirections, des garde-fous sur les mutations, des téléversements de 50 Mio par fichier et 100 Mio par appel, des réponses binaires de 10 Mio et des restaurations de 25 Mio. |
+| **Workflows** | Onze sections D3 couvrent l'orchestration, le flux des outils, la collaboration, l'efficacité, les motifs, la délégation, les erreurs, la concurrence, la complexité, la compaction et l'exploration par session. Des infobulles explicatives localisées, le filtrage croisé, l'export JSON, un rafraîchissement en direct avec anti-rebond de 3 secondes et les exécutions dynamiques reconstituées depuis les journaux conservent le détail par agent : phase, tokens, outils, durée, prompt et résultat. |
+| **Suivi des compactions** | L'analyse des transcriptions crée des agents et événements de compaction de durée nulle, répare les anciennes durées négatives, rattrape les anciennes sessions et n'inspecte périodiquement que les sessions actives, via les valeurs `sessions.transcript_path` en cache. |
+| **Sous-sessions / sessions reprises** | Les nouveaux événements réactivent les sessions reprises ou orphelines ; un balayage à chaque quart de `DASHBOARD_STALE_MINUTES`, borné entre 60 secondes et 5 minutes, repère les sessions abandonnées. |
+| **Détection des sessions préexistantes** | L'import au démarrage marque comme actives les transcriptions modifiées récemment, et les événements Stop ultérieurs réactivent les sessions importées terminées ou abandonnées avant de les mettre à jour. |
+| **Synchronisation continue des projets** | Un balayage immédiat au démarrage, un observateur du système de fichiers avec anti-rebond et un sondage `DASHBOARD_SESSION_SYNC_MS`, 30 secondes par défaut, partagent un cache des mtime et un balayage regroupé. Seuls les fichiers nouveaux ou modifiés sont réanalysés, avec une portée d'observation sûre sous Linux et une diffusion en direct des sessions. |
+| **Sources de données distantes** | Les sources SSH répliquent indépendamment les homes Claude et Codex via `scp` ou `tar` sous WSL, renseignent `sessions.source`, réconcilient le cycle de vie et restent saines tant qu'un des deux fournisseurs fonctionne. Le sondage a lieu par défaut toutes les 15 secondes ; le repli sur le balayage des sessions périmées ne concerne que le fournisseur en échec. Les identifiants restent gérés par le SSH de l'hôte. |
+| **Ingestion par push distant** | `POST /api/hooks/ingest-batch` prend en charge les machines situées derrière un NAT. Elle reste désactivée tant que `REMOTE_PUSH_TOKEN` n'est pas défini, refuse les jetons passés dans la query string et les sessions détenues localement, plafonne les lots à 1000 éléments, déduplique `(session_id, event_type, uuid)`, renvoie des erreurs partielles par élément et ne diffuse qu'après la validation de la transaction. |
+| **Design adaptatif** | Les mises en page mobiles empilent les grilles, font défiler les tableaux larges et replient la navigation. |
+| **Localisation de l'interface** | L'anglais, le chinois, le vietnamien, le coréen, l'espagnol, le français, l'allemand, le portugais et l'italien couvrent les textes de l'interface, les libellés d'accessibilité, les explications et infobulles des workflows, les indications de tarification des modèles, les homes des fournisseurs et l'Import de l'historique. |
+| **Données d'exemple** | Un script intégré fournit des données réalistes pour les démos et le développement. |
+| **Ligne de statut** | Une barre CLI colorée affiche le modèle, le contexte, la branche Git, les tokens par direction et le coût de la session en USD. |
+| **Formatage des noms de modèles** | Les identifiants Claude, GPT et Gemini deviennent des noms lisibles : suppression des préfixes de fournisseur et des suffixes de date ou latest, jonction des numéros de version et mise en forme des balises de contexte ; les Paramètres conservent les motifs bruts pour la tarification. |
+| **Marketplace de plugins Claude + Codex** | Une seule arborescence de 14 plugins fournit les deux formats de manifeste et les deux catalogues, 66 skills de plugins, 18 sous-agents Claude, 34 commandes Claude, 3 utilitaires CLI et les métadonnées OpenAI. `npx skills add hoangsonww/Claude-Code-Agent-Monitor --list` découvre 77 skills dans le dépôt. |
+| **Lancer Claude** | Les modes Conversation et Ponctuel prennent en charge la reprise et la consultation de l'historique, les exécutions simultanées en arrière-plan, un rattachement qui tient compte de la transcription, les contrôles de modèle, d'effort, de permission et de cwd, le lissage des messages partiels, la conservation des blocs de réflexion, les commandes slash, les fichiers `@`, les compteurs de contexte et de coût, et le statut en direct. Une protection same-origin empêche les lancements déclenchés à l'insu de l'utilisateur ; la concurrence est plafonnée par défaut à 10000 par sécurité et peut être abaissée avec `RUN_MAX_CONCURRENT`. |
+| **Explorateur de configuration Claude** | Douze onglets inspectent skills, agents, commandes, styles, plugins, marketplaces, MCP, hooks, paramètres, mémoire, raccourcis clavier et ligne de statut. Les chemins canoniques empêchent toute évasion par lien symbolique ; les surfaces texte prises en charge offrent création, modification et suppression atomiques avec des sauvegardes horodatées hors de l'arborescence, tandis que la configuration sensible reste en lecture seule, accompagnée de la commande CLI exacte. Un `cc-watcher` à 500 ms diffuse les modifications externes. |
+| **Tabby** | Une mascotte WebSocket sans dépendance, avec huit humeurs tirées de l'activité, des bulles à fréquence limitée, des actions rapides, des réponses locales sur l'état et un relais vers Lancer Claude pour les questions plus larges. Elle est utilisable au clavier, respecte la réduction des animations, reste sûre en cas de déconnexion, se configure et est localisée. |
+| **Signaux sonores** | Sept signaux Web Audio sans dépendance couvrent les sessions, les erreurs, les sous-agents, les notifications, la connexion et les clics. Délais de réarmement, budget global de rafales, filtrage passe-bas, respect de la politique d'autoplay, volume conservé et réglages par signal les gardent discrets. |
+| **Progressive Web App (PWA)** | Le tableau de bord, la page d'accueil et le wiki ont chacun leur manifeste et leur service worker. Les ressources Vite immuables sont servies en cache d'abord ; la navigation et les fichiers modifiables de la coquille, en réseau d'abord ; le push reste intact ; la page d'accueil et le wiki pré-cachent leur coquille et mettent les captures d'écran en cache à la demande ; les métadonnées SVG et Apple permettent l'installation. |
+| **Application de bureau (macOS et Windows)** | Electron 35 empaquette des DMG macOS et des EXE Windows (installateur et portable) autour du même serveur Express intégré au processus et du même client React. Elle ajoute des menus natifs, l'état et des actions dans la zone de notification, le lancement à l'ouverture de session, une confirmation avant de quitter, les notifications natives, un verrou d'instance unique, un repli et une adoption de port sûrs, un arrêt propre de SQLite et l'installation des hooks et services d'arrière-plan au premier lancement. |
+| **Ressources auto-hébergées (sans CDN)** | Polices, scripts, Mermaid du wiki et replis de l'extension sont locaux. L'application, la page d'accueil et le wiki fonctionnent hors ligne, sans requête vers Google Fonts, jsDelivr ni aucun autre hébergeur tiers de ressources. |
+| **Écran d'accueil de session** | Une salutation localisée et une animation de graphe de nœuds, affichées une fois par session de navigateur, sont opaques dès le premier rendu, durent environ 2,5 secondes, se passent d'un clic et respectent la réduction des animations. |
 
 > **Portée des fournisseurs et homes :** les Paramètres gardent le choix compatible Claude (Claude Code + Cursor) / Codex / Les deux cohérent partout. Les homes de Claude Code et de Codex restent modifiables sans redémarrer le tableau de bord ; Cursor est découvert automatiquement depuis `~/.cursor` ou `DASHBOARD_CURSOR_HOME`.
 >
@@ -391,19 +385,15 @@ npm run setup
 npm run install-hooks
 ```
 
-L'installeur ouvre une sélection multiple interactive : utilisez les flèches, <kbd>Espace</kbd> et <kbd>Entrée</kbd> pour choisir **Claude Code**, **Codex (bêta)** ou les deux (Claude Code est présélectionné). Les entrées Claude Code se trouvent dans `~/.claude/settings.json` ; les entrées Codex dans `~/.codex/hooks.json`. Si un jeu de hooks du tableau de bord sélectionné existe déjà, il prévient avant de remplacer uniquement les entrées de ce tableau de bord — les hooks sans rapport sont préservés. Vous pouvez faire la même sélection plus tard dans **Paramètres → Configuration des hooks → Installer les hooks**.
+Choisissez **Claude Code**, **Codex (bêta)** ou les deux avec les flèches, Espace et Entrée. Les hooks Claude sont stockés dans `~/.claude/settings.json` et les hooks Codex dans `~/.codex/hooks.json`. Une réinstallation ne remplace que les entrées de CCAM et préserve les hooks sans rapport ; la même action est disponible dans **Paramètres → Configuration des hooks**.
 
-À la première entrée dans le tableau de bord, choisissez la source de données : l'application ne vérifie l'état des hooks que pour cette sélection. Claude Code exige les hooks Claude, Codex les hooks Codex, et Les deux exige les deux jeux. Quand tous les jeux requis sont déjà installés, le tableau de bord s'ouvre immédiatement. Sinon, l'écran de configuration liste et installe uniquement les fournisseurs sélectionnés manquants, en préservant les hooks sans rapport et en laissant un échec de vérification se replier sans risque sur la configuration manuelle.
+Au premier lancement, CCAM ne vérifie que les fournisseurs sélectionnés pour la portée de données actuelle et propose d'installer les hooks manquants. Si cette vérification échoue, l'application se replie sur la configuration manuelle au lieu de bloquer le tableau de bord.
 
-Les rollouts Codex de `~/.codex/sessions` sont eux aussi découverts en continu. Le tableau de bord lit leur JSONL en ajout seul de façon incrémentale, traite en priorité les rollouts les plus récents et isole un fichier historique défectueux pour le réessayer plus tard, si bien que sessions, tokens, coûts, lignes de conversation et mises à jour WebSocket restent à jour même si une notification de hook est manquée.
+La découverte des fournisseurs se poursuit après la configuration :
 
-Les enregistrements de cycle de vie des rollouts Codex pilotent les mêmes états de carte en direct que Claude Code : `user_message` et `task_started` marquent l'agent principal **En cours** ; `task_complete` laisse la session active mais affiche **En attente** ; et `turn_aborted` affiche **En attente** avec une raison d'interruption. Un nouvel enregistrement de rollout répare de lui-même une session marquée terminée à tort. Sur les hôtes locaux pris en charge, l'activité est rapprochée du `rollout-*.jsonl` exact tenu ouvert par chaque processus Codex, si bien que les anciens rollouts qui partagent un répertoire de projet sont importés comme terminés au lieu d'apparaître comme des agents actifs fantômes. Le lanceur Node et son processus enfant Codex natif sont fusionnés en un seul processus logique : un TUI produit donc une seule carte.
-
-Les titres `/rename` de Codex sont lus dans son index de sessions natif et mettent à jour les cartes de session et d'agent en temps réel. Sa relecture de conversation comprend les tours humains ainsi que les appels et sorties de l'outil personnalisé `exec`, avec une pagination par curseur qui charge les messages plus anciens en haut de la transcription.
-
-Les cartes Claude Code et Codex affichent, sous le titre natif du fournisseur, un historique compact sur deux lignes de leurs derniers prompts humains distincts, pour qu'un nom court ou une relance laconique ne masque jamais la tâche en cours. Claude rafraîchit ce contexte depuis son cache de transcriptions local pendant les hooks en direct, les imports et les balayages de surveillance ; Codex le rafraîchit depuis les enregistrements de rollout et se replie sur les événements `user_message` persistés pour les imports plus anciens. La transcription affiche les pièces jointes PNG/JPEG/GIF/WebP persistées de Claude Code et de Codex quand elles sont disponibles, tandis que les copies en double des réponses/événements Codex sont fusionnées en un seul tour humain.
-
-Les invocations d'outils `response_item` de Codex sont indexées une seule fois via un curseur de rollout dédié, si bien que le flux d'outils de Workflows, l'exploration par session, les totaux par modèle/tokens et les compteurs `context_compacted` reflètent les données Codex enregistrées sans rejouer les compteurs de cycle de vie ou de tokens. Dans une portée du tableau de bord limitée à Codex, le panneau des journaux de workflows dynamiques, propre à Claude Code, est masqué au lieu d'être présenté comme des données Codex vides.
+- **Claude Code et Cursor :** les hooks Claude alimentent les événements en direct. Cursor n'a besoin d'aucun hook ; sélectionner Claude Code surveille aussi `~/.cursor/chats` et `~/.cursor/projects/*/agent-transcripts`, capture les conversations avant que Cursor ne fasse le ménage et respecte `DASHBOARD_CURSOR_HOME`.
+- **Codex :** les hooks et la surveillance incrémentale des rollouts de `~/.codex/sessions` tiennent à jour le cycle de vie, les prompts, les titres, les outils, les tokens, les coûts, les compactions, les conversations et l'état WebSocket. Les fichiers défectueux sont réessayés isolément ; la correspondance exacte entre rollout et processus évite les cartes actives fantômes ; les titres natifs `/rename` et l'historique de conversation paginé par curseur restent à jour en direct.
+- **Les deux :** les cartes conservent les deux derniers prompts humains distincts, affichent les images jointes persistées et dédupliquent les réponses Codex répétées. La portée limitée à Codex masque les journaux de workflows dynamiques propres à Claude.
 
 ### 3. Démarrer
 
@@ -523,31 +513,20 @@ sequenceDiagram
 
 ### Cycle de vie des hooks
 
-1. **Claude Code** déclenche un hook au démarrage de la session, à l'utilisation d'un outil, en fin de tour, à la fin d'un sous-agent et à la sortie de la session
-2. Le **gestionnaire de hooks** (`scripts/hook-handler.js`) lit l'événement JSON sur stdin, résout les tableaux de bord actifs via `~/.claude/.agent-dashboard.json` (ou `CLAUDE_DASHBOARD_PORT` s'il est défini) et envoie en POST la même charge utile à **une seule cible d'ingestion par répertoire de données SQLite distinct** (le port le plus bas l'emporte quand Docker et `npm run dev` partagent `~/.claude/agent-dashboard`, pour que les événements ne soient jamais ingérés deux fois). Des serveurs avec des bases **différentes** (p. ex. l'application de bureau, qui utilise son propre répertoire Application Support, à côté de `npm run dev`) reçoivent chacun les hooks. Il échoue silencieusement avec un délai de sécurité de 5 s pour ne jamais bloquer Claude Code, et les promesses par cible ne sont jamais rejetées, si bien qu'un seul écouteur mort ne peut pas priver les autres.
-3. Le **serveur** traite l'événement dans une transaction SQLite :
-   - Crée automatiquement les sessions et agents principaux au premier contact
-   - Détecte les appels à l'outil `Agent` pour suivre la création des sous-agents
-   - Au `SessionStart`, horodate `awaiting_input_since` de la session et de l'agent principal pour qu'une CLI neuve qui attend au prompt apparaisse immédiatement **En attente**
-   - Au `UserPromptSubmit` (l'utilisateur appuie sur Entrée), efface l'indicateur d'attente et fait passer l'agent principal à `working` — seul signal fiable du début des tours de l'assistant purement textuels, puisqu'ils n'émettent pas de `PreToolUse`
-   - Passe l'agent à « working » au `PreToolUse` (ce qui efface aussi l'indicateur d'attente) et l'y maintient pendant `PostToolUse`
-   - Au `Stop` (Claude a fini de répondre), l'agent principal passe à « waiting » — Claude a terminé son tour, la balle est dans le camp de l'utilisateur. Les sous-agents en arrière-plan continuent de tourner. La session reste `active`. Un Stop avec `stop_reason=error` marque l'agent `error` et la session `error`
-   - Sur une `Notification` d'autorisation (repérée par motif de message : `permission`, `waiting for input`, `needs your approval`, …), passe l'agent à `waiting` et horodate `awaiting_input_since`
-   - `SubagentStop` n'efface volontairement PAS l'indicateur d'attente (la fin d'un sous-agent en arrière-plan ne nous apprend rien sur l'humain)
-   - Marque chaque sous-agent terminé individuellement via `SubagentStop`. Une fois `res.json()` renvoyé, lance sans attendre une passe `scanAndImportSubagents` qui parcourt les fichiers `subagents/agent-*.jsonl` de la session, associe les blocs `tool_use` ↔ `tool_result` par `tool_use_id` et émet des événements `PreToolUse` + `PostToolUse` sous l'`agent_id` propre à chaque sous-agent — ce qui comble le manque par lequel les appels d'outils internes aux sous-agents resteraient sinon invisibles pour le tableau de bord
-   - Au `SessionEnd` (le processus CLI se termine), retire l'indicateur d'attente. Si la session est en `error`, l'état d'erreur est conservé ; sinon, tous les agents + la session sont marqués `completed`
-   - Au `SessionStart`, toute autre session active sans activité depuis `DASHBOARD_STALE_MINUTES` (180 par défaut = 3 h, modifiable par variable d'environnement) est automatiquement marquée « abandoned », ses agents étant terminés. Cela couvre `/resume` au sein d'une session, Ctrl+C et les autres cas où une session reste orpheline sans `SessionEnd` propre
-   - Réactive les sessions terminées/en erreur/abandonnées quand de nouveaux événements de travail arrivent (session reprise). Les événements Stop et SubagentStop réactivent aussi les sessions terminées/abandonnées — ce qui couvre les sessions préexistantes importées avant le démarrage du serveur, dont le premier événement de hook peut être un Stop
-   - **Reprise après erreur** : seuls `UserPromptSubmit` et `PreToolUse` peuvent faire repasser une session de `error` à `active` — signe que l'utilisateur a activement réessayé
-   - Détecte la compaction de conversation (entrées `isCompactSummary` dans la transcription JSONL) et crée des agents + événements `Compaction`. Les bases de tokens sont préservées d'une compaction à l'autre, sans perte d'usage. Les lectures de transcription utilisent un cache partagé fondé sur `stat` avec lectures incrémentales par décalage d'octets — seuls les nouveaux octets ajoutés depuis la dernière lecture sont analysés, soit un gain d'environ 50x sur les longues sessions
-   - Extrait les erreurs d'API (entrées `isApiErrorMessage` : limites de quota, limites de débit, invalid_request) et les réponses brutes `type: "error"` des transcriptions JSONL, stockées comme événements `APIError`. Les durées de tour (`system` de sous-type `turn_duration`) sont stockées comme événements `TurnDuration`. Les erreurs de résultat d'outil (`toolUseResult.is_error`) sont suivies comme événements `ToolError`
-   - **Surveillance de détection des erreurs** — une minuterie d'arrière-plan s'exécute toutes les 15 secondes et analyse les sessions actives sans événement de hook récent (inactives depuis plus de 10 s). Elle relit leurs fichiers de transcription à la recherche d'erreurs d'API (échecs d'authentification, limites de débit, quota épuisé), dérive les chemins de transcription du `cwd` de la session pour les sessions importées sans `transcript_path` dans les données d'événement, et marque sessions/agents en `error` quand des erreurs d'API sont trouvées. Cela couvre les cas où la CLI Claude ne déclenche aucun hook après une erreur d'API (p. ex. un échec d'authentification 401, où la CLI affiche l'erreur et attend)
-   - **Reprise après interruption utilisateur (Échap)** — annuler un tour avec `Esc` ne déclenche **aucun hook** (une limite documentée de Claude Code), si bien que sans intervention l'agent principal resterait bloqué en `working` pour toujours. La même surveillance de 15 s rattrape ces cas de deux façons : (1) quand l'annulation laisse un marqueur `[Request interrupted by user]` dans la transcription (Échap *après* une sortie), le cache des transcriptions le signale via `pendingInterrupt` — dérivé uniquement de l'ordre de la transcription (dernière interruption contre dernière activité réelle du tour, même horloge, donc valable même pour une annulation en moins d'une seconde) — et la session passe **En attente** en ~15 s ; (2) quand Échap est pressé *avant toute sortie*, Claude Code n'écrit aucun marqueur, et un repli par délai d'inactivité s'applique — si l'agent principal est en `working` **sans outil en cours** et que **ni un événement de hook ni la transcription n'ont progressé** depuis `DASHBOARD_WORKING_IDLE_SECONDS` (`120` par défaut), le tour est considéré comme mort et la session passe **En attente**. Les deux chemins journalisent un événement `Interrupted` et mettent la session dans le même état En attente qu'un `Stop` normal. Une sortie en streaming (transcription qui grandit encore) et les appels d'outils en cours (`current_tool` défini) sont exemptés ; un rare faux basculement se corrige au prochain vrai hook
-   - **Récupération des sessions mortes par test d'activité** — quitter Claude Code (Ctrl+C, fermeture du terminal) déclenche un hook `SessionEnd`, mais si le tableau de bord ne tourne pas à ce moment-là, l'événement est perdu à jamais et la session resterait **En attente** jusqu'au balayage d'inactivité (3 h par défaut). La même surveillance de 15 s comble ce manque avec une **sonde d'activité des processus** : elle liste les processus CLI `claude` en cours (`ps` + `lsof` sous macOS, `/proc` sous Linux) et termine toute session `active` dont le `cwd` n'a aucun processus claude vivant — elle arrive dans le même état `completed` qu'avec un vrai `SessionEnd`, avec un événement `SessionEnd` synthétique dans la chronologie. Garde-fous : lors des passes de surveillance, la transcription de la session ne doit pas avoir été écrite depuis au moins `DASHBOARD_LIVENESS_IDLE_SECONDS` (`60` par défaut ; la dernière écriture de hook sert d'horloge de repli quand aucune transcription n'existe sur disque) — les **passes au démarrage ignorent entièrement cette condition**, si bien qu'une session quittée même une seconde avant le lancement est nettoyée immédiatement — et la sonde répond « pas de réponse » (sans rien modifier) sous Windows, dans les conteneurs (les processus de l'hôte y sont invisibles), quand `ps`/`lsof` échouent, ou quand elle est explicitement désactivée via `DASHBOARD_LIVENESS_PROBE=0`. Dans un déploiement **mixte**, la récupération ignore aussi automatiquement toute session dont le `cwd` n'est pas un chemin POSIX absolu — une session transmise depuis une autre machine via des hooks partagés rapporte le chemin de sa machine d'origine (p. ex. un `D:\Git\ai-deck` Windows) qu'une analyse locale `ps`/`lsof`/`/proc` ne peut jamais faire correspondre ; les sessions distantes sont ainsi protégées sans désactiver la sonde pour celles qui sont vraiment locales. Les **sessions des sources de données distantes** (`sessions.source` ≠ `local`) sont toujours ignorées aussi — leur `cwd` est légitimement un chemin POSIX absolu sur une autre machine, la sonde de processus locale n'en dit donc rien ; leur cycle de vie relève entièrement de la réconciliation de la synchronisation distante décrite plus haut. Une fausse terminaison se corrige d'elle-même : le prochain événement de hook réactive la session. En plus de la cadence de 15 s, la récupération s'exécute **immédiatement au démarrage** (en nettoyant les sessions mortes d'une exécution précédente déjà en base avant même leur affichage) et **à nouveau ~5 s plus tard** (pour les sessions que la synchronisation de démarrage vient d'importer), si bien qu'une session morte pendant l'arrêt du tableau de bord n'apparaît jamais En attente
-   - Un balayage périodique côté serveur rattrape les sessions abandonnées et les nouvelles compactions qui ont échappé à la détection par événement (p. ex. `/compact` ne déclenche aucun hook, `/resume` quelques secondes après la création de la session). La cadence est dérivée de `DASHBOARD_STALE_MINUTES` (¼ du seuil, borné entre 60 s et 5 min). Le balayage lit `transcript_path` directement sur chaque ligne de session active (une petite recherche par index) au lieu de le chercher dans la table des événements ; la colonne est renseignée par le gestionnaire de hooks la première fois qu'il voit un chemin de transcription et rattrapée une fois depuis les événements existants par la migration de `db.js`, avec un index partiel `idx_sessions_active_tp` couvrant exactement les lignes lues par le balayage. Le balayage partage le cache des transcriptions avec le gestionnaire de hooks, ce qui évite les E/S en double. Le nettoyage des sessions abandonnées évince aussi l'entrée correspondante du cache des transcriptions pour borner la mémoire. Les sessions des **sources de données distantes** (`source` ≠ `local`) restent gérées par la réplication seulement tant que leur fournisseur Claude Code ou Codex correspondant est sain ; si ce fournisseur est indisponible, en erreur ou bloqué en `syncing`, les nettoyages périodique et au démarrage appliquent la règle d'inactivité normale pour qu'une vieille carte En attente ne puisse pas persister indéfiniment
-   - La **synchronisation continue des projets** (`startSessionSync`) garde `~/.claude/projects` découvrable au-delà du rattrapage unique au démarrage, protégé par un marqueur : un projet ajouté plus tard dont les sessions ne passent jamais par les hooks resterait sinon invisible jusqu'à une nouvelle analyse manuelle. Un balayage immédiat au démarrage, un `fs.watch` avec anti-rebond (récursif sous macOS/Windows ; racine + enfants directs sous Linux) et un polling `DASHBOARD_SESSION_SYNC_MS` (30 s par défaut ; `0` désactive le polling, la surveillance reste) partagent un même cache de mtime et un balayage fusionné qui ne réanalyse que les fichiers dont le mtime a avancé — et ignore sans réanalyse une session déjà importée et inchangée, si bien que le coût d'un redémarrage reste en O(fichiers nouveaux/modifiés). Chaque session nouvellement découverte ou agrandie diffuse `session_created`/`session_updated` ainsi que son agent principal, les mêmes trames que celles émises par les hooks
-4. Le **WebSocket** diffuse le changement à tous les clients connectés
-5. L'**interface** reçoit la mise à jour et réaffiche en temps réel les composants concernés, sans polling.
+1. **Claude Code** émet des hooks de session, de prompt, d'outil, de notification, de sous-agent, de tour et de sortie.
+2. **`scripts/hook-handler.js`** lit chaque événement sur stdin et découvre les tableaux de bord actifs via `~/.claude/.agent-dashboard.json` ou `CLAUDE_DASHBOARD_PORT`. Il n'envoie qu'une fois par répertoire de données SQLite distinct, en choisissant le port le plus bas parmi les écouteurs en double, tout en alimentant les tableaux de bord dotés de bases séparées. La livraison ne bloque jamais : chaque cible est isolée et le gestionnaire se termine en 5 secondes au plus.
+3. Le **serveur** valide l'événement et l'état associé dans une seule transaction SQLite :
+   - Le premier contact crée la session et l'agent principal. Au `SessionStart`, il démarre **En attente** ; `UserPromptSubmit` ou `PreToolUse` le fait passer **En cours** ; `PostToolUse` l'y maintient.
+   - `Stop` ramène l'agent principal **En attente** pendant que les agents en arrière-plan continuent. `stop_reason=error` marque l'agent et la session en **Erreur**. Les notifications de permission mettent aussi en attente de saisie ; seuls un nouveau prompt ou le démarrage d'un outil font sortir de l'erreur.
+   - `SubagentStop` termine ce sous-agent sans modifier l'état d'attente de l'humain. Une analyse détachée importe ensuite ses outils JSONL, apparie utilisations et résultats par `tool_use_id`, les déduplique et reconstruit les vrais parents imbriqués.
+   - `SessionEnd` efface l'attente et termine la session, sauf si une erreur doit être conservée. Tout nouveau travail réactive les sessions terminées, en erreur ou abandonnées, y compris les sessions importées et reprises.
+   - `SessionStart` et la maintenance périodique marquent comme abandonnées les sessions inactives au-delà de `DASHBOARD_STALE_MINUTES`, 180 par défaut. Le balayage s'exécute à chaque quart de cette valeur, borné entre 60 secondes et 5 minutes.
+   - L'analyse incrémentale partagée des transcriptions enregistre compactions, erreurs d'API et d'outils, durées des tours, tokens et métadonnées sans relire les octets inchangés. Les balayages des sessions actives utilisent les valeurs indexées de `sessions.transcript_path` et évincent du cache les entrées abandonnées.
+   - Un watchdog de 15 secondes détecte les erreurs d'API dans les transcriptions après 10 secondes sans hook. Il rattrape aussi les interruptions par Échap grâce aux marqueurs de la transcription ou, en l'absence de marqueur, après `DASHBOARD_WORKING_IDLE_SECONDS`, 120 par défaut, uniquement si aucun outil n'est en cours et que ni les hooks ni la transcription n'avancent.
+   - Le même watchdog termine les sessions locales mortes grâce à une sonde d'activité des processus après `DASHBOARD_LIVENESS_IDLE_SECONDS`, 60 par défaut. Au démarrage, les sondes s'exécutent immédiatement puis à nouveau environ 5 secondes plus tard, sans ce seuil d'inactivité. La sonde ignore Windows, les conteneurs, les chemins transmis non POSIX, les sessions des sources distantes, les échecs des outils système et `DASHBOARD_LIVENESS_PROBE=0` ; un vrai hook ultérieur corrige de lui-même une fausse terminaison.
+   - La synchronisation continue des projets combine un balayage immédiat, un `fs.watch` avec anti-rebond et un polling `DASHBOARD_SESSION_SYNC_MS`, 30 secondes par défaut. Un même cache de mtime ne réanalyse que les transcriptions nouvelles ou agrandies et diffuse les mêmes trames de session que les hooks.
+4. Le **WebSocket** publie le changement validé.
+5. L'**interface** rafraîchit les vues concernées sans polling.
 
 ### Machine à états des agents
 
@@ -633,110 +612,118 @@ flowchart LR
 
 ## Configuration
 
-| Variable d'environnement | Défaut | Description |
-| ----------------------- | ------------- | --------------------------------------------- |
-| `DASHBOARD_PORT` | `4820` | Port du serveur Express |
-| `CLAUDE_DASHBOARD_PORT` | `4820` | Port utilisé par le gestionnaire de hooks pour joindre le serveur |
-| `NODE_ENV` | `development` | Mettre à `production` pour servir le client compilé |
-| `DASHBOARD_UPDATE_CHECK` | _(activé)_ | Mettre à `0` / `false` / `off` pour désactiver les vérifications périodiques de l'amont git |
-| `DASHBOARD_UPDATE_CHECK_INTERVAL_MS` | `300000` (5 min) | Intervalle entre les vérifications automatiques ; minimum 60 000 ms. Les utilisateurs peuvent aussi cliquer sur **Vérifier maintenant** dans la fenêtre de mise à jour ou dans la barre latérale pour en lancer une à la demande. |
-| `DASHBOARD_STALE_MINUTES` | `180` (3 h) | Minutes d'inactivité avant qu'une session encore `active` (y compris une session **En attente** d'une saisie — « En attente » est une surcouche d'interface sur une ligne `active`, pas un statut stocké) soit automatiquement marquée **abandoned** et disparaisse de la liste des actives. Appliqué par le watchdog de 15 s et le balayage de maintenance périodique (qui s'exécute tous les ¼ de cette valeur, borné entre 60 s et 5 min). Abaissez-la (p. ex. `60`) pour un délai d'inactivité plus court |
-| `DASHBOARD_WORKING_IDLE_SECONDS` | `120` | Délai d'inactivité en travail pour récupérer un tour annulé avec `Esc` **avant toute sortie** (qui ne laisse aucun marqueur dans la transcription). Quand l'agent principal est en `working` sans outil en cours et que ni un événement de hook ni la transcription n'ont progressé pendant cette durée, le watchdog fait passer la session **En attente**. Abaissez-le pour une reprise plus réactive, au prix de rares faux basculements lors de longs tours de réflexion silencieuse (qui se corrigent d'eux-mêmes). Les sessions Cursor utilisent le même délai : un tour `working` dont les fichiers `~/.cursor` et les hooks restent inactifs aussi longtemps passe **En attente** |
-| `DASHBOARD_LIVENESS_PROBE` | `1` (activé) | Mettre à `0` pour désactiver la **récupération des sessions mortes par test d'activité** du watchdog (la sonde basée sur `ps`/`lsof` qui termine les sessions locales Claude Code ou Codex `active` dont le processus CLI correspondant n'existe plus — pour rattraper un `SessionEnd` perdu pendant l'arrêt du tableau de bord). Les sessions transmises depuis **une autre machine** (hooks partagés) rapportent un `cwd` non POSIX et sont ignorées automatiquement par la récupération : un déploiement mixte local + transmis n'a donc plus besoin de la désactiver ; ne la désactivez que pour une configuration purement distante où les processus locaux ne prouvent rien. Désactivée automatiquement sous Windows et dans les conteneurs |
-| `DASHBOARD_LIVENESS_IDLE_SECONDS` | `60` | Seuil d'inactivité pour la récupération par test d'activité **lors des passes du watchdog** : une session n'est terminée que si sa transcription n'a pas été écrite depuis au moins cette durée (la dernière écriture de hook sert d'horloge de repli quand aucune transcription n'existe sur disque), pour qu'une session en plein tour ou tout juste reprise ne disparaisse jamais sur un raté passager de la sonde. Les passes au démarrage ignorent ce seuil — au lancement, la sonde seule décide, si bien que les sessions quittées juste avant le lancement sont nettoyées immédiatement |
-| `DASHBOARD_SESSION_SYNC_MS` | `30000` | Intervalle de polling (ms) de la synchronisation continue en arrière-plan de `~/.claude/projects`, qui fait apparaître les projets ajoutés après le démarrage dont les sessions ne passent jamais par les hooks. La surveillance `fs.watch` se déclenche de toute façon quasi instantanément ; ce polling est le filet de sécurité (les surveillances peuvent manquer des événements / ne pas se déclencher sur les systèmes de fichiers réseau). Mettre à `0` pour désactiver le polling tout en laissant la surveillance active |
-| `DASHBOARD_CURSOR_HOME` | `~/.cursor` | Home Cursor natif facultatif. Le tableau de bord lit `projects/*/agent-transcripts`, joint les métadonnées de `chats`, rattrape les sessions existantes et stocke des instantanés durables des conversations dans le répertoire de données du tableau de bord. |
-| `DASHBOARD_CURSOR_SYNC_MS` | `5000` | Intervalle de sécurité (ms) pour la découverte des chats/transcriptions Cursor par empreinte. La surveillance du système de fichiers importe toujours immédiatement le démarrage de la CLI et les changements de prompt ; `0` ne désactive que l'analyse périodique. |
-| `DASHBOARD_CODEX_HOME` | `CODEX_HOME` ou `~/.codex` | Répertoire d'état Codex local facultatif. Les rollouts ne sont lus que dans son arborescence `sessions/` ; enregistrer un nouvel emplacement dans les Paramètres persiste cette surcharge propre au tableau de bord, réarme la surveillance en direct et analyse immédiatement la nouvelle arborescence. |
-| `DASHBOARD_CODEX_SYNC_MS` | `4000` | Intervalle de polling de sécurité (ms) pour les rollouts Codex en ajout seul. Les hooks Codex déclenchent immédiatement la même ingestion incrémentale ; mettre à `0` pour ne désactiver que le polling tout en gardant la surveillance du système de fichiers quand elle est disponible. |
-| `DASHBOARD_CODEX_MAX_ATTEMPTS` | `5` | Nombre de tentatives d'ingestion consécutives en échec que le balayage Codex consacre à un rollout **inchangé** avant de le laisser de côté. Le balayage remet volontairement en file un rollout qu'il n'a pas pu lire, pour qu'un échec passager (`SQLITE_BUSY`, un enregistrement à moitié écrit) se rétablisse au passage suivant ; sans limite, un échec *permanent* se répéterait pendant toute la vie du processus — environ 21 600 tentatives par fichier et par jour avec les 4 s par défaut de `DASHBOARD_CODEX_SYNC_MS`, chacune écrivant une ligne de journal sur l'unique thread Node. Le compte inclut la première tentative, est suivi par fichier et est intégralement rétabli dès que la taille ou le mtime du fichier change, si bien qu'un rollout simplement à moitié écrit se rétablit tout seul. La tentative qui épuise le budget écrit un unique message qui cite la limite. Augmentez-la si un volume lent ou instable a besoin de plus de quelques balayages pour se stabiliser |
-| `DASHBOARD_CODEX_HOOK_IDLE_SECONDS` | `60` | Durée pendant laquelle une session Codex **uniquement par hooks** — dont l'exécution n'a écrit aucun rollout sur disque (`codex exec --ephemeral`) — peut laisser sans réponse un tour signalé comme terminé avant que le tableau de bord ne conclue que son hook `SessionEnd` a été perdu. Seule une session dont l'`awaiting_reason` vaut `stop` est concernée : Codex envoie `SessionEnd` quelques centaines de ms après `Stop`, un `Stop` resté sans réponse est donc une vraie preuve. Le silence n'est volontairement jamais le déclencheur — une exécution sans rollout n'émet aucun hook pendant toute la durée d'un appel d'outil, et une règle fondée sur l'inactivité terminerait donc un build CI en cours |
-| `DASHBOARD_TASK_SUMMARY_TTL_MS` | `2000` | Fenêtre (ms) pendant laquelle un résultat périmé est servi pour le cache de progression des tâches par transcription, derrière les requêtes de liste `include_task_progress` **et** le `todo_snapshot` du détail de session. Les transcriptions qui grandissent sont analysées de façon incrémentale à partir de la dernière ligne JSONL complète (une croissance de plus de 32 Mio depuis la dernière lecture repart d'une analyse de fin neuve), tandis que ce plancher regroupe toujours les rafales de rechargements de listes (par exemple, les rafraîchissements du tableau de bord déclenchés par des événements WebSocket). Dans la fenêtre, un résultat tout juste analysé (légèrement périmé, pour affichage seulement) est renvoyé ; mettre à `0` pour analyser chaque ajout immédiatement |
-| `DASHBOARD_REMOTE_SYNC_MS` | `15000` (15 s) | Intervalle de polling (ms) de la synchronisation en arrière-plan des **sources de données distantes**, qui récupère indépendamment via SSH `~/.claude/projects` et `~/.codex/sessions` (plus le léger index de titres `session_index.jsonl` de Codex) de chaque source activée, puis réimporte chacun via son importeur local. Les sources nouvelles/réactivées se synchronisent aussi immédiatement. Mettre à `0` pour désactiver le poller (les synchronisations manuelles / à la demande fonctionnent toujours) |
-| `DASHBOARD_REMOTE_ACTIVE_WINDOW_MS` | `600000` (10 min) | Fenêtre de fraîcheur du statut en direct d'une session de **source de données distante**. À chaque synchronisation, une session distante Claude Code ou Codex dont la transcription répliquée a un **dernier événement JSONL** dans cette fenêtre est considérée comme toujours en cours (`active`) ; dès que la réplique cesse d'avancer plus longtemps, la session est réconciliée en `completed`. Les sessions distantes ne reçoivent aucun hook en direct : la réconciliation de réplique consciente du fournisseur remplace donc le test d'activité local ; les répliques de fournisseur en échec, indisponibles ou bloquées retombent dans le balayage d'inactivité normal. Augmentez-la pour des liaisons lentes ou des tours d'inactivité très longs |
-| `DASHBOARD_REMOTE_SYNC_TIMEOUT_MS` | `600000` (10 min) | Délai d'expiration (ms) par source pour une synchronisation distante (récupération `scp` + import) avant son abandon |
-| `DASHBOARD_REMOTE_TEST_TIMEOUT_MS` | `15000` (15 s) | Délai d'expiration (ms) de la sonde SSH **Tester** (`POST /api/remote-sources/:id/test`) qui vérifie qu'une source distante est joignable |
-| `DASHBOARD_HOST` | `127.0.0.1` | Interface sur laquelle le serveur écoute. Loopback par défaut (non joignable depuis le réseau). Mettre à `0.0.0.0` pour l'exposer sur un réseau local (un avertissement est journalisé au démarrage) |
-| `DASHBOARD_TOKEN` | _(non défini)_ | Quand il est défini, chaque requête `/api/*` et le WebSocket doivent présenter le jeton (`Authorization: Bearer <token>`, en-tête `x-dashboard-token` ou `?token=`). Désactivé par défaut — l'écoute en loopback constitue la frontière de confiance |
-| `DASHBOARD_TOKEN_FILE` | _(non défini)_ | Jeton du tableau de bord lu depuis un fichier, pour les secrets Docker/Kubernetes ; un `DASHBOARD_TOKEN` direct l'emporte |
-| `DASHBOARD_HOOK_TOKEN` / `DASHBOARD_HOOK_TOKEN_FILE` | _(non défini)_ | Jeton indépendant pour les routes de hooks locales (`/api/hooks/event`, `/api/hooks/codex`) quand elles sont exposées au-delà du loopback |
-| `REMOTE_PUSH_TOKEN` / `REMOTE_PUSH_TOKEN_FILE` | _(non défini)_ | Jeton distinct protégeant `POST /api/hooks/ingest-batch` (route de push distant accessible depuis Internet, désactivée par défaut). Volontairement indépendant de `DASHBOARD_HOOK_TOKEN` ci-dessus — définir celui-ci ne doit pas aussi ouvrir cette route inscriptible depuis Internet |
-| `DASHBOARD_ALLOWED_HOSTS` | _(loopback)_ | Valeurs `Host` supplémentaires, séparées par des virgules, autorisées sur HTTP et les upgrades WebSocket (protection contre le DNS rebinding). Ajoutez-y vos noms d'hôte du réseau local quand l'écoute dépasse le loopback |
-| `DASHBOARD_ENV_PATH` | `.env` du dépôt | Chemin dotenv inscriptible utilisé quand les Paramètres persistent les surcharges des homes Claude/Codex ; défaut en conteneur `/app/config/.env` |
-| `CCAM_DASHBOARD_URL` | _(découverte localhost)_ | Destination de hooks distante facultative. Les URL hors loopback doivent utiliser HTTPS et un jeton de hook |
-| `CCAM_HOOK_TOKEN` / `CCAM_HOOK_TOKEN_FILE` | _(non défini)_ | Identifiant du client de hooks, envoyé dans `x-ccam-hook-token` |
+| Variable d'environnement | Défaut | Rôle |
+| --- | --- | --- |
+| `DASHBOARD_PORT` | `4820` | Port du serveur Express. |
+| `CLAUDE_DASHBOARD_PORT` | `4820` | Port utilisé par le gestionnaire de hooks. |
+| `NODE_ENV` | `development` | Utiliser `production` pour servir le client compilé. |
+| `DASHBOARD_UPDATE_CHECK` | activé | Mettre à `0`, `false` ou `off` pour désactiver les vérifications planifiées de l'amont. |
+| `DASHBOARD_UPDATE_CHECK_INTERVAL_MS` | `300000` | Intervalle entre les vérifications, minimum 60 000 ms. Le bouton manuel **Vérifier maintenant** reste disponible. |
+| `DASHBOARD_STALE_MINUTES` | `180` | Inactivité au-delà de laquelle une session active ou En attente devient abandonnée. Le watchdog l'applique et la maintenance s'exécute à chaque quart de cette valeur, bornée entre 60 secondes et 5 minutes. |
+| `DASHBOARD_WORKING_IDLE_SECONDS` | `120` | Récupère une annulation par Échap sans marqueur quand aucune activité d'outil, de hook ou de transcription ne progresse. Une valeur plus basse réagit plus vite mais peut brièvement mal classer de longs tours silencieux ; toute nouvelle activité corrige l'erreur. Cursor applique la même règle. |
+| `DASHBOARD_LIVENESS_PROBE` | `1` | Mettre à `0` pour désactiver la terminaison, fondée sur les processus, des sessions locales Claude/Codex mortes. Ignore automatiquement Windows, les conteneurs, les chemins transmis non POSIX et les sources distantes. |
+| `DASHBOARD_LIVENESS_IDLE_SECONDS` | `60` | Seuil d'inactivité de la transcription ou du dernier hook pour les tests d'activité du watchdog. Les sondes au démarrage ignorent ce seuil pour que les sessions déjà mortes soient nettoyées immédiatement. |
+| `DASHBOARD_SESSION_SYNC_MS` | `30000` | Polling de sécurité pour les fichiers nouveaux ou modifiés de `~/.claude/projects`. `fs.watch` reste immédiat ; `0` ne désactive que le polling. |
+| `DASHBOARD_CURSOR_HOME` | `~/.cursor` | Racine d'état de Cursor pour les chats, les transcriptions, le rattrapage et les instantanés durables. |
+| `DASHBOARD_CURSOR_SYNC_MS` | `5000` | Polling de sécurité de Cursor par empreinte. Les surveillances restent actives quand `0` désactive le polling. |
+| `DASHBOARD_CODEX_HOME` | `CODEX_HOME` ou `~/.codex` | Racine d'état de Codex. Les Paramètres persistent une surcharge, réarment la surveillance et lancent une analyse immédiate. |
+| `DASHBOARD_CODEX_SYNC_MS` | `4000` | Polling de sécurité des rollouts Codex. Les hooks et les surveillances restent actifs quand il vaut `0`. |
+| `DASHBOARD_CODEX_MAX_ATTEMPTS` | `5` | Tentatives pour un même rollout illisible et inchangé, première comprise. Un changement de taille ou de mtime réinitialise le budget ; son épuisement n'est journalisé qu'une fois. |
+| `DASHBOARD_CODEX_HOOK_IDLE_SECONDS` | `60` | Termine les sessions Codex uniquement par hooks, comme `codex exec --ephemeral`, quand un `stop` signalé comme terminé ne reçoit jamais de `SessionEnd`. Le silence seul ne suffit jamais. |
+| `DASHBOARD_TASK_SUMMARY_TTL_MS` | `2000` | Fenêtre pendant laquelle un résultat périmé est servi pour les résumés de tâches et `todo_snapshot`. Les ajouts sont analysés de façon incrémentale ; une croissance de plus de 32 Mio repart d'une analyse de fin neuve. `0` analyse chaque ajout. |
+| `DASHBOARD_SNAPSHOT_COMPRESS` | `1` | Mettre à `0`, `false` ou `off` pour arrêter la conversion gzip vérifiée des instantanés Claude/Cursor inactifs depuis 24 heures dont la source a disparu. Les arborescences sources illisibles et les instantanés Codex sont ignorés. |
+| `DASHBOARD_SNAPSHOT_MAX_AGE_DAYS` | non défini | Passe de conservation facultative, toutes les six heures, pour les sessions terminées plus anciennes que cet âge. Les sessions élaguées sont marquées comme supprimées (tombstone) ; les sessions reprises sont protégées. Prévisualisez avec `ccam snapshots prune --days N`, car l'instantané peut être la seule copie. |
+| `DASHBOARD_SNAPSHOT_MAX_BYTES` | non défini | Plafond total facultatif des instantanés, en octets ou avec une unité comme `5GB`. Les sessions terminées les plus anciennes sont élaguées en premier ; les sessions actives ou des dernières 24 heures restent protégées. |
+| `DASHBOARD_REMOTE_SYNC_MS` | `15000` | Polling SSH des sources distantes pour les projets Claude, les rollouts Codex et les index de titres Codex. Les sources nouvelles ou réactivées se synchronisent immédiatement ; avec `0`, la synchronisation manuelle reste disponible. |
+| `DASHBOARD_REMOTE_ACTIVE_WINDOW_MS` | `600000` | Considère une transcription distante répliquée comme active tant que son dernier événement est aussi récent, puis la réconcilie en terminée. Les fournisseurs en échec retombent dans le traitement normal des sessions inactives. |
+| `DASHBOARD_REMOTE_SYNC_TIMEOUT_MS` | `600000` | Délai d'expiration par source pour la récupération SSH et l'import. |
+| `DASHBOARD_REMOTE_TEST_TIMEOUT_MS` | `15000` | Délai d'expiration du test SSH d'une source distante. |
+| `DASHBOARD_HOST` | `127.0.0.1` | Interface d'écoute. `0.0.0.0` expose le service et journalise un avertissement. |
+| `DASHBOARD_TOKEN` | non défini | Protège `/api/*` et le WebSocket via l'en-tête Bearer, `x-dashboard-token` ou `?token=`. Le loopback est la frontière de confiance par défaut. |
+| `DASHBOARD_TOKEN_FILE` | non défini | Jeton du tableau de bord lu depuis un fichier, pour les secrets Docker/Kubernetes ; `DASHBOARD_TOKEN` l'emporte. |
+| `DASHBOARD_HOOK_TOKEN` / `DASHBOARD_HOOK_TOKEN_FILE` | non défini | Protection indépendante de `/api/hooks/event` et `/api/hooks/codex` au-delà du loopback. |
+| `REMOTE_PUSH_TOKEN` / `REMOTE_PUSH_TOKEN_FILE` | non défini | Protection distincte de la route publique `POST /api/hooks/ingest-batch`. La route reste désactivée par défaut et n'hérite jamais du jeton de hook local. |
+| `DASHBOARD_ALLOWED_HOSTS` | loopback | Valeurs `Host` HTTP et WebSocket supplémentaires, séparées par des virgules, pour la protection contre le DNS rebinding. |
+| `DASHBOARD_ENV_PATH` | `.env` du dépôt | Fichier dotenv inscriptible utilisé pour persister les surcharges des homes des fournisseurs ; en conteneur, `/app/config/.env` par défaut. |
+| `CCAM_DASHBOARD_URL` | découverte localhost | Destination de hooks distante. Les URL hors loopback exigent HTTPS et un jeton de hook. |
+| `CCAM_HOOK_TOKEN` / `CCAM_HOOK_TOKEN_FILE` | non défini | Identifiant du client de hooks, envoyé dans `x-ccam-hook-token`. |
 
 > [!IMPORTANT]
-> **Sécurisé par défaut.** Le serveur écoute sur `127.0.0.1` et n'est **pas** joignable depuis le réseau d'emblée ([GHSA-gr74-4xfh-6jw9](./.github/SECURITY.md)). Pour l'exposer sur un réseau local, définissez **à la fois** `DASHBOARD_HOST` (p. ex. `0.0.0.0`) **et** `DASHBOARD_TOKEN` (qui protège alors `/api/*` et le WebSocket), et listez vos noms d'hôte du réseau local dans `DASHBOARD_ALLOWED_HOSTS`. Voir [`.env.example`](./.env.example) et [`.github/SECURITY.md`](./.github/SECURITY.md) pour les détails.
+> Le serveur n'écoute par défaut que sur le loopback. L'accès depuis un réseau local exige `DASHBOARD_HOST`, `DASHBOARD_TOKEN` et des valeurs `DASHBOARD_ALLOWED_HOSTS` correspondantes. Voir [`.env.example`](./.env.example) et [la politique de sécurité](./.github/SECURITY.md).
 
-Pour les clones git, le serveur fait périodiquement un `git fetch` de `origin` et compare votre checkout à `origin/master`, `origin/main` ou `origin/HEAD`. Quand vous êtes en retard, un message apparaît dans le terminal du serveur et une fenêtre s'affiche dans l'interface avec la commande exacte à lancer. Le tableau de bord ne tire ni ne redémarre jamais de lui-même — vous copiez la commande, la lancez dans un terminal, puis redémarrez le serveur de la même façon que vous l'aviez démarré.
+Les clones git récupèrent périodiquement le dépôt distant canonique et comparent sa branche par défaut au checkout actuel. En cas de retard, le terminal et l'interface affichent la commande exacte de mise à jour manuelle. CCAM ne fait jamais de pull et ne redémarre jamais de lui-même.
 
 ---
 
 ## CLI `ccam`
 
-Toutes les fonctionnalités du tableau de bord sont aussi accessibles depuis n'importe quel terminal via la CLI **`ccam`**, sans dépendance (`bin/ccam.js`). Elle est liée automatiquement par `npm run setup` (via `npm link`), après quoi `ccam <command>` fonctionne depuis n'importe quel répertoire. Elle découvre le tableau de bord en cours d'exécution via `~/.claude/.agent-dashboard.json` (le même registre de serveurs actifs que celui du gestionnaire de hooks), avec les surcharges d'environnement `CLAUDE_DASHBOARD_PORT` / `DASHBOARD_PORT`, et se replie sur `http://127.0.0.1:4820`.
+La CLI **`ccam`** (`bin/ccam.js` → `cli/`) donne accès au tableau de bord depuis n'importe quel terminal grâce à une arborescence de commandes Commander.js avec options héritées, validation, suggestions, aide générée et complétion du shell. `npm run setup` la lie automatiquement. La résolution du serveur vérifie `--server` / `CCAM_URL`, les ports configurés, le registre des serveurs actifs, puis `http://127.0.0.1:4820`.
 
 ```bash
 # Server
-ccam status                       # ● running / ○ not running indicator
-ccam start [--port N]             # start the server in the background (detached)
-ccam stop                         # stop the background server gracefully
-ccam repl                         # interactive shell (also: shell, i)
+ccam status | health                  # ● running / ○ not running; version + timestamp
+ccam start [--port N] | stop | restart  # background production server
+ccam logs [-n N] [-f]                 # tail data/ccam-server.log
+ccam open [page] [--session id]       # open the dashboard, a page, or a session
+ccam repl                             # interactive shell (also: shell, i)
 
 # Monitoring
-ccam health                       # is the dashboard up?
-ccam stats                        # totals, today's events, status distributions
-ccam kanban                       # sessions + agents grouped by status columns
-ccam tail [--session <id>]        # live event feed in the terminal (Ctrl+C stops)
+ccam overview [--watch]               # one-screen live snapshot (alias: top)
+ccam stats | kanban                   # totals + status distributions / status lanes
+ccam tail [--session id] [--type T] [--tool N]   # live event feed
+ccam stream [--type new_event,…]      # raw real-time WebSocket feed
+ccam watch -n 5 <command …>           # re-run any command on an interval
 
 # Data
-ccam sessions [--status s] [--q text] [--limit n]
-ccam session <id>                 # detail: agent tree, cost, recent events
-ccam agents   [--status s] [--session id]
-ccam events   [--session id] [--limit n]
+ccam sessions [--status s] [--q text] [--cwd dir] [--sort price] [--limit n]
+ccam sessions get|stats|cost|agents|events|transcripts <id>
+ccam sessions transcript <id>         # the conversation as a readable chat log
+ccam sessions rename <id> <name…> | update <id> | create | facets
+ccam agents [list|get|update|create]  # agents; ccam session <id> = sessions get
+ccam events [--type T] [--tool N] [--q text] [--from iso] | events facets
 
 # Insights
-ccam analytics                    # token totals, top tools, agent types
-ccam workflows [--session id]     # workflow intelligence stats and patterns
-ccam runs [--session id]          # dynamic Workflow-tool runs
-ccam cost [--session <id>]        # total estimated cost with per-model breakdown
-                                  # (--session scopes to one; shows tool surcharges;
-                                  #  warns about models with usage but no pricing rule)
+ccam analytics                        # tokens, cost, top tools, daily sparklines
+ccam workflows [session <id>]         # workflow intelligence + patterns
+ccam runs [list|get <run-id>]         # Workflow-tool runs
+ccam run list|history|start|follow|send|stop …   # dashboard-launched agents
+ccam cost [--session id] [--daily]    # per-model cost, surcharges, unpriced models
 
 # Alerts & webhooks
-ccam alerts [--unacked]           # fired-alert feed
-ccam alerts ack <id> | ack-all    # acknowledge alerts
-ccam rules                        # list alert rules
-ccam webhooks                     # list webhook targets
-ccam webhooks test <id>           # send a synthetic test alert
+ccam alerts [--unacked] | ack <id> | ack-all
+ccam alert-rules list|types|create|update|enable|disable|delete
+ccam webhooks list|get|providers|deliveries|create|update|enable|disable|delete|test
 
 # Pricing
-ccam pricing                      # list model pricing rules (incl. fast-mode & intro columns)
-ccam pricing set <pattern> --input N --output N [--cache-read N --cache-write N]
-                 [--cache-write-1h N] [--fast-input N --fast-output N]
-                 [--intro-input N --intro-output N … --intro-until YYYY-MM-DD]
-ccam pricing delete <pattern>
-ccam pricing reset
+ccam pricing [list] | set <pattern> --input N --output N [--fast-* …] [--intro-* …] | delete | reset
+ccam pricing gpt|cursor [list|set|delete]   # OpenAI/Codex and Cursor rate cards
 
-# Import
-ccam import rescan                # re-scan ~/.claude/projects
-ccam import path <dir>            # import every .jsonl under a directory
+# Import & remote sources
+ccam import guide|rescan|path <dir>|upload <files…>|reimport
+ccam import-data <file.json>          # restore an export (idempotent)
+ccam remote-sources list|get|add|update|enable|disable|test|sync|rm
 
 # Administration
-ccam doctor                       # connectivity, hooks, and database diagnosis
-ccam info                         # raw system info JSON
-ccam export [file.json]           # full JSON data export
-ccam import-data <file.json>      # restore an export (idempotent, non-destructive)
-ccam cleanup --hours N --days M   # abandon stale / purge old sessions
-ccam reinstall-hooks              # reinstall Claude Code hooks
-ccam update-check                 # is the checkout behind upstream? (prints the update command)
-ccam clear-data --yes             # delete ALL data (requires --yes)
-ccam open                         # open the dashboard in your browser
-ccam version                      # print the CLI version (also --version / -v)
+ccam doctor | info | export [file|-] | cleanup --hours N --days M
+ccam snapshots [status|compress] | snapshots prune --days N   # transcript snapshots; prune dry-runs unless --apply --confirm PRUNE_SNAPSHOTS
+ccam hooks [status|install] | reinstall-hooks | config claude|codex …
+ccam updates [status|check] | update-check | metrics [--grep re]
+ccam home [set claude|codex <path>] | push key|send|subscribe|unsubscribe
+ccam api [METHOD] /api/path [--data JSON]   # any endpoint; writes need --yes
+ccam mcp [stdio|http|repl] | clear-data --yes
+
+# CLI
+ccam help [command…] | commands [--json] | completion bash|zsh|fish | version
 ```
 
-Les commandes qui s'appuient sur l'API exigent que le serveur tourne — sinon, **les commandes en lecture seule se replient sur la lecture directe de `data/dashboard.db`** (avec une bannière explicite `⚠ Offline mode`, et les sessions `active` stockées mais mortes corrigées à l'affichage par la même sonde d'activité des processus que celle du watchdog du serveur), tandis que les commandes qui ne peuvent pas fonctionner correctement sans le serveur (`tail` en direct, calculs d'analyses/de coûts, modifications) affichent l'indicateur `○ Dashboard server is NOT running` avec la raison précise et les commandes de démarrage ; `ccam start` lance un serveur de production en arrière-plan. Les commandes de lecture sont toujours sûres ; la seule commande destructive (`clear-data`) refuse de s'exécuter sans un `--yes` explicite. La sortie est une véritable interface en terminal — tableaux encadrés avec colonnes numériques alignées à droite, icônes de statut (`● active`, `○ waiting`, `✔ completed`, `✖ error`), histogrammes en ligne pour les statistiques/analyses/coûts et de vrais arbres d'agents `├─`/`└─` — avec des couleurs ANSI activées automatiquement sur un TTY, désactivées dans un pipe, et pilotables via `--no-color` / `NO_COLOR` / `FORCE_COLOR`. Pour une session de surveillance en direct, **`ccam repl`** (alias `shell` / `i`) ouvre un shell interactif où l'on tape les commandes sans le préfixe `ccam` — avec une bannière d'accueil CCAM, la complétion par tabulation, un historique aux flèches persistant, un prompt indiquant l'état du serveur en direct (`● host` en marche / `○ offline` arrêté), un menu `help` / `help <cmd>` groupé et une commande intégrée `watch [secs] <cmd>` qui rafraîchit automatiquement n'importe quelle commande (p. ex. `watch 5 kanban`) ; chaque ligne s'exécute dans un processus enfant isolé, si bien qu'un refus hors ligne ou un `tail` bloquant ne fait jamais tomber le shell. Si `ccam` n'est pas dans votre PATH (p. ex. `npm link` a demandé des droits élevés), lancez `npm link` une fois depuis la racine du dépôt. Référence complète — options, ordre de découverte, REPL, modèle de sécurité, scripts/codes de sortie, dépannage — dans [docs/CLI.md](./docs/CLI.md).
+Les groupes listent par défaut (`ccam alerts` équivaut à `ccam alerts list`) ; chaque commande prend en charge `--help` ; `ccam commands` affiche l'arborescence et `ccam commands --json` en émet le schéma lisible par machine.
+
+- **Sortie :** les TTY affichent tableaux, icônes de statut, graphiques, sparklines, arbres d'agents, vues de transcription et aide colorée. Les pipes reçoivent du texte brut. `--json` ou `CCAM_OUTPUT=json` renvoie un JSON stable, en NDJSON pour `tail`, `stream` et `run follow` ; les erreurs utilisent `{"error":{"code":"…","message":"…"}}` sur stderr et le code de sortie vaut `0` ou `1`.
+- **Écritures :** confirmez par un `y/N` interactif ou par `--yes` ; les écritures non interactives exigent `--yes`, et `clear-data` exige toujours l'option explicite.
+- **Mode hors ligne :** les commandes en lecture seule se replient sur `data/dashboard.db`, affichent une bannière `⚠ Offline mode` et corrigent les sessions actives mortes grâce à la vue d'activité des processus. Les commandes réservées au serveur expliquent pourquoi le tableau de bord est indisponible.
+- **REPL et complétion :** `ccam repl` ajoute une complétion pilotée par l'arborescence, un historique persistant, un prompt en direct et les commandes intégrées `help`, `json` et `watch`, chaque ligne étant isolée dans un processus enfant. Activez la complétion zsh avec `source <(ccam completion zsh)`.
+
+Si `ccam` n'est pas dans le `PATH`, lancez `npm link` une fois depuis la racine du dépôt. Voir [docs/CLI.md](./docs/CLI.md) pour le contrat complet.
 
 ## Scripts npm
 
@@ -880,7 +867,7 @@ graph TD
 
 ## Intégration MCP
 
-Ce projet comprend un serveur MCP local dans `mcp/`, avec 97 outils répartis en 16 modules de domaine. Il expose chaque action prise en charge par l'application : lectures de données par portée, transcriptions/images, tarification Claude, Cursor et GPT, workflows, alertes/webhooks, imports et restauration de sauvegarde, configuration Claude/Codex, Lancer un agent, sources distantes, paramètres, push et maintenance protégée. Il prend en charge trois modes de transport.
+Ce projet comprend un serveur MCP local dans `mcp/`, avec 103 outils répartis en 16 modules de domaine. Il expose chaque action prise en charge par l'application : lectures de données par portée, transcriptions/images, tarification Claude, Cursor et GPT, workflows, alertes/webhooks, imports et restauration de sauvegarde, configuration Claude/Codex, Lancer un agent, sources distantes, paramètres, push et maintenance protégée. Il prend en charge trois modes de transport.
 
 ### Modes de transport MCP
 
@@ -914,7 +901,7 @@ flowchart LR
 | **REPL** | `npm run mcp:start:repl` | Débogage d'exploitation, invocation manuelle d'outils, administration locale |
 
 <p align="center">
-  <img src="images/mcp.png" alt="REPL MCP" width="100%">
+  <a href="images/mcp.png"><img src="images/readme/mcp.png" alt="REPL MCP" width="100%"></a>
 </p>
 
 ### Architecture MCP
@@ -1033,59 +1020,13 @@ Un **`openapi.yaml`** versionné à la racine du dépôt reflète la spécificat
 npm run openapi:yaml
 ```
 
-### Métriques Prometheus et Grafana
-
-`GET /api/metrics` expose les compteurs en direct du tableau de bord — sessions/agents par statut, totaux d'événements et de tokens, clients temps réel connectés, sources distantes configurées, durée de fonctionnement/mémoire du processus et version du build — au format d'exposition texte de Prometheus, pour que CCAM puisse être collecté par votre propre pile d'observabilité. Une pile Prometheus + Grafana clé en main avec **quatre tableaux de bord provisionnés automatiquement** (accueil par défaut : **CCAM — Overview**) se trouve dans [`monitoring/`](./monitoring/README.md).
-
-**npm (sans Docker — macOS, Linux ou Windows) :**
-
-```bash
-npm start                          # dashboard on :4820
-npm run monitoring:install         # one-time: npm postinstall pulls binaries
-npm run monitoring:up              # Grafana on :3000, auto-provisioned; see monitoring/README.md for credentials
-```
-
-**Docker / Podman** (quand le tableau de bord tourne dans un conteneur ou si vous préférez Compose) :
-
-```bash
-# Dashboard only
-npm run docker:up
-
-# Dashboard + Prometheus + Grafana (one command)
-npm run docker:full:up
-
-# Or mix: native/docker dashboard + docker monitoring
-DASHBOARD_ALLOWED_HOSTS=host.docker.internal npm start   # or docker:up with same env
-npm run monitoring:docker:up
-npm run monitoring:verify
-```
 
 <p align="center">
-  <img src="images/grafana.png" alt="Tableau de bord Grafana CCAM — Overview avec les métriques de sessions, d'événements et de tokens en direct" width="100%">
-  <br>
-  <em>📊 <strong>Grafana · CCAM — Overview</strong> — tableau de bord d'accueil par défaut (quatre tableaux provisionnés automatiquement) : instantané de la flotte, totaux de la base, graphiques de répartition et débits — le tout issu de collectes en direct de <code>/api/metrics</code></em>
+  <a href="images/swagger.png"><img src="images/readme/swagger.png" alt="Swagger UI" width="100%"></a>
 </p>
 
 <p align="center">
-  <img src="images/prometheus-console.png" alt="Console Prometheus CCAM avec cartes de métriques et tableaux de sessions" width="100%">
-  <br>
-  <em>🔥 <strong>Prometheus · console CCAM</strong> — page d'accueil prête à l'emploi sur <code>/consoles/index.html</code> qui interroge directement Prometheus pour la santé de la collecte, les totaux de sessions, les événements, les tokens, et propose des liens Graph pour approfondir</em>
-</p>
-
-<p align="center">
-  <img src="images/prometheus-query.png" alt="Interface Graph de Prometheus avec une requête PromQL CCAM" width="100%">
-  <br>
-  <em>📈 <strong>Prometheus · Graph</strong> — exécutez du PromQL sur les métriques CCAM collectées (p. ex. <code>sum(ccam_sessions)</code>, <code>ccam_events_total</code>, <code>rate(ccam_tokens_total[5m])</code>) avec des liens de départ depuis la console CCAM et <a href="./monitoring/README.md">monitoring/README.md</a></em>
-</p>
-
-Voir [docs/API.md → Metrics](./docs/API.md#metrics) pour la liste complète des métriques et les détails de collecte/authentification.
-
-<p align="center">
-  <img src="images/swagger.png" alt="Swagger UI" width="100%">
-</p>
-
-<p align="center">
-  <img src="images/redoc.png" alt="Interface ReDoc" width="100%">
+  <a href="images/redoc.png"><img src="images/readme/redoc.png" alt="Interface ReDoc" width="100%"></a>
 </p>
 
 ### Santé
@@ -1220,7 +1161,10 @@ Les fournisseurs hébergés exigent HTTPS. `generic` et `n8n` peuvent utiliser H
 | `POST` | `/api/settings/reset-pricing` | Réinitialise aux valeurs par défaut les tables de tarification Claude, Codex ou les deux |
 | `GET` | `/api/settings/export` | Exporte toutes les données (sessions, agents, events, token_usage, workflows, dashboard_runs, alert_rules, model_pricing, cursor_model_pricing, gpt_model_pricing) en un seul téléchargement JSON versionné |
 | `POST` | `/api/settings/import` | Restaure un lot jusqu'à 25 Mio issu de `/export` (`file` multipart ou JSON `{ path }`). Idempotent + non destructif — les sessions existantes sont entièrement ignorées |
-| `POST` | `/api/settings/cleanup` | Abandonne les sessions inactives, purge les anciennes données |
+| `POST` | `/api/settings/cleanup` | Abandonne les sessions inactives, purge les anciennes données (et les instantanés des sessions purgées) |
+| `GET` | `/api/settings/snapshots` | Stockage des instantanés de transcriptions par fournisseur + politique de conservation |
+| `POST` | `/api/settings/snapshots/compress` | Compresse sans perte les instantanés dont la transcription d'origine a disparu |
+| `POST` | `/api/settings/snapshots/prune` | Planifie (simulation, par défaut) ou applique un élagage des instantanés ; l'application exige `confirm: "PRUNE_SNAPSHOTS"` |
 
 ### Explorateur de configuration Claude (`/api/cc-config`)
 
@@ -1248,6 +1192,46 @@ Inspection en lecture seule de chaque surface de configuration de Claude Code, p
 | `PUT` | `/api/cc-config/file` | Crée ou écrase un artefact texte. Corps : `{ scope, type, name?, content }`. Sauvegarde automatique si le fichier existe. Écriture atomique (fichier temporaire + renommage). Contenu plafonné à 256 Ko, regex stricte sur `name` |
 | `DELETE` | `/api/cc-config/file` | Sauvegarde puis supprime un artefact texte. Les répertoires de skills sont sauvegardés en entier (ressources embarquées comprises) avant la suppression récursive |
 
+### Métriques Prometheus et Grafana
+
+`GET /api/metrics` expose au format texte de Prometheus des métriques sur le statut des sessions et des agents, les événements, les tokens, les clients temps réel, les sources distantes, la durée de fonctionnement et la mémoire du processus, ainsi que la version du build. [`monitoring/`](./monitoring/README.md) fournit Prometheus et quatre tableaux de bord Grafana provisionnés automatiquement, **CCAM · Overview** étant celui par défaut.
+
+```bash
+# Native dashboard and monitoring
+npm start
+npm run monitoring:install       # one-time binary setup
+npm run monitoring:up            # Grafana on :3000
+
+# Containers
+npm run docker:up                 # dashboard only
+npm run docker:full:up            # dashboard + Prometheus + Grafana
+
+# Mixed native/container setup
+DASHBOARD_ALLOWED_HOSTS=host.docker.internal npm start
+npm run monitoring:docker:up
+npm run monitoring:verify
+```
+
+<p align="center">
+  <a href="images/grafana.png"><img src="images/readme/grafana.png" alt="Tableau de bord Grafana CCAM Overview" width="100%"></a>
+  <br>
+  <em>📊 <strong>Grafana · CCAM Overview</strong> · état de la flotte, totaux de la base, répartitions et débits issus de collectes en direct de <code>/api/metrics</code></em>
+</p>
+
+<p align="center">
+  <a href="images/prometheus-console.png"><img src="images/readme/prometheus-console.png" alt="Console Prometheus CCAM" width="100%"></a>
+  <br>
+  <em>🔥 <strong>Prometheus · console CCAM</strong> · santé de la collecte, sessions, événements, tokens et liens Graph pour approfondir</em>
+</p>
+
+<p align="center">
+  <a href="images/prometheus-query.png"><img src="images/readme/prometheus-query.png" alt="Graph Prometheus avec une requête PromQL CCAM" width="100%"></a>
+  <br>
+  <em>📈 <strong>Prometheus · Graph</strong> · exécutez du PromQL sur les métriques CCAM collectées, avec des liens de départ depuis la console</em>
+</p>
+
+Voir [docs/API.md → Metrics](./docs/API.md#metrics) pour les noms des métriques, l'authentification et la configuration de la collecte.
+
 ### Lancer Claude (`/api/run`)
 
 Surface HTTP pour lancer et superviser des sous-processus `claude` depuis le tableau de bord. Protection same-origin sur chaque route — les requêtes du navigateur doivent venir d'une origine localhost ; les requêtes sans en-tête Origin (CLI/curl) passent. Un `cwd` fourni doit être un répertoire absolu existant et est canonicalisé avec `realpath`. Il peut volontairement se trouver hors de ce dépôt, pour que Lancer un agent puisse démarrer depuis le home de l'utilisateur ou n'importe quel projet récent.
@@ -1267,29 +1251,9 @@ La sortie est diffusée sur le WebSocket existant du tableau de bord sous trois 
 
 ### Import de l'historique
 
-Importez l'historique existant de **Claude Code** ou de **Codex** via les
-onglets de fournisseur dans **Paramètres → Import de l'historique**. Claude Code
-utilise son analyseur JSONL partagé pour `~/.claude/projects` ; Codex utilise
-pour `~/.codex/sessions` le même ingesteur de rollouts en ajout seul que la
-surveillance en temps réel, y compris les instantanés de tokens, les appels
-d'outils response-item, l'état du cycle de vie et les titres natifs `/rename`
-quand `session_index.jsonl` est inclus. Les réimports sont idempotents : Claude
-conserve les bases de compaction et Codex garde ses curseurs d'octets, si bien
-qu'aucun des deux fournisseurs ne compte deux fois l'usage ou le coût.
-L'historique Codex issu d'un dossier ou téléversé depuis le navigateur est copié
-dans le stockage du tableau de bord avant le nettoyage des fichiers temporaires,
-pour que la vue de conversation reste disponible par la suite.
+**Paramètres → Import de l'historique** importe les transcriptions Claude Code de `~/.claude/projects` et les rollouts Codex de `~/.codex/sessions` par analyse de dossier ou par téléversement, selon un flux propre à chaque fournisseur. Les deux réutilisent l'ingestion en direct, préservent tokens, coûts, outils, bases de compaction, cycle de vie et titres natifs de Codex, et restent idempotents. L'historique Codex téléversé est copié dans le stockage du tableau de bord pour que sa conversation survive au nettoyage de la source.
 
-Un quatrième mode — **Restaurer une sauvegarde** — importe un export complet du
-tableau de bord au format `.json` (produit par le bouton **Exporter les données**,
-`ccam export` ou `GET /api/settings/export`) plutôt que des transcriptions
-Claude brutes. C'est le pendant de l'export : il restaure chaque table (sessions,
-agents, events, token_usage, workflows, dashboard_runs, alert_rules,
-model_pricing, cursor_model_pricing, gpt_model_pricing) et il est idempotent +
-non destructif — une session déjà présente est entièrement ignorée, si bien que
-vous pouvez **regrouper plusieurs machines** dans un même tableau de bord sans
-rien dupliquer ni écraser. Il repose sur `server/lib/data-transfer.js` et
-`POST /api/settings/import` (également `ccam import-data <file>`).
+**Restaurer une sauvegarde** accepte un export `.json` du tableau de bord produit depuis l'interface, `ccam export` ou `GET /api/settings/export`. `POST /api/settings/import` et `ccam import-data <file>` restaurent toutes les tables sans écraser les sessions existantes, ce qui permet de regrouper plusieurs machines sans risque.
 
 ```mermaid
 flowchart LR
@@ -1303,13 +1267,13 @@ flowchart LR
     A2 -->|POST /api/import/scan-path| R
     A3 -->|POST /api/import/upload<br/>multipart| R
 
-    R -->|extraction d'archive<br/>+ garde anti-traversée de chemin<br/>+ plafond anti zip-bomb| X["server/lib/archive.js"]
-    R -->|parcours récursif| I["importFromDirectory<br/>(scripts/import-history.js)"]
+    R -->|garde-fous d'archive| X["server/lib/archive.js"]
+    R -->|parcours récursif| I["importFromDirectory"]
     X --> I
-    I -->|même chaîne que l'ingestion<br/>des hooks en direct| P["parseSessionFile +<br/>importSession"]
-    P -->|requêtes préparées,<br/>dans une seule transaction| D[("SQLite<br/>sessions / agents / events /<br/>token_usage")]
-    I -.->|import.progress<br/>limité| W["WebSocket /ws"]
-    W -.-> U["Paramètres → Import de l'historique<br/>barre de progression + carte de résultat"]
+    I --> P["analyseur partagé de l'ingestion en direct"]
+    P --> D[("SQLite")]
+    I -.->|import.progress| W["WebSocket"]
+    W -.-> U["Progression + résultat dans les Paramètres"]
 
     style A1 fill:#6366f1,stroke:#818cf8,color:#fff
     style A2 fill:#6366f1,stroke:#818cf8,color:#fff
@@ -1322,75 +1286,18 @@ flowchart LR
     style U fill:#a855f7,stroke:#c084fc,color:#fff
 ```
 
-**Routes**
+| Méthode | Chemin | Rôle |
+| --- | --- | --- |
+| `GET` | `/api/import/guide` | Chemins, commandes d'archive, extensions et instructions selon le fournisseur, via `?provider=claude\|codex`. |
+| `POST` | `/api/import/rescan` | Analyse à nouveau la racine par défaut sélectionnée à partir de `{ provider }`. |
+| `POST` | `/api/import/scan-path` | Analyse récursivement un `{ path, provider }` absolu. |
+| `POST` | `/api/import/upload` | Téléverse des fichiers ou archives pris en charge avec `provider`. |
 
-| Méthode | Chemin | Description |
-| ------ | ----------------------- | ------------------------------------------------------------------------ |
-| `GET` | `/api/import/guide` | Chemins du système, commande d'archive, extensions et instructions selon le fournisseur (`?provider=claude\|codex`) |
-| `POST` | `/api/import/rescan` | Analyse à nouveau l'emplacement par défaut choisi : `~/.claude/projects` ou `~/.codex/sessions` (`{ provider }`) |
-| `POST` | `/api/import/scan-path` | Analyse un répertoire absolu avec `{ path, provider }` ; parcours récursif |
-| `POST` | `/api/import/upload` | Téléversement multipart de `.jsonl`, `.meta.json`, `.zip`, `.tar(.gz)`, `.gz` avec `provider` |
-
-**Entrées prises en charge.** Transcriptions de session JSONL isolées (`.jsonl`),
-leurs fichiers compagnons `.meta.json`, et archives (`.zip`, `.tar`,
-`.tar.gz`/`.tgz`, `.gz` simple) contenant n'importe quelle arborescence imbriquée.
-Les deux organisations canoniques de Claude Code sont reconnues automatiquement :
-`<project>/<sessionId>/subagents/agent-*.jsonl` (par défaut) et
-`<project>/subagents/<sessionId>/agent-*.jsonl` (alternative).
-Pour Codex, l'importeur reconnaît récursivement les fichiers de session `rollout-*.jsonl`
-(y compris les fichiers JSONL isolés contenant `session_meta`) et un fichier
-facultatif `session_index.jsonl` pour les noms de session natifs.
-
-**Garanties d'exactitude.** Les sessions sont dédoublonnées par UUID ; relancer
-l'importeur est toujours sans risque. Les colonnes de compaction `baseline_input` /
-`baseline_output` / `baseline_cache_read` / `baseline_cache_write`
-conservent les comptes de tokens d'avant la compaction d'une transcription,
-si bien que réingérer un JSONL postérieur à une compaction n'efface jamais le coût historique.
-Le dédoublonnage au niveau des événements utilise un maximum par type d'événement
-(`MAX(created_at) GROUP BY event_type` pour la session) : à chaque
-réimport, seules les entrées JSONL avec `ts > cutoff[type]` sont insérées, si bien que
-les sessions de longue durée dont les transcriptions grandissent sur plusieurs jours
-continuent de recevoir des événements Stop / PostToolUse / TurnDuration / ToolError
-sans dupliquer le travail antérieur. `sessions.ended_at` est avancé
-jusqu'à la dernière activité du JSONL quand celle-ci dépasse la valeur
-stockée, et les métadonnées de nombre de messages sont rafraîchies à chaque passe.
-
-**Sécurité face aux transcriptions énormes.** Le cache de transcriptions partagé
-(`server/lib/transcript-cache.js`) lit les fichiers JSONL par morceaux de 4 Mio
-et ne décode qu'une ligne à la fois, si bien que des transcriptions plus grandes que
-la longueur maximale d'une chaîne JS de V8 (~512 Mio sur Node 20 en 64 bits)
-s'analysent sans faire planter le processus avec `FATAL ERROR: v8::ToLocalChecked Empty
-MaybeLocal`. Le même chemin par morceaux est utilisé par l'ingestion des hooks, le
-balayage périodique des compactions et l'importeur d'historique — aucun d'eux ne
-matérialise le fichier entier en une seule chaîne JS. Les tableaux extensibles de chaque entrée
-(`turnDurations`, `errors`, `compaction.entries`,
-`usageExtras.*`) sont plafonnés par la fin à `TRANSCRIPT_CACHE_MAX_ARRAY_LEN`
-(`1000` par défaut), avec un élagage appliqué pendant l'analyse à un seuil de `2 × cap`,
-pour qu'une analyse complète neuve d'une session de plusieurs jours ne puisse pas
-construire une structure transitoire sans limite avant la finalisation.
-
-**Sécurité.** L'extraction d'archive vérifie chaque entrée contre la traversée
-de chemin (les chemins absolus et les segments `..` sont refusés). Un
-plafond d'extraction configurable (`CCAM_IMPORT_MAX_EXTRACT_BYTES`, 4 Go
-par défaut) arrête les bombes zip/tar/gzip. La taille des téléversements est plafonnée par fichier
-(`CCAM_IMPORT_MAX_BYTES`, 1 Go par défaut) et par requête
-(`CCAM_IMPORT_MAX_FILES`, 2000 par défaut). Tous les répertoires de préparation sont
-propres à chaque requête et récupérés dans `finally`, y compris quand multer refuse
-tous les fichiers d'emblée.
-
-**Progression.** L'activité d'import est diffusée sur le WebSocket existant
-sous forme de messages `import.progress` (`phase` : `start` / `scan` / `extract` /
-`parse` / `complete` / `error`), limités en fréquence pour ne pas inonder le
-canal lors de gros imports.
-
-**Interface.** Utilisez le panneau **Paramètres → Import de l'historique** pour une expérience
-guidée par glisser-déposer, avec des instructions pas à pas, la progression en direct
-et un résumé après import indiquant le nombre d'éléments importés / enrichis / ignorés /
-en erreur.
-
-<p align="center">
-  <img src="images/import.png" alt="Interface d'import de l'historique" width="100%">
-</p>
+- **Entrées :** fichiers `.jsonl`, `.meta.json`, `.zip`, `.tar`, `.tar.gz`/`.tgz` et `.gz` isolés, dans des arborescences imbriquées. Claude prend en charge ses deux organisations canoniques de sous-agents ; Codex reconnaît récursivement les `rollout-*.jsonl` ou les JSONL contenant `session_meta`, avec des titres facultatifs issus de `session_index.jsonl`.
+- **Exactitude :** le dédoublonnage par UUID et par horodatage maximal des événements empêche tout double comptage. Les bases de compaction conservent les tokens antérieurs ; l'activité ultérieure fait avancer `ended_at` et rafraîchit les métadonnées des messages.
+- **Gros fichiers :** une analyse partagée, par morceaux de 4 Mio et ligne par ligne, traite les transcriptions qui dépassent la limite d'environ 512 Mio des chaînes de V8. Les tableaux extensibles sont plafonnés à `TRANSCRIPT_CACHE_MAX_ARRAY_LEN`, `1000` par défaut, avec un élagage au double du plafond pendant l'analyse.
+- **Sécurité :** l'extraction refuse les chemins absolus et ceux qui contiennent `..`. Par défaut, les données extraites sont plafonnées à 4 Go, chaque téléversement à 1 Go et chaque requête à 2000 fichiers ; les répertoires de préparation de chaque requête sont toujours récupérés.
+- **Progression :** les phases WebSocket `import.progress`, limitées en fréquence, couvrent `start`, `scan`, `extract`, `parse`, `complete` et `error`. L'interface propose un guidage par glisser-déposer et les totaux d'éléments importés, enrichis, ignorés et en erreur.
 
 ### WebSocket
 
@@ -1472,19 +1379,15 @@ De plus, tout événement de hook `Notification` de Claude Code déclenche une n
 
 ### PWA et prise en charge hors ligne
 
-Le projet fournit trois Progressive Web Apps indépendantes — une pour le **tableau de bord**, une pour la **page d'accueil** et une pour le **wiki**. Chacune a son propre `manifest.json` et son Service Worker, si bien que le navigateur les traite comme des applications installables distinctes.
+Le tableau de bord, la page d'accueil et le wiki sont des PWA installables distinctes, chacune avec son propre manifeste et son propre service worker.
 
 | Surface | Manifeste | Service Worker | Stratégie de cache |
 | --- | --- | --- | --- |
-| Tableau de bord (`client/`) | `client/public/manifest.json` | `client/public/sw.js` | Les bundles Vite à hash de contenu sous `/assets/*` sont servis en cache d'abord (les URL sont immuables par build). Tout le reste — navigations, le SW lui-même, `manifest.json`, icônes, racine `/` — est servi en réseau d'abord avec repli sur le cache, si bien qu'un nouveau build affiche toujours l'interface la plus récente sans rechargement forcé. Les requêtes d'API (`/api/*`), WebSocket (`/ws`) et HMR de Vite ne sont jamais mises en cache. Les gestionnaires de notifications push sont conservés à côté de la logique de cache. Le middleware statique d'Express (`server/index.js`) renforce ce comportement en envoyant `Cache-Control: public, max-age=31536000, immutable` pour `/assets/*` et `Cache-Control: no-cache, must-revalidate` pour `index.html`, `sw.js` et `manifest.json`. `client/src/main.tsx` écoute `controllerchange` : quand un nouveau SW s'active sur une page déjà contrôlée, il recharge exactement une fois (pas lors des premières installations). |
-| Page d'accueil (racine) | `manifest.json` | `sw.js` | Pré-cache la coquille HTML, le favicon et l'image OG. Les captures PNG sont mises en cache à la première consultation (cache d'abord) pour éviter un pré-cache initial trop lourd. La navigation est en réseau d'abord avec repli hors ligne. |
-| Wiki (`wiki/`) | `wiki/manifest.json` | `wiki/sw.js` | Pré-cache `index.html`, `style.css`, `script.js`, le manifeste et le favicon. Entièrement utilisable hors ligne après une visite. HTML en réseau d'abord, CSS/JS en cache d'abord. |
+| Tableau de bord (`client/`) | `client/public/manifest.json` | `client/public/sw.js` | Les `/assets/*` immuables sont servis en cache d'abord ; les navigations, le worker, le manifeste, les icônes et `/` sont servis en réseau d'abord avec repli. `/api/*`, `/ws` et le HMR de Vite ne sont jamais mis en cache ; les gestionnaires push restent actifs. Express envoie des en-têtes immuables d'un an pour les ressources et des en-têtes de revalidation pour les fichiers de la coquille. `controllerchange` recharge une fois lors d'une mise à niveau, jamais à la première installation. |
+| Page d'accueil (racine) | `manifest.json` | `sw.js` | Pré-cache la coquille, le favicon et l'image OG. Les captures sont mises en cache à la première consultation ; la navigation est en réseau d'abord avec repli hors ligne. |
+| Wiki (`wiki/`) | `wiki/manifest.json` | `wiki/sw.js` | Pré-cache le HTML, le CSS, le JS, le manifeste et le favicon. Le HTML reste en réseau d'abord ; CSS et JS sont en cache d'abord, ce qui permet l'usage hors ligne après une visite. |
 
-**Cycle de vie du cache :** les trois SW appellent `skipWaiting()` à l'installation et suppriment les caches périmés à l'activation (identifiés par des chaînes de version comme `dashboard-v2`, `landing-v1`, `wiki-v1`). Incrémenter la constante de version force un rafraîchissement propre.
-
-**Prise en charge d'iOS :** les trois fichiers HTML incluent `<meta name="apple-mobile-web-app-capable" content="yes">` et `<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">` pour le mode autonome sur l'écran d'accueil dans Safari.
-
-**Icônes :** les manifestes référencent `favicon.svg` avec `sizes="any"` et `type="image/svg+xml"` — pris en charge par Chrome 107+, Firefox 110+, Edge 107+. Les icônes Apple touch utilisent aussi le favicon SVG.
+Tous les workers appellent `skipWaiting()`, suppriment à l'activation les caches périmés versionnés et se rafraîchissent proprement quand leur version de cache change. Chaque fichier HTML inclut les métadonnées iOS du mode autonome ; les manifestes et les icônes Apple touch utilisent `favicon.svg` avec `sizes="any"`.
 
 ---
 
@@ -1493,7 +1396,7 @@ Le projet fournit trois Progressive Web Apps indépendantes — une pour le **ta
 Le tableau de bord surveille son propre checkout git et affiche une fenêtre dès que la branche par défaut canonique a des commits en avance sur HEAD. **Conscient des branches et des forks :** si vous avez un remote `upstream` (la convention habituelle pour les forks), il est préféré à `origin` ; les `master`/`main`/`HEAD` du remote choisi servent de référence de comparaison. La `manual_command` s'adapte à votre situation — `git pull --ff-only` seulement quand votre branche suit réellement la référence canonique, sinon un `git fetch` (et une fusion en avance rapide dans le cas d'un fork), pour que la commande ne mente jamais. Les utilisateurs obtiennent la commande exacte à lancer dans un terminal — le serveur ne tire **jamais** ni ne redémarre de lui-même, ce qui garde le mécanisme portable entre sessions de dev, supervision pm2/systemd/launchd/Docker et déploiements distants.
 
 <p align="center">
-  <img src="images/update.png" alt="Fenêtre de mise à jour du tableau de bord avec commande à copier dans le presse-papiers" width="100%">
+  <a href="images/update.png"><img src="images/readme/update.png" alt="Fenêtre de mise à jour du tableau de bord avec commande à copier dans le presse-papiers" width="100%"></a>
 </p>
 
 ### Fonctionnement
@@ -1522,9 +1425,9 @@ Une vérification est peu coûteuse (`git fetch <remote> --prune` sur le remote 
 
 | Surface | Comportement |
 | --- | --- |
-| **Fenêtre** (`client/src/components/UpdateNotifier.tsx`) | Apparaît quand `update_available === true` et que l'utilisateur n'a pas déjà écarté ce `remote_sha` précis. Affiche le nombre de commits de retard, la référence suivie, une `situation_note` facultative (sur une branche de fonctionnalité / un fork, la note explique pourquoi la commande diffère), la commande à copier-coller et trois boutons : **Copier la commande** (principal), **Vérifier maintenant**, **Ignorer**. Échap et un clic sur le fond ferment la fenêtre. Indexée par `remote_sha` dans `localStorage`, si bien qu'un commit amont plus récent rouvre automatiquement la fenêtre. |
-| **Bouton de la barre latérale** (`client/src/components/Sidebar.tsx`) | Bouton « Rechercher des mises à jour » toujours visible dans le pied de page. Bordure émeraude + pastille verte en cas de retard, ambre quand la dernière vérification a rencontré une erreur de fetch. Un clic efface tout rejet antérieur puis déclenche `POST /api/updates/check`. |
-| **Terminal du serveur** | Quand le planificateur passe de « à jour » à « en retard », il affiche sur stdout un bloc encadré avec la commande, pour que les utilisateurs sans interface la voient aussi. |
+| **Fenêtre** (`client/src/components/UpdateNotifier.tsx`) | S'ouvre pour chaque nouveau `remote_sha` disponible ; affiche le nombre de commits de retard, la référence suivie, une note facultative sur la branche ou le fork, la commande exacte et les boutons **Copier la commande**, **Vérifier maintenant** et **Ignorer**. Échap ou un clic sur le fond la ferment. Le rejet est indexé dans `localStorage`, si bien qu'un SHA plus récent la rouvre. |
+| **Bouton de la barre latérale** (`client/src/components/Sidebar.tsx`) | Toujours visible. Le vert signale un retard ; l'ambre, un échec de fetch. Un clic efface le rejet et appelle `POST /api/updates/check`. |
+| **Terminal du serveur** | Affiche la commande dans un bloc encadré quand le statut passe de « à jour » à « en retard », y compris pour les utilisateurs sans interface. |
 
 ### Surface d'API
 
@@ -1575,7 +1478,7 @@ Il n'y a ni `POST /api/updates/apply` ni utilitaire de redémarrage automatique,
 **Tabby** est un adorable chat compagnon flottant, épinglé dans le coin inférieur droit de chaque page du tableau de bord. Toujours présent, il transforme le flux de sessions en direct en une mascotte réactive, lisible d'un coup d'œil, à qui l'on peut aussi parler.
 
 <p align="center">
-  <img src="images/tabby.png" alt="Tabby, la mascotte réactive du tableau de bord, montrée dans différentes humeurs et avec une bulle de dialogue" width="100%">
+  <a href="images/tabby.png"><img src="images/readme/tabby.png" alt="Tabby, la mascotte réactive du tableau de bord, montrée dans différentes humeurs et avec une bulle de dialogue" width="100%"></a>
 </p>
 
 ### Mascotte réactive
@@ -1660,7 +1563,7 @@ Par défaut, le démarrage de session, la fin de session, l'erreur de session, l
 Cliquez sur la pastille **En ligne** / **Déconnecté** en bas de la barre latérale pour ouvrir un petit panneau de détails sur le transport WebSocket du tableau de bord. Il affiche le point de terminaison `ws://` actif, depuis combien de temps le socket actuel est ouvert, le nombre total d'événements reçus, les principaux types d'événements sous forme d'histogramme horizontal, une sparkline du débit sur 60 secondes et les 8 derniers événements dans une liste d'activité récente. Les statistiques cumulées (totaux, répartition par type, liste récente) sont conservées d'un rechargement à l'autre via `localStorage` sous `sidebar-connection-stats` ; la sparkline glissante et le minuteur « connecté depuis » sont volontairement éphémères. Un bouton **Réinitialiser** en pied de panneau efface tout à la demande.
 
 <p align="center">
-  <img src="images/live.png" alt="Fenêtre de détails de connexion avec sparkline du débit, principaux types d'événements et activité récente" width="100%">
+  <a href="images/live.png"><img src="images/readme/live.png" alt="Fenêtre de détails de connexion avec sparkline du débit, principaux types d'événements et activité récente" width="100%"></a>
 </p>
 
 ---
@@ -1670,7 +1573,7 @@ Cliquez sur la pastille **En ligne** / **Déconnecté** en bas de la barre laté
 **Claude Code Agent Monitor** est disponible sous forme d'extension VS Code à part entière, pour surveiller vos agents IA sans quitter votre éditeur.
 
 <p align="center">
-  <img src="vscode-extension/vscode.png" alt="Capture de l'extension VS Code" width="100%">
+  <a href="vscode-extension/vscode.png"><img src="images/readme/vscode.png" alt="Capture de l'extension VS Code" width="100%"></a>
 </p>
 
 ### 🚀 Fonctionnalités clés
@@ -1695,21 +1598,21 @@ Pour la configuration détaillée côté développeur, voir les répertoires [.v
 
 ## Application de bureau (macOS et Windows)
 
-Le tableau de bord existe aussi sous forme d'**application de bureau native** facultative, à installer une fois pour toutes — une `.app` macOS (distribuée en `.dmg`) et un `.exe` Windows (un installeur NSIS plus une version portable sans installation). Elle se trouve dans l'espace de travail `desktop/`, à côté de `client/`, `server/`, `mcp/` et `vscode-extension/`, et est construite avec **Electron 35**.
+L'application de bureau facultative, construite avec Electron 35, empaquette le même tableau de bord en `.dmg` macOS, en installeur NSIS Windows ou en `.exe` portable, depuis l'espace de travail `desktop/`.
 
 <p align="center">
-  <img src="images/macos.png" alt="Claude Code Monitor exécuté comme application de bureau native" width="100%">
+  <a href="images/macos.png"><img src="images/readme/macos.png" alt="Claude Code Monitor exécuté comme application de bureau native" width="100%"></a>
   <br>
   <em>🍎🪟 <strong>Application de bureau</strong> — coquille native avec icône dans la barre de menus / zone de notification (tray), ouverture à la connexion et verrou d'instance unique. Le même tableau de bord, dans une vraie fenêtre du système (ici macOS).</em>
 </p>
 
 <p align="center">
-  <img src="images/windows_app.png" alt="Claude Code Monitor exécuté comme application de bureau Windows native, montrant le Flux d'activité avec la barre de menus de la fenêtre Windows et le panneau Tabby" width="100%">
+  <a href="images/windows_app.png"><img src="images/readme/windows_app.png" alt="Claude Code Monitor exécuté comme application de bureau Windows native, montrant le Flux d'activité avec la barre de menus de la fenêtre Windows et le panneau Tabby" width="100%"></a>
   <br>
   <em>🪟 Le même tableau de bord en application Windows native — icône dans la zone de notification (tray), menu de fenêtre natif et ouverture à la connexion.</em>
 </p>
 
-Tout ce que vous voyez dans le navigateur sur `localhost:4820` vit dans cette fenêtre, avec en plus le cycle de vie natif du système : une icône de tray, un menu d'application natif, l'intégration au démarrage automatique et un seul bouton Quitter qui arrête proprement le serveur.
+Elle ajoute le comportement natif de fenêtre, de tray, de menu, de lancement à la connexion et d'arrêt autour de la même interface que celle servie sur `localhost:4820`.
 
 ### Fonctionnement
 
@@ -1751,15 +1654,11 @@ Au lancement, l'application :
 
 ### Fonctionnalités
 
-- **Icône de tray** — surface d'état toujours présente (barre de menus macOS / zone de notification Windows). Un clic gauche affiche/masque la fenêtre du tableau de bord ; un clic droit ouvre un menu contextuel avec **Ouvrir le tableau de bord**, **Ouvrir dans le navigateur**, **Redémarrer le serveur**, **Afficher les journaux**, **Ouvrir à la connexion** (bascule) et **Quitter**. macOS utilise un glyphe modèle teinté ; Windows utilise l'`icon.ico` en couleur (un modèle noir disparaîtrait sur la barre des tâches sombre).
-- **Icône de fenêtre et de barre des tâches** — la `BrowserWindow` est reliée au logo coloré de l'application (`icon.ico` sous Windows, `icon.png` ailleurs), si bien que la barre de titre / des tâches affiche la vraie icône de Claude Code Monitor — même une exécution non empaquetée `npm run desktop:dev` n'affiche plus l'icône générique d'Electron.
-- **Menu d'application natif** — menu standard `About` / `File` / `Edit` / `View` / `Window` / `Help` avec les raccourcis `⌘` / `Ctrl`. L'élément **File → Open Dashboard** (`⌘1`) est **réservé à macOS** : macOS garde une barre de menus globale une fois la fenêtre masquée et peut donc la rouvrir — sous Windows/Linux, le menu est attaché à la fenêtre et ne peut pas se déclencher quand elle est masquée ; rouvrez-la plutôt via **Ouvrir le tableau de bord** du tray (qui ramène la fenêtre de façon fiable, même réduite ou derrière d'autres fenêtres).
-- **Démarrage automatique à la connexion** — activez **Ouvrir à la connexion** depuis le tray ou le menu de l'application. Sous macOS, l'inscription passe par l'API moderne `SMAppService`, si bien que l'entrée apparaît dans **Réglages Système → Général → Ouverture** ; sous Windows, elle écrit une entrée par utilisateur `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`, visible dans **Gestionnaire des tâches → Démarrage**.
-- **Fermer la fenêtre la masque, le serveur continue** — fermer la fenêtre ne fait que la masquer ; le serveur et le tray restent actifs. Cliquez sur le tray pour faire revenir la fenêtre.
-- **Verrou d'instance unique** — un second lancement met simplement la fenêtre existante au premier plan ; pas de second serveur, pas de conflit de port. (S'applique sur toutes les plateformes.)
-- **Les données survivent aux réinstallations et mises à jour** — la base SQLite et les clés VAPID se trouvent dans le répertoire de données d'application par utilisateur, **hors du bundle / du répertoire d'installation** — `~/Library/Application Support/Claude Code Monitor/data/` sous macOS, `%APPDATA%\Claude Code Monitor\data\` sous Windows. Un bundle empaqueté est en lecture seule : y écrire la base casserait l'import de l'historique et la persistance des événements ; la garder dans les données d'application règle ce problème et laisse intact votre historique importé quand vous remplacez ou mettez à jour l'application. (Le désinstalleur NSIS de Windows conserve ces données par défaut.)
-- **CLI `claude` dans le PATH** — sous macOS, l'application récupère au démarrage le `PATH` de votre shell de connexion, si bien que la fonction **Lancer Claude** fonctionne même si une application lancée depuis le Finder/le Dock n'hériterait sinon que du `PATH` minimal de launchd. (Sous Windows, le `PATH` utilisateur hérité l'inclut déjà.)
-- **Journaux** — le processus principal écrit dans `~/Library/Logs/Claude Code Monitor/desktop.log` (macOS) ou `%APPDATA%\Claude Code Monitor\logs\desktop.log` (Windows) ; accédez-y via **Afficher les journaux** dans le menu du tray.
+- **Tray et fenêtre :** un clic gauche affiche ou masque la fenêtre ; un clic droit propose **Ouvrir le tableau de bord**, **Ouvrir dans le navigateur**, **Redémarrer le serveur**, **Afficher les journaux**, **Ouvrir à la connexion** et **Quitter**. macOS utilise un glyphe modèle teinté pour le tray ; Windows, ainsi que la fenêtre et la barre des tâches, utilisent l'icône colorée de l'application, y compris lors des exécutions de développement non empaquetées.
+- **Menu natif :** menus d'application standard et raccourcis `⌘` / `Ctrl`. Seul macOS conserve **File → Open Dashboard** (`⌘1`) quand la fenêtre est masquée ; sous Windows/Linux, on la rouvre de façon fiable via le tray.
+- **Connexion et cycle de vie :** `SMAppService` inscrit l'application dans les éléments d'ouverture de macOS ; Windows écrit l'entrée par utilisateur `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`. Fermer la fenêtre la masque tandis que le tray et le serveur continuent ; un second lancement met au premier plan l'instance unique existante.
+- **Données durables :** SQLite et les clés VAPID restent hors du bundle, dans `~/Library/Application Support/Claude Code Monitor/data/` ou `%APPDATA%\Claude Code Monitor\data\`. La réinstallation, la mise à jour et la désinstallation NSIS par défaut préservent l'historique importé.
+- **CLI et journaux :** macOS restaure le `PATH` du shell de connexion pour que les lancements depuis le Finder ou le Dock puissent exécuter `claude` ; Windows utilise le `PATH` utilisateur hérité. **Afficher les journaux** ouvre `~/Library/Logs/Claude Code Monitor/desktop.log` ou `%APPDATA%\Claude Code Monitor\logs\desktop.log`.
 
 ### L'obtenir
 
@@ -1805,26 +1704,24 @@ npm run desktop:win          # Windows: NSIS installer → desktop/release/Claud
 
 **Windows :**
 
-1. Lancez `ClaudeCodeMonitor-Setup-<ver>-x64.exe`. Il s'installe **pour l'utilisateur** sous `%LOCALAPPDATA%\Programs\Claude Code Monitor` (sans élévation administrateur) et vous laisse choisir le répertoire d'installation ; vous pouvez aussi lancer le `*-portable.exe` pour démarrer sans installer.
-2. L'installeur n'est **pas signé** par défaut, si bien que **SmartScreen** peut afficher *« Windows a protégé votre ordinateur »* au premier lancement — cliquez sur **Informations complémentaires → Exécuter quand même**.
-3. Lancez-la depuis le menu Démarrer / le raccourci du bureau. L'icône de la zone de notification (tray) apparaît et la fenêtre du tableau de bord s'ouvre.
+Lancez `ClaudeCodeMonitor-Setup-<ver>-x64.exe` pour une installation par utilisateur, sans droits administrateur, sous `%LOCALAPPDATA%\Programs\Claude Code Monitor`, avec une destination modifiable, ou utilisez `*-portable.exe` sans installation. Le build par défaut, non signé, peut déclencher SmartScreen au premier lancement ; choisissez **Informations complémentaires → Exécuter quand même**. Lancez l'application depuis le menu Démarrer ou le raccourci du bureau pour ouvrir le tableau de bord et l'icône du tray.
 
 <p align="center">
-  <img src="images/setup_win_wizard.png" alt="Installeur NSIS, étape 1 — Choix des options d'installation, avec la sélection par utilisateur (Seulement pour moi) ou pour tous les utilisateurs" width="100%">
+  <a href="images/setup_win_wizard.png"><img src="images/readme/setup_win_wizard.png" alt="Options de l'installeur Windows" width="100%"></a>
   <br>
-  <em>Installeur Windows · Étape 1 — <strong>Choose Installation Options</strong> (par utilisateur « Only for me » ou tous les utilisateurs).</em>
+  <em>🪟 <strong>Options d'installation</strong> · choisissez une installation par utilisateur ou pour tous les utilisateurs</em>
 </p>
 
 <p align="center">
-  <img src="images/setup_win_wizard2.png" alt="Installeur NSIS, étape 2 — Choix de l'emplacement d'installation, avec le dossier de destination par utilisateur %LOCALAPPDATA%\Programs" width="100%">
+  <a href="images/setup_win_wizard2.png"><img src="images/readme/setup_win_wizard2.png" alt="Destination de l'installeur Windows" width="100%"></a>
   <br>
-  <em>Installeur Windows · Étape 2 — <strong>Choose Install Location</strong> (par défaut <code>%LOCALAPPDATA%\Programs</code>, par utilisateur).</em>
+  <em>🪟 <strong>Emplacement d'installation</strong> · confirmez ou modifiez le dossier de destination</em>
 </p>
 
 <p align="center">
-  <img src="images/setup_win_wizard3.png" alt="Installeur NSIS, étape 3 — Fin de l'installation, avec l'option de terminer et de lancer l'application" width="100%">
+  <a href="images/setup_win_wizard3.png"><img src="images/readme/setup_win_wizard3.png" alt="Écran de fin de l'installeur Windows" width="100%"></a>
   <br>
-  <em>Installeur Windows · Étape 3 — <strong>Completing Setup</strong> (terminer et lancer l'application).</em>
+  <em>🪟 <strong>Installation Windows terminée</strong> · terminez l'installeur et lancez Claude Code Monitor</em>
 </p>
 
 ### Commandes de build
@@ -1848,16 +1745,15 @@ Le DMG macOS obtenu pèse **~80 Mo** (≈ 250 Mo sur disque une fois installé) 
 
 ### Signature et notarisation
 
-Le DMG macOS est **signé ad hoc** par défaut, pour que chacun puisse compiler une `.app` fonctionnelle sans compte Apple Developer payant — le script `package` définit `CSC_IDENTITY_AUTO_DISCOVERY=false` pour qu'un certificat de signature déjà présent dans le trousseau du contributeur ne soit jamais choisi automatiquement. La vraie **signature Developer ID** s'active sur demande via `CSC_LINK` (un `.p12` encodé en base64) et `CSC_KEY_PASSWORD` ; la **notarisation Apple** s'active sur demande via `APPLE_ID`, `APPLE_TEAM_ID` et `APPLE_APP_SPECIFIC_PASSWORD`. Le build **Windows** n'est **pas signé** par défaut (SmartScreen peut afficher un avertissement au premier lancement — *Informations complémentaires → Exécuter quand même*) ; la signature Authenticode ne s'active que lorsqu'un certificat explicite est fourni via `CSC_LINK` + `CSC_KEY_PASSWORD`. La CI prend tout cela en compte automatiquement dès que ces valeurs sont fournies — aucune modification de code nécessaire.
+macOS utilise par défaut une signature ad hoc et définit `CSC_IDENTITY_AUTO_DISCOVERY=false`, si bien que les certificats locaux ne sont jamais sélectionnés par accident. La signature Developer ID utilise `CSC_LINK` et `CSC_KEY_PASSWORD` ; la notarisation ajoute `APPLE_ID`, `APPLE_TEAM_ID` et `APPLE_APP_SPECIFIC_PASSWORD`. Windows n'est pas signé par défaut et active Authenticode via les mêmes variables `CSC_LINK` et de mot de passe. La CI active l'une ou l'autre voie dès que les identifiants sont présents, sans modification de code.
 
 ### Notes d'implémentation
 
-- **`better-sqlite3`** est le seul module natif de l'arbre de dépendances, et un module natif doit être compilé pour l'ABI Node exacte sur laquelle il tourne. L'espace de travail `desktop/` embarque sa **propre copie** de `better-sqlite3`, recompilée pour l'ABI d'Electron, et utilise une redirection de `require` locale au processus pour y faire pointer `server/db.js` ; la copie à la racine du dépôt reste compilée pour le Node du système (si bien que `npm run test:server` continue de fonctionner).
-- **Compiler un DMG recompile `better-sqlite3` pour l'architecture cible**, ce qui peut laisser la copie du bureau compilée pour l'autre architecture de processeur et casser `npm run desktop:dev` / `npm run desktop:test` avec `ERR_DLOPEN_FAILED`. L'étape `prebuild` du bureau **répare désormais automatiquement** le module natif pour la machine locale au build suivant, si bien que les flux de dev et de test de fumée continuent de fonctionner après un build de DMG propre à une architecture. L'étape `prebuild` **échoue aussi immédiatement avec une aide à la configuration** quand le binaire natif de `better-sqlite3` est totalement absent, transformant un plantage à l'exécution en une erreur de build copiable-collable.
-- La **seule modification hors de `desktop/`** est un refactoring de `server/index.js` qui préserve le comportement : son amorçage post-écoute (planificateur de mises à jour, `cc-watcher`, réconciliation des exécutions orphelines) a été extrait dans une fonction exportée `startBackgroundServices()`, pour que le serveur embarqué exécute exactement ce qu'exécute `node server/index.js`. Le chemin autonome `node server/index.js` est fonctionnellement inchangé ; `client/`, `scripts/`, `mcp/` et `vscode-extension/` ne sont pas touchés.
-- Deux jobs de CI du bureau, filtrés par chemin, compilent, testent et empaquettent l'application : **`🍎 macOS Desktop (DMG)`** sur `macos-latest` (publie l'artefact `ClaudeCodeMonitor-dmg` — deux DMG mono-architecture) et **`🪟 Windows Desktop (EXE)`** sur `windows-latest` (publie l'artefact `ClaudeCodeMonitor-win` — installeur NSIS + version portable). Lors d'un push qui change la version sur `master`, le job `release` joint **à la fois** les DMG macOS et les `.exe` Windows à la GitHub Release `vX.Y.Z` publiée. L'icône Windows (`desktop/assets/icon.ico`) est versionnée dans le dépôt (régénérez-la depuis `icon.png` avec `npm run build:win-icon`, PowerShell + .NET, sans outil supplémentaire).
+- **ABI native :** `desktop/` conserve un `better-sqlite3` compilé pour Electron et y redirige `server/db.js` ; la copie à la racine reste compatible avec le Node du système et les tests du serveur. Après un build de DMG propre à une architecture, l'étape `prebuild` du bureau répare automatiquement l'ABI locale et échoue tôt, avec une aide à la configuration, si le binaire est absent.
+- **Parité du serveur :** la fonction exportée `startBackgroundServices()` donne au serveur embarqué le même planificateur de mises à jour, le même observateur de configuration et la même réconciliation des exécutions orphelines que `node server/index.js` ; le chemin autonome et les autres espaces de travail gardent un comportement inchangé.
+- **CI et versions :** des jobs macOS et Windows filtrés par chemin effectuent un test de fumée et publient deux DMG mono-architecture ainsi que les EXE NSIS et portable. Les changements de version sur `master` joignent tous les fichiers à `vX.Y.Z` ; régénérez `desktop/assets/icon.ico` avec `npm run build:win-icon`.
 
-Pour le guide utilisateur complet (téléchargement, installation, Gatekeeper / SmartScreen, menu du tray, démarrage automatique), voir [`DESKTOP.md`](./DESKTOP.md) ; pour la référence contributeur / architecture (modèle de processus, cycle de démarrage, découverte de port, chaîne de build — avec des diagrammes Mermaid), voir [`desktop/README.md`](./desktop/README.md).
+Voir [`DESKTOP.md`](./DESKTOP.md) pour l'installation et l'usage quotidien, et [`desktop/README.md`](./desktop/README.md) pour le modèle de processus, le cycle de vie, les ports et les builds.
 
 ---
 
@@ -2015,7 +1911,7 @@ Seuils de couleur du coût : vert sous 5 $, jaune de 5 à 20 $, rouge au-delà d
 Voir [`statusline/README.md`](statusline/README.md) pour les instructions d'installation.
 
 <p align="center">
-  <img src="images/statusline.png" alt="Démo de la ligne de statut" width="100%">
+  <a href="images/statusline.png"><img src="images/readme/statusline.png" alt="Démo de la ligne de statut" width="100%"></a>
 </p>
 
 ---
@@ -2324,7 +2220,7 @@ agent-dashboard/
 |   |   |-- config/              # Environment/CLI config parsing
 |   |   |-- core/                # Logger, tool registry, result helpers
 |   |   |-- policy/              # Mutation/destructive guards
-|   |   |-- tools/               # 16 domain modules registering 97 tools
+|   |   |-- tools/               # 16 domain modules registering 103 tools
 |   |   |-- transports/          # HTTP+SSE server, REPL, tool collector
 |   |   |-- ui/                  # ANSI banner, colors, formatter, tables
 |   |   +-- types/               # Shared MCP type definitions

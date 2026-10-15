@@ -24,7 +24,8 @@ page is half-translated.
   `.t-label`, `.main-content h2/h3/h4/th`, `.hero-desc`) plus the `TEXTNODE_SEL`
   trailing text nodes (`.nav-link`, `.hero-badge`) — is keyed by plain text in
   the `T` dictionary inside `wiki/script.js`. Add the new English text as a key
-  with its `zh`, `vi`, `ko`, and `es` values there. Note `th` is matched by both
+  with its `zh`, `vi`, `ko`, `es`, `fr`, `de`, `pt`, and `it` values there. Note
+  `th` is matched by both
   passes: as a label in `PLAIN` and as body content in `HTML_SEL`.
 - Body content — `.main-content p:not(.hero-desc)`, `li`, `td`, `th`,
   `.screenshot-caption`, `.callout-body > strong`, `.route-desc`, and the footer
