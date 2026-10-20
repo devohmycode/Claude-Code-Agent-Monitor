@@ -342,7 +342,7 @@ O painel cobre todo o ciclo de vida local dos agentes. Os contratos operacionais
 | **Detecção de sessões preexistentes** | A importação na inicialização marca como ativas as transcrições modificadas recentemente, e eventos Stop posteriores reativam sessões importadas concluídas ou abandonadas antes de atualizá-las. |
 | **Sincronização contínua de projetos** | Uma varredura imediata na inicialização, um observador do sistema de arquivos com debounce e o polling de `DASHBOARD_SESSION_SYNC_MS` (padrão de 30 segundos) compartilham um cache de mtime e uma varredura unificada. Só arquivos novos ou que avançaram são reanalisados, com escopo de observação seguro no Linux e transmissão das sessões ao vivo. |
 | **Fontes de dados remotas** | As fontes SSH espelham de forma independente os homes do Claude e do Codex via `scp` ou `tar` no WSL, marcam `sessions.source`, reconciliam o ciclo de vida e continuam saudáveis se qualquer um dos provedores funcionar. O polling é de 15 segundos por padrão; a reserva com dados obsoletos afeta apenas o provedor que falhou. As credenciais ficam com o SSH do host. |
-| **Ingestão por push remoto** | `POST /api/hooks/ingest-batch` atende máquinas atrás de NAT. Fica desativada até que `REMOTE_PUSH_TOKEN` seja definido, rejeita tokens na query string e sessões pertencentes à máquina local, limita os lotes a 1000, elimina duplicatas por `(session_id, event_type, uuid)`, retorna erros parciais por item e só transmite após o commit. |
+| **Ingestão por push remoto** | `POST /api/hooks/ingest-batch` envia totais e eventos de sessão de máquinas atrás de NAT, enquanto `POST /api/hooks/ingest-transcript` acrescenta, com verificação de offset, o JSONL do agente principal e dos subagentes para títulos, histórico, tokens e importação de subagentes. Ambas ficam desativadas até que `REMOTE_PUSH_TOKEN` ou `REMOTE_PUSH_TOKEN_FILE` seja configurado e rejeitam credenciais na query string e sessões pertencentes à máquina local; `ingest-transcript` autentica antes de executar seu parser maior. |
 | **Design responsivo** | Os layouts móveis empilham as grades, rolam as tabelas largas e recolhem a navegação. |
 | **Localização da interface** | Inglês, chinês, vietnamita, coreano, espanhol, francês, alemão, português e italiano cobrem os textos da interface, os rótulos de acessibilidade, as explicações e dicas dos fluxos, as orientações de preços dos modelos, os homes dos provedores e a Importação de histórico. |
 | **Dados de exemplo** | Um script integrado fornece dados realistas para demonstração e desenvolvimento. |
@@ -642,7 +642,8 @@ flowchart LR
 | `DASHBOARD_TOKEN` | não definido | Protege `/api/*` e o WebSocket via cabeçalho Bearer, `x-dashboard-token` ou `?token=`. O loopback é a fronteira de confiança padrão. |
 | `DASHBOARD_TOKEN_FILE` | não definido | Token do painel lido de arquivo, para segredos do Docker/Kubernetes; `DASHBOARD_TOKEN` tem prioridade. |
 | `DASHBOARD_HOOK_TOKEN` / `DASHBOARD_HOOK_TOKEN_FILE` | não definido | Proteção independente para `/api/hooks/event` e `/api/hooks/codex` além do loopback. |
-| `REMOTE_PUSH_TOKEN` / `REMOTE_PUSH_TOKEN_FILE` | não definido | Proteção separada para a rota pública `POST /api/hooks/ingest-batch`. A rota fica desativada por padrão e nunca herda o token dos hooks locais. |
+| `REMOTE_PUSH_TOKEN` / `REMOTE_PUSH_TOKEN_FILE` | não definido | Proteção separada para as rotas públicas `POST /api/hooks/ingest-batch` e `/api/hooks/ingest-transcript`. Ambas ficam desativadas por padrão e nunca herdam o token dos hooks locais. |
+| `REMOTE_TRANSCRIPT_MAX_FILE_MB` | `256` | Tamanho máximo armazenado, em MiB, de cada arquivo aceito por `ingest-transcript`; cada bloco de requisição tem um limite separado de 4 MiB. |
 | `DASHBOARD_ALLOWED_HOSTS` | loopback | Valores extras de `Host` para HTTP e WebSocket, separados por vírgula, para a proteção contra DNS rebinding. |
 | `DASHBOARD_ENV_PATH` | `.env` do repositório | Arquivo dotenv gravável usado para persistir as substituições dos homes dos provedores; nos contêineres, o padrão é `/app/config/.env`. |
 | `CCAM_DASHBOARD_URL` | descoberta em localhost | Destino remoto dos hooks. URLs fora do loopback exigem HTTPS e um token de hook. |
@@ -1093,6 +1094,7 @@ npm run openapi:yaml
 | ------ | ------------------ | -------------------------------------------- |
 | `POST` | `/api/hooks/event` | Recebe e processa um evento de hook do Claude Code |
 | `POST` | `/api/hooks/ingest-batch` | Envia um lote de dados de sessão de uma máquina itinerante/atrás de NAT (desativado por padrão; veja `REMOTE_PUSH_TOKEN` abaixo e `server/README.md` para o formato completo do payload) |
+| `POST` | `/api/hooks/ingest-transcript` | Envia o JSONL de transcript de uma máquina remota em blocos baseados em offset (mesma proteção `REMOTE_PUSH_TOKEN`; a sessão precisa ser registrada antes via `ingest-batch`) |
 
 **Payload de um evento de hook:**
 
